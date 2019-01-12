@@ -26,6 +26,7 @@ project "Falling-into-deeps"
 
 	includedirs
 	{
+		"%{prj.name}/lib/spdlog/include"
 	}
 
 	filter "system:windows"

@@ -1,7 +1,10 @@
-#include <iostream>
-
+#include "Log.h"
 int main()
 {
-	std::cout << "Project compiled succesfuly." << std::endl;
-	std::cin.get();
+	sgt::Log::Init();
+
+	SGT_CORE_INFO("Project compiled succesfuly");
+	SGT_WARN("Who touch my spagett?");
+
+	while (true);
 }
