@@ -1,12 +1,18 @@
 #pragma once
-#include <GLFW/glfw3.h>
+#include "sgtpch.h"
+#include "Event.h"
+
+#include "sgtpch.h"
 
 class Window
 {
 public:
-	void CreateGLFWWindow(int width, int height, const char* title);
-	void SwapBuffers();
-	void PollEvents();
-private:
-	GLFWwindow* window;
+	virtual ~Window() {}
+	virtual void OnUpdate() = 0;
+	virtual unsigned int GetWidth() const = 0;
+	virtual unsigned int GetHeight() const = 0;
+
+	using EventCallbackFn = std::function<void(Event&)>;
+
+	static Window* Create(int width = 960, int height = 580, std::string title = "Application");
 };

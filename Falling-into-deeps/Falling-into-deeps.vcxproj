@@ -140,17 +140,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Event.h" />
     <ClInclude Include="src\Log.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\sgtpch.h" />
+    <ClInclude Include="src\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\Window.cpp" />
     <ClCompile Include="src\sgtpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="lib\GLFW\GLFW.vcxproj">
