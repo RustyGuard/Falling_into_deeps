@@ -1,6 +1,6 @@
 #pragma once
 
-#include <memory>
+#include "sgtpch.h"
 
 #include "spdlog/spdlog.h"
 
@@ -33,3 +33,11 @@ namespace sgt {
 #define SGT_WARN(...)	      ::sgt::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define SGT_ERROR(...)	      ::sgt::Log::GetClientLogger()->error(__VA_ARGS__)
 #define SGT_FATAL(...)	      ::sgt::Log::GetClientLogger()->fatal(__VA_ARGS__)
+
+#ifdef SGT_ENABLE_ASSERTS
+	#define SGT_ASSERT(x, ...) { if(!(x)) { HZ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define SGT_CORE_ASSERT(x, ...) { if(!(x)) { HZ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#else
+	#define SGT_ASSERT(x, ...)
+	#define SGT_CORE_ASSERT(x, ...)
+#endif
