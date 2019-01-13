@@ -11,6 +11,17 @@ public:
 	unsigned int GetWidth() const override { return data.Width; }
 	unsigned int GetHeight() const override { return data.Height; }
 
+	inline void SetEventCallback(const EventCallbackFn& callback) override { data.EventCallback = callback; }
+
+	void Close() override
+	{
+		glfwSetWindowShouldClose(window, true);
+	}
+
+	void DeleteContext() override
+	{
+		glfwTerminate();
+	}
 private:
 	GLFWwindow* window;
 

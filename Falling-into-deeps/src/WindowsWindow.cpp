@@ -1,6 +1,7 @@
 #include "sgtpch.h"
 #include "WindowsWindow.h"
 #include <Glad/glad.h>
+#include "events/WindowEvent.h"
 
 WindowsWindow::WindowsWindow(int width, int height, std::string title)
 {
@@ -21,15 +22,15 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 		data.Width = width;
 		data.Height = height;
 
-		//WindowResizeEvent event(width, height);
-		//data.EventCallback(event);
+		WindowResizeEvent event(width, height);
+		data.EventCallback(event);
 	});
 
 	glfwSetWindowCloseCallback(window, [](GLFWwindow* window)
 	{
 		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-		//WindowCloseEvent event;
-		//data.EventCallback(event);
+		WindowCloseEvent event;
+		data.EventCallback(event);
 	});
 
 	glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
