@@ -1,6 +1,7 @@
 #include "Window.h"
 #include "sgtpch.h"
 #include <GLFW/glfw3.h>
+#include "events/WindowEvent.h"
 
 class WindowsWindow : public Window
 {
@@ -15,7 +16,8 @@ public:
 
 	void Close() override
 	{
-		glfwSetWindowShouldClose(window, true);
+		glfwSetWindowShouldClose(window, GLFW_TRUE);
+		data.EventCallback(WindowCloseEvent());
 	}
 
 	void DeleteContext() override

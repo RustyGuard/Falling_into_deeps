@@ -1,7 +1,8 @@
 #include "sgtpch.h"
 #include "WindowsWindow.h"
 #include <Glad/glad.h>
-#include "events/WindowEvent.h"
+#include "events/KeyEvent.h"
+#include "events/MouseEvent.h"
 
 WindowsWindow::WindowsWindow(int width, int height, std::string title)
 {
@@ -41,20 +42,14 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 		{
 		case GLFW_PRESS:
 		{
-			//KeyPressedEvent event(key, 0);
-			//data.EventCallback(event);
+			KeyPressEvent event(key);
+			data.EventCallback(event);
 			break;
 		}
 		case GLFW_RELEASE:
 		{
-			//KeyReleasedEvent event(key);
-			//data.EventCallback(event);
-			break;
-		}
-		case GLFW_REPEAT:
-		{
-			//KeyPressedEvent event(key, 1);
-			//data.EventCallback(event);
+			KeyReleaseEvent event(key);
+			data.EventCallback(event);
 			break;
 		}
 		}
@@ -68,14 +63,14 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 		{
 		case GLFW_PRESS:
 		{
-			//MouseButtonPressedEvent event(button);
-			//data.EventCallback(event);
+			MouseButtonPressEvent event(data.mouseX, data.mouseY, button);
+			data.EventCallback(event);
 			break;
 		}
 		case GLFW_RELEASE:
 		{
-			//MouseButtonReleasedEvent event(button);
-			//data.EventCallback(event);
+			MouseButtonReleaseEvent event(data.mouseX, data.mouseY, button);
+			data.EventCallback(event);
 			break;
 		}
 		}
@@ -85,16 +80,24 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 	{
 		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-		//MouseScrolledEvent event((float)xOffset, (float)yOffset);
-		//data.EventCallback(event);
+		MouseScrolledEvent event((float)xOffset, (float)yOffset);
+		data.EventCallback(event);
 	});
 
 	glfwSetCursorPosCallback(window, [](GLFWwindow* window, double xPos, double yPos)
 	{
 		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-		//MouseMovedEvent event((float)xPos, (float)yPos);
-		//data.EventCallback(event);
+		MouseMovedEvent event((float)xPos, (float)yPos);
+		data.EventCallback(event);
+	});
+
+	glfwSetCharCallback(window, [](GLFWwindow* window, unsigned int key)
+	{
+		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+		std::wcout << L"Char: " << (wchar_t)key << std::endl;
+		CharInputedEvent event((wchar_t)key);
+		data.EventCallback(event);
 	});
 }
 
@@ -106,5 +109,5 @@ void WindowsWindow::OnUpdate()
 
 Window* Window::Create(int width, int height, std::string title)
 {
-	return new WindowsWindow(400, 225, "Windows!");
+	return new WindowsWindow(width, height, title);
 }

@@ -1,6 +1,7 @@
 #include "sgtpch.h"
 #include "Application.h"
-
+#include "events/KeyEvent.h"
+#include <GLFW/glfw3.h>
 
 Application::Application()
 {
@@ -14,9 +15,19 @@ Application::Application()
 
 void Application::OnEvent(Event & event)
 {
-	if (event.GetEventType() == EventType::WindowClose) {
+	switch (event.GetEventType())
+	{
+	case EventType::KeyReleased:
+		if (((KeyReleaseEvent&)event).GetKeyCode() == GLFW_KEY_ESCAPE)
+		{
+			window->Close();
+		}
+		break;
+
+	case EventType::WindowClose:
 		running = false;
 		SGT_INFO("Window closed");
+
 	}
 }
 
