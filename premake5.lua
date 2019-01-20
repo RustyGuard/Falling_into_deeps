@@ -36,7 +36,8 @@ project "Falling-into-deeps"
 		"%{prj.name}/lib/spdlog/include",
 		"%{prj.name}/lib/GLFW/include",
 		"%{prj.name}/lib/Glad/include",
-		"%{prj.name}/lib/nlohman/include"
+		"%{prj.name}/lib/nlohman/include",
+		"%{prj.name}/lib/graphics"
 	}
 	links 
 	{ 
