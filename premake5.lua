@@ -12,6 +12,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 include "Falling-into-deeps/lib/GLFW"
 include "Falling-into-deeps/lib/Glad"
+include "Falling-into-deeps/lib/Lua"
 
 project "Falling-into-deeps"
 	location "Falling-into-deeps"
@@ -37,13 +38,16 @@ project "Falling-into-deeps"
 		"%{prj.name}/lib/GLFW/include",
 		"%{prj.name}/lib/Glad/include",
 		"%{prj.name}/lib/nlohman/include",
-		"%{prj.name}/lib/graphics"
+		"%{prj.name}/lib/graphics",
+		"%{prj.name}/lib/Lua/src",
+		"%{prj.name}/lib/luabridge/Source"
 	}
 	links 
 	{ 
 		"GLFW",
 		"Glad",
-		"opengl32.lib"
+		"opengl32.lib",
+		"Lua"
 	}
 
 	filter "system:windows"

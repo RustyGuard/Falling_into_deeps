@@ -1,5 +1,5 @@
 #include "sgtpch.h"
-#include "Application.h"
+#include "LuaApplication.h"
 
 int main()
 {

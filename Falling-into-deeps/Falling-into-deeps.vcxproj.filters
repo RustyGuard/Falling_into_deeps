@@ -9,6 +9,7 @@
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\Graphics.h" />
     <ClInclude Include="src\Log.h" />
+    <ClInclude Include="src\LuaApplication.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\WindowsWindow.h" />
     <ClInclude Include="src\events\Event.h">
@@ -29,6 +30,7 @@
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Graphics.cpp" />
     <ClCompile Include="src\Log.cpp" />
+    <ClCompile Include="src\LuaApplication.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\WindowsWindow.cpp" />
     <ClCompile Include="src\sgtpch.cpp" />

@@ -9,12 +9,9 @@ public:
 	Application();
 
 	void OnEvent(Event& event);
-	void Run();
+	virtual void Run();
 
-	static Application* CreateApplication()
-	{
-		return new Application();
-	}
+	static Application* CreateApplication();
 private:
 	Window* window;
 	bool running;

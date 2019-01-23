@@ -5,12 +5,12 @@
 
 Application::Application()
 {
-	sgt::Log::Init();
+	/*sgt::Log::Init();
 
 	SGT_INFO("Application created.");
 
 	window = Window::Create(1200, 675, "Application");
-	window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+	window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));*/
 }
 
 void Application::OnEvent(Event & event)
