@@ -9,6 +9,10 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 	int success = glfwInit();
 	SGT_CORE_ASSERT(success, "Could not intialize GLFW!");
 
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 	window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 
@@ -98,6 +102,11 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 		std::wcout << L"Char: " << (wchar_t)key << std::endl;
 		CharInputedEvent event((wchar_t)key);
 		data.EventCallback(event);
+	});
+
+	glfwSetErrorCallback([](int code, const char* error)
+	{
+		SGT_ERROR(std::to_string(code) + " " + error);
 	});
 }
 

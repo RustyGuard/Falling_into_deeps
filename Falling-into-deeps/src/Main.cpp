@@ -1,5 +1,6 @@
 #include "sgtpch.h"
-#include "LuaApplication.h"
+#include "Application.h"
+#include "glm/glm.hpp"
 
 int main()
 {

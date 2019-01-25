@@ -8,10 +8,13 @@ class Application
 public:
 	Application();
 
-	void OnEvent(Event& event);
+	virtual void OnEvent(Event& event);
 	virtual void Run();
 
-	static Application* CreateApplication();
+	static Application* CreateApplication()
+	{
+		return new Application();
+	}
 private:
 	Window* window;
 	bool running;

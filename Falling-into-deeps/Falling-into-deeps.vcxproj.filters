@@ -7,9 +7,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h" />
-    <ClInclude Include="src\Graphics.h" />
     <ClInclude Include="src\Log.h" />
-    <ClInclude Include="src\LuaApplication.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\WindowsWindow.h" />
     <ClInclude Include="src\events\Event.h">
@@ -25,14 +23,26 @@
       <Filter>events</Filter>
     </ClInclude>
     <ClInclude Include="src\sgtpch.h" />
+    <ClInclude Include="src\LuaManager.h" />
+    <ClInclude Include="src\graphics\Graphics.h" />
+    <ClInclude Include="src\graphics\IndexBuffer.h" />
+    <ClInclude Include="src\graphics\Shader.h" />
+    <ClInclude Include="src\graphics\VertexArray.h" />
+    <ClInclude Include="src\graphics\VertexBuffer.h" />
+    <ClInclude Include="src\graphics\VertexBufferLayout.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\Graphics.cpp" />
     <ClCompile Include="src\Log.cpp" />
-    <ClCompile Include="src\LuaApplication.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\WindowsWindow.cpp" />
     <ClCompile Include="src\sgtpch.cpp" />
+    <ClCompile Include="src\LuaManager.cpp" />
+    <ClCompile Include="src\graphics\Graphics.cpp" />
+    <ClCompile Include="src\graphics\IndexBuffer.cpp" />
+    <ClCompile Include="src\graphics\Shader.cpp" />
+    <ClCompile Include="src\graphics\VertexArray.cpp" />
+    <ClCompile Include="src\graphics\VertexBuffer.cpp" />
+    <ClCompile Include="src\graphics\VertexBufferLayout.cpp" />
   </ItemGroup>
 </Project>
