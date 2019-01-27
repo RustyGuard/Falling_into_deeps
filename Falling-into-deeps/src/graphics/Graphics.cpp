@@ -11,6 +11,8 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
+#include "Input.h"
+
 VertexArray* VAO;
 VertexBuffer* vertexBuffer;
 IndexBuffer* indexBuffer;
@@ -18,18 +20,25 @@ Shader* shader;
 glm::mat4 proj;
 glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f);
 
+std::unordered_map<std::string, unsigned int> textures;
+
+float scale;
+glm::vec3 view;
+
 void Graphics::Init()
 {
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	proj = glm::mat4(glm::ortho(0.0f, 960.0f, 540.0f, 0.0f, 0.0f, 1.0f));
+	proj = glm::mat4(glm::ortho(-480.0f, 480.0f, 270.0f, -270.0f, 0.0f, 1.0f));
+	scale = 1.0f;
+	view = glm::vec3(0, 0, 0);
 
 	float positions[16] = {
-		-64.0f, -64.0f, 1.0f, 1.0f, //0
-		64.0f, -64.0f, 0.0f, 1.0f,  //1
-		64.0f, 64.0f, 0.0f, 0.0f,   //2
-		-64.0f, 64.0f, 1.0f, 0.0f   //3
+		-1.0f, -1.0f, 0.0f, 0.0f, //0
+		1.0f, -1.0f, 1.0f, 0.0f,  //1
+		1.0f, 1.0f, 1.0f, 1.0f,   //2
+		-1.0f, 1.0f, 0.0f, 1.0f   //3
 	};
 
 	unsigned int indices[6]{
@@ -62,8 +71,25 @@ void Graphics::Draw()
 	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
 }
 
-void Graphics::Move(float x, float y)
+void Graphics::Draw(glm::vec3 pos, glm::vec3 half_extern)
 {
-	pos.x += 0.1f;
-	pos.y += 0.1f;
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
+	glm::mat4 mvp = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, 0.0f)) * proj * glm::translate(glm::mat4(1.0f), view) * model * glm::scale(glm::mat4(1.0f), half_extern);
+	VAO->bind();
+	indexBuffer->bind();
+	shader->bind();
+	shader->setUniformMat4("u_MVP", mvp);
+	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
+}
+
+void Graphics::Move()
+{
+	if (Input::isKeyPressed(GLFW_KEY_UP))
+		scale += 0.1f;
+	if (Input::isKeyPressed(GLFW_KEY_DOWN) && scale > 0.25f)
+		scale -= 0.1f;
+	if (Input::isKeyPressed(GLFW_KEY_LEFT))
+		view.x -= 1.1f;
+	if (Input::isKeyPressed(GLFW_KEY_RIGHT))
+		view.x += 1.1f;
 }

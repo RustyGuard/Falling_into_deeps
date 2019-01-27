@@ -4,10 +4,14 @@
     <Filter Include="events">
       <UniqueIdentifier>{5A9D08FC-463F-33D2-2FFA-46261B3BBA22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="graphics">
+      <UniqueIdentifier>{36EF08BC-22BC-63C7-4BD5-516F37019955}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\Log.h" />
+    <ClInclude Include="src\LuaManager.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\WindowsWindow.h" />
     <ClInclude Include="src\events\Event.h">
@@ -22,27 +26,58 @@
     <ClInclude Include="src\events\WindowEvent.h">
       <Filter>events</Filter>
     </ClInclude>
+    <ClInclude Include="src\graphics\Graphics.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\IndexBuffer.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\Shader.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\VertexArray.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\VertexBuffer.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphics\VertexBufferLayout.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
     <ClInclude Include="src\sgtpch.h" />
-    <ClInclude Include="src\LuaManager.h" />
-    <ClInclude Include="src\graphics\Graphics.h" />
-    <ClInclude Include="src\graphics\IndexBuffer.h" />
-    <ClInclude Include="src\graphics\Shader.h" />
-    <ClInclude Include="src\graphics\VertexArray.h" />
-    <ClInclude Include="src\graphics\VertexBuffer.h" />
-    <ClInclude Include="src\graphics\VertexBufferLayout.h" />
+    <ClInclude Include="src\Input.h" />
+    <ClInclude Include="src\entity\EntityRenderer.h" />
+    <ClInclude Include="src\entity\Entity.h" />
+    <ClInclude Include="src\entity\Component.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Log.cpp" />
+    <ClCompile Include="src\LuaManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\WindowsWindow.cpp" />
+    <ClCompile Include="src\graphics\Graphics.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\IndexBuffer.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\Shader.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\VertexArray.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\VertexBuffer.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphics\VertexBufferLayout.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
     <ClCompile Include="src\sgtpch.cpp" />
-    <ClCompile Include="src\LuaManager.cpp" />
-    <ClCompile Include="src\graphics\Graphics.cpp" />
-    <ClCompile Include="src\graphics\IndexBuffer.cpp" />
-    <ClCompile Include="src\graphics\Shader.cpp" />
-    <ClCompile Include="src\graphics\VertexArray.cpp" />
-    <ClCompile Include="src\graphics\VertexBuffer.cpp" />
-    <ClCompile Include="src\graphics\VertexBufferLayout.cpp" />
+    <ClCompile Include="src\Input.cpp" />
+    <ClCompile Include="src\entity\EntityRenderer.cpp" />
+    <ClCompile Include="src\entity\Entity.cpp" />
+    <ClCompile Include="src\entity\Component.cpp" />
   </ItemGroup>
 </Project>
