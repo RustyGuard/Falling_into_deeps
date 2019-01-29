@@ -2,11 +2,13 @@
 #include "Application.h"
 #include "events/KeyEvent.h"
 #include "events/MouseEvent.h"
+#include "events/ApplicationEvent.h"
 #include <GLFW/glfw3.h>
 #include "LuaManager.h"
 #include "glm/glm.hpp"
 #include "graphics/Graphics.h"
 #include "Input.h"
+#include "entity/Entity.h"
 
 void printMessage(const std::string&);
 
@@ -70,24 +72,18 @@ void Application::Run()
 	std::cout << luaString << std::endl;
 	std::cout << "And here's our number:" << answer << std::endl;
 	Graphics::Init();
-	glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f);
-	glm::vec3 half = glm::vec3(32.0f, 32.0f, 0.0f);
+	Entity* entity = new Entity("entity");
+	Entity* entity2 = new Entity("entity2");
 
 	while (running)
 	{
 		glClearColor(1, 1.0f, 0.5f, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
-		if (Input::isKeyPressed(GLFW_KEY_A))
-			pos.x -= 1.1f;
-		if (Input::isKeyPressed(GLFW_KEY_D))
-			pos.x += 1.1f;
-		if (Input::isKeyPressed(GLFW_KEY_W))
-			pos.y -= 1.1f;
-		if (Input::isKeyPressed(GLFW_KEY_S))
-			pos.y += 1.1f;
-
-		Graphics::Draw(pos, half);
 		Graphics::Move();
+		entity->OnEvent(UpdateEvent(1.0f));
+		entity->OnEvent(RenderEvent());
+		entity2->OnEvent(UpdateEvent(1.0f));
+		entity2->OnEvent(RenderEvent());
 		window->OnUpdate();
 	}
 	window->DeleteContext();

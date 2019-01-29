@@ -5,8 +5,3 @@
 EntityRenderer::EntityRenderer()
 {
 }
-
-
-EntityRenderer::~EntityRenderer()
-{
-}

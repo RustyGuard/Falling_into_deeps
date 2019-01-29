@@ -140,9 +140,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\entity\Component.h" />
+    <ClInclude Include="src\entity\component\Component.h" />
     <ClInclude Include="src\entity\Entity.h" />
     <ClInclude Include="src\entity\EntityRenderer.h" />
+    <ClInclude Include="src\events\ApplicationEvent.h" />
     <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\Log.h" />
@@ -160,9 +161,10 @@
     <ClInclude Include="src\graphics\VertexBuffer.h" />
     <ClInclude Include="src\graphics\VertexBufferLayout.h" />
     <ClInclude Include="src\sgtpch.h" />
+    <ClInclude Include="src\entity\component\TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\entity\Component.cpp" />
+    <ClCompile Include="src\entity\component\Component.cpp" />
     <ClCompile Include="src\entity\Entity.cpp" />
     <ClCompile Include="src\entity\EntityRenderer.cpp" />
     <ClCompile Include="src\Input.cpp" />
@@ -180,6 +182,7 @@
     <ClCompile Include="src\sgtpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\entity\component\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="lib\GLFW\GLFW.vcxproj">
@@ -191,6 +194,10 @@
     <ProjectReference Include="lib\Lua\Lua.vcxproj">
       <Project>{A705880B-130F-887C-9C8A-9E7C0893937C}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\scripts\entity.lua" />
+    <None Include="res\scripts\entity2.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
