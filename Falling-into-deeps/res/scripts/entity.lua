@@ -1,7 +1,12 @@
-update = function(delta)
-	print("update1")
+init = function(inst)
+	inst:AddComponent("transform")
+	inst:GetTransform():move(128, 128)
 end
 
-render = function()
-	print("render1")
+update = function(inst, delta)
+	--print("update1")
+end
+
+render = function(inst)
+	--print("render1")
 end

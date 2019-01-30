@@ -71,7 +71,10 @@ void Application::Run()
 	int answer = n.cast<int>();
 	std::cout << luaString << std::endl;
 	std::cout << "And here's our number:" << answer << std::endl;
+
 	Graphics::Init();
+	Entity::InitComponents();
+
 	Entity* entity = new Entity("entity");
 	Entity* entity2 = new Entity("entity2");
 

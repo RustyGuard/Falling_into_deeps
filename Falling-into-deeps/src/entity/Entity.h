@@ -1,6 +1,7 @@
 #pragma once
 #include "sgtpch.h"
 #include "component/Component.h"
+#include "component/TransformComponent.h"
 #include "events/Event.h"
 #include "Input.h"
 #include "LuaManager.h"
@@ -11,14 +12,24 @@ public:
 	Entity(std::string file);
 	~Entity();
 	void OnEvent(Event& event);
+	static void InitComponents();
+	
+	template<typename T>
+	static void RegisterComponent(const std::string& name);
+
+	void AddComponent(const std::string& name);
 
 	template<class T>
-	T * getComponent(std::string name)
+	T * getComponent(const std::string& name)
 	{
-		return (T*)components[name];
+		return (T*) components[name];
+	}
+
+	TransformComponent * GetTransform()
+	{
+		return getComponent<TransformComponent>("transform");
 	}
 private:
 	std::map<std::string, Component*> components;
 	lua_State* obj;
 };
-

@@ -99,7 +99,6 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 	glfwSetCharCallback(window, [](GLFWwindow* window, unsigned int key)
 	{
 		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-		std::wcout << L"Char: " << (wchar_t)key << std::endl;
 		CharInputedEvent event((wchar_t)key);
 		data.EventCallback(event);
 	});

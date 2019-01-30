@@ -86,5 +86,9 @@
   <ItemGroup>
     <None Include="res\scripts\entity.lua" />
     <None Include="res\scripts\entity2.lua" />
+    <None Include="res\scripts\window.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\textures\test.png" />
   </ItemGroup>
 </Project>

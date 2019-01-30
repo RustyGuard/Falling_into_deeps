@@ -3,11 +3,22 @@
 #include "component/TransformComponent.h"
 #include "graphics/Graphics.h"
 
+std::map<std::string, std::function<Component*()>> s_components;
+
 Entity::Entity(std::string file) : obj(LuaManager::CreateRaw())
 {
 	LuaManager::Push(obj, file + ".lua");
 
-	components["transform"] = new TransformComponent();
+	getGlobalNamespace(obj)
+		.beginClass<TransformComponent>("transform_component")
+			.addFunction("move", &TransformComponent::Move)
+		.endClass()
+		.beginClass<Entity>("Entity")
+			.addFunction("AddComponent", &Entity::AddComponent)
+			.addFunction("GetTransform", &Entity::GetTransform)
+		.endClass();
+
+	getGlobal(obj, "init")(this);
 }
 
 
@@ -23,10 +34,10 @@ void Entity::OnEvent(Event & event)
 	{
 	case EventType::AppRender:
 		Graphics::Draw(transform->position, transform->half_extern);
-		getGlobal(obj, "render")();
+		getGlobal(obj, "render")(this);
 		break;
 	case EventType::AppUpdate:
-		getGlobal(obj, "update")(1.0f);
+		getGlobal(obj, "update")(this, 1.0f);
 		if (Input::isKeyPressed(GLFW_KEY_A))
 			transform->Move(-1.1f, 0.0f);
 		if (Input::isKeyPressed(GLFW_KEY_D))
@@ -37,4 +48,20 @@ void Entity::OnEvent(Event & event)
 			transform->Move(0.0f, 1.1f);
 		break;
 	}
+}
+
+void Entity::InitComponents()
+{
+	RegisterComponent<TransformComponent>("transform");
+}
+
+void Entity::AddComponent(const std::string & name)
+{
+	components[name] = s_components[name]();
+}
+
+template<class T>
+void Entity::RegisterComponent(const std::string& name)
+{
+	s_components[name] = []() {return new T(); };
 }
