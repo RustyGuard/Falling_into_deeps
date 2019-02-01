@@ -8,7 +8,8 @@ class WindowsWindow : public Window
 public:
 	WindowsWindow(int width, int height, std::string title);
 
-	void OnUpdate() override;
+	void PollEvents();
+	void SwapBuffers();
 	unsigned int GetWidth() const override { return data.Width; }
 	unsigned int GetHeight() const override { return data.Height; }
 

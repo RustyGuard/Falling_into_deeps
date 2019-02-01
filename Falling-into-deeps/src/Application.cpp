@@ -9,91 +9,73 @@
 #include "graphics/Graphics.h"
 #include "Input.h"
 #include "entity/Entity.h"
+#include "entity/EntityRenderer.h"
 
-void printMessage(const std::string&);
+using namespace std::chrono;
+high_resolution_clock::time_point lastTime = high_resolution_clock::now();
 
-Application::Application()
+Application::Application(float d) : delta(d)
 {
 	sgt::Log::Init();
-
-	SGT_INFO("Application created.");
-
-	window = Window::Create(1200, 675, "Application");
-	window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+	SGT_CORE_INFO("Application created.");
 }
 
-void Application::OnEvent(Event & event)
-{
-	switch (event.GetEventType())
-	{
-	case EventType::KeyReleased:
-		Input::keyReleased(((KeyReleaseEvent&)event).GetKeyCode());
-		if (((KeyReleaseEvent&)event).GetKeyCode() == GLFW_KEY_ESCAPE)
-		{
-			window->Close();
-		}
-		break;
-	case EventType::KeyPressed:
-		Input::keyPressed(((KeyReleaseEvent&)event).GetKeyCode());
-		break;
-
-	case EventType::WindowClose:
-		running = false;
-		SGT_INFO("Window closed");
-	case EventType::MouseMoved:
-		//MouseMovedEvent& e = (MouseMovedEvent&)event;
-		//LuaRef onMouseMoved = getGlobal(LuaManager::GetLuaFile("window.lua"), "onMouseMoved");
-		//onMouseMoved();
-		break;
-	}
-}
-
-class A
-{
-public:
-	void print()
-	{
-		SGT_WARN("A:print()");
-	}
-};
 
 void Application::Run()
 {
-	lua_State* L = LuaManager::CreateRaw();
-	LuaManager::addFunction(L, "printMessage", printMessage);
-	getGlobalNamespace(L).beginNamespace("glm").beginClass<A>("A").addConstructor<void(*)(void)>().addFunction("print", &A::print).endClass();
-	
-	LuaManager::Push(L, "window.lua");
-
-	LuaRef s = getGlobal(L, "testString");
-	LuaRef n = getGlobal(L, "number");
-	std::string luaString = s.cast<std::string>();
-	int answer = n.cast<int>();
-	std::cout << luaString << std::endl;
-	std::cout << "And here's our number:" << answer << std::endl;
-
+	UpdateClock(high_resolution_clock::now());
 	Graphics::Init();
-	Entity::InitComponents();
 
-	Entity* entity = new Entity("entity");
-	Entity* entity2 = new Entity("entity2");
+	float processed = 0.0f;
+	float frame_time = 0.0f;
+	float delta = 1.0f / 60;
 
+	int fps = 0;
+	
 	while (running)
 	{
-		glClearColor(1, 1.0f, 0.5f, 1);
-		glClear(GL_COLOR_BUFFER_BIT);
-		Graphics::Move();
-		entity->OnEvent(UpdateEvent(1.0f));
-		entity->OnEvent(RenderEvent());
-		entity2->OnEvent(UpdateEvent(1.0f));
-		entity2->OnEvent(RenderEvent());
-		window->OnUpdate();
+		bool updated = false;
+		float passed = GetElapsedTime();
+		processed += passed;
+		frame_time += passed;
+
+		while (processed > delta)
+		{
+			processed -= delta;
+			OnEvent(UpdateEvent(delta));
+			window->PollEvents();
+			updated = true;
+		}
+
+		if (frame_time >= 1) {
+			frame_time -= 1;
+			SGT_CORE_INFO("FPS: " + std::to_string(fps));
+			fps = 0;
+		}
+
+		if (updated)
+		{
+			Graphics::Clear();
+			OnEvent(RenderEvent());
+			window->SwapBuffers();
+			fps++;
+		}
 	}
 	window->DeleteContext();
+
 	std::cin.get();
 }
 
-void printMessage(const std::string& text)
+float Application::GetElapsedTime()
 {
-	//SGT_INFO(text);
+	high_resolution_clock::time_point now = high_resolution_clock::now();
+	nanoseconds passed = lastTime - now;
+	float elapsed = -1 * (duration_cast<std::chrono::nanoseconds>(passed).count());
+	UpdateClock(now);
+	return elapsed / 1000000000;
+}
+
+void Application::UpdateClock(high_resolution_clock::time_point p)
+{
+	lastTime = p;
 }

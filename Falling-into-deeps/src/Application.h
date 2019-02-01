@@ -1,22 +1,23 @@
 #pragma once
 #include "Window.h"
-#include <glad/glad.h>
 #include "events/Event.h"
+#include <chrono>
 
 class Application
 {
 public:
-	Application();
+	Application(float delta);
 
-	virtual void OnEvent(Event& event);
-	virtual void Run();
+	virtual void OnEvent(Event& event) = 0;
 
-	static Application* CreateApplication()
-	{
-		return new Application();
-	}
-private:
-	Window* window;
+	void Run();
+	float GetElapsedTime();
+	void UpdateClock(std::chrono::high_resolution_clock::time_point p);
+
+	static Application * CreateApplication();
+protected:
+	Window * window;
 	bool running;
+	float delta;
 };
 

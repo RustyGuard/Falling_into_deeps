@@ -51,6 +51,7 @@
     <ClInclude Include="src\entity\component\Component.h" />
     <ClInclude Include="src\entity\component\TransformComponent.h" />
     <ClInclude Include="src\events\ApplicationEvent.h" />
+    <ClInclude Include="src\Game.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
@@ -82,11 +83,13 @@
     <ClCompile Include="src\entity\Entity.cpp" />
     <ClCompile Include="src\entity\component\Component.cpp" />
     <ClCompile Include="src\entity\component\TransformComponent.cpp" />
+    <ClCompile Include="src\Game.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\scripts\entity.lua" />
     <None Include="res\scripts\entity2.lua" />
     <None Include="res\scripts\window.lua" />
+    <None Include="res\shader\Basic.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png" />

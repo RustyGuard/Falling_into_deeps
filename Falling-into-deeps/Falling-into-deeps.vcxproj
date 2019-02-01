@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\entity\component\Component.h" />
     <ClInclude Include="src\entity\Entity.h" />
     <ClInclude Include="src\entity\EntityRenderer.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="src\entity\component\TransformComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\entity\component\Component.cpp" />
     <ClCompile Include="src\entity\Entity.cpp" />
     <ClCompile Include="src\entity\EntityRenderer.cpp" />
@@ -199,6 +201,7 @@
     <None Include="res\scripts\entity.lua" />
     <None Include="res\scripts\entity2.lua" />
     <None Include="res\scripts\window.lua" />
+    <None Include="res\shader\Basic.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png" />

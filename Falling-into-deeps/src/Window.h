@@ -10,7 +10,8 @@ public:
 	using EventCallbackFn = std::function<void(Event&)>;
 
 	virtual ~Window() {}
-	virtual void OnUpdate() = 0;
+	virtual void PollEvents() = 0;
+	virtual void SwapBuffers() = 0;
 	virtual unsigned int GetWidth() const = 0;
 	virtual unsigned int GetHeight() const = 0;
 	virtual void Close() = 0;

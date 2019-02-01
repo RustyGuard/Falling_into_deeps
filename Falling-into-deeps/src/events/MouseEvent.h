@@ -5,9 +5,9 @@
 class MouseMovedEvent : public Event
 {
 public:
-	MouseMovedEvent(int x, int y) : mouseX(x), mouseY(y) {}
-	inline float GetX() const { return mouseX; }
-	inline float GetY() const { return mouseY; }
+	MouseMovedEvent(double x, double y) : mouseX(x), mouseY(y) {}
+	inline double GetX() const { return mouseX; }
+	inline double GetY() const { return mouseY; }
 
 	std::string ToString() const override
 	{
@@ -19,7 +19,7 @@ public:
 	EVENT_CLASS_TYPE(MouseMoved)
 	EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 private:
-	int mouseX, mouseY;
+	double mouseX, mouseY;
 };
 
 class MouseScrolledEvent : public Event

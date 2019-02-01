@@ -109,10 +109,14 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 	});
 }
 
-void WindowsWindow::OnUpdate()
+void WindowsWindow::PollEvents()
+{
+	glfwPollEvents();
+}
+
+void WindowsWindow::SwapBuffers()
 {
 	glfwSwapBuffers(window);
-	glfwPollEvents();
 }
 
 Window* Window::Create(int width, int height, std::string title)

@@ -27,8 +27,8 @@ glm::vec3 view;
 
 void Graphics::Init()
 {
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	proj = glm::mat4(glm::ortho(-480.0f, 480.0f, 270.0f, -270.0f, 0.0f, 1.0f));
 	scale = 1.0f;
@@ -58,21 +58,13 @@ void Graphics::Init()
 	indexBuffer = new IndexBuffer(indices, 6);
 
 	shader = new Shader("res/shader/Basic.shader");
-}
 
-void Graphics::Draw()
-{
-	glm::mat4 position = glm::translate(glm::mat4(1.0f), pos);
-	glm::mat4 mvp = proj * position;
-	VAO->bind();
-	indexBuffer->bind();
-	shader->bind();
-	shader->setUniformMat4("u_MVP", mvp);
-	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
+	shader->setUniform1i("u_Texture", 0);
 }
 
 void Graphics::Draw(glm::vec3 pos, glm::vec3 half_extern)
 {
+	glColor4f(1.0f, 0.2f, 0.3f, 1.0f);
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
 	glm::mat4 mvp = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, 0.0f)) * proj * glm::translate(glm::mat4(1.0f), view) * model * glm::scale(glm::mat4(1.0f), half_extern);
 	VAO->bind();
@@ -86,10 +78,20 @@ void Graphics::Move()
 {
 	if (Input::isKeyPressed(GLFW_KEY_UP))
 		scale += 0.1f;
-	if (Input::isKeyPressed(GLFW_KEY_DOWN) && scale > 0.25f)
+	if (Input::isKeyPressed(GLFW_KEY_DOWN) && scale > 0.15f)
 		scale -= 0.1f;
 	if (Input::isKeyPressed(GLFW_KEY_LEFT))
 		view.x -= 1.1f;
 	if (Input::isKeyPressed(GLFW_KEY_RIGHT))
 		view.x += 1.1f;
+}
+
+void Graphics::ClearColor(float r, float g, float b, float a)
+{
+	glClearColor(r, g, b, a);
+}
+
+void Graphics::Clear()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
 }
