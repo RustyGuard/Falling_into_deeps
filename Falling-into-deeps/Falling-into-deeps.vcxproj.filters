@@ -52,6 +52,8 @@
     <ClInclude Include="src\entity\component\TransformComponent.h" />
     <ClInclude Include="src\events\ApplicationEvent.h" />
     <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\tile\TileRenderer.h" />
+    <ClInclude Include="src\tile\Tile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
@@ -84,12 +86,16 @@
     <ClCompile Include="src\entity\component\Component.cpp" />
     <ClCompile Include="src\entity\component\TransformComponent.cpp" />
     <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\tile\TileRenderer.cpp" />
+    <ClCompile Include="src\tile\Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\scripts\entity.lua" />
     <None Include="res\scripts\entity2.lua" />
     <None Include="res\scripts\window.lua" />
     <None Include="res\shader\Basic.shader" />
+    <None Include="res\scripts\tile_entity.lua" />
+    <None Include="res\scripts\tile_entity2.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png" />

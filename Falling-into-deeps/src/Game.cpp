@@ -10,9 +10,11 @@
 
 Game::Game() : Application(1.0f / 60.0f)
 {
-	renderer = new EntityRenderer();
-	renderer->CreateEntity("entity");
-	renderer->CreateEntity("entity2");
+	entity_renderer = new EntityRenderer();
+	entity_renderer->CreateEntity("entity");
+	entity_renderer->CreateEntity("entity2");
+
+	tile_renderer = new TileRenderer();
 
 	window = Window::Create(1200, 675, "Application");
 	window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
@@ -40,11 +42,15 @@ void Game::OnEvent(Event & event)
 
 	case EventType::AppUpdate:
 		Graphics::Move();
+		window->PollEvents();
 		break;
 
 	case EventType::AppRender:
 		Graphics::ClearColor(0.6f, 1.0f, 0.2f, 1.0f);
-		break;
+		Graphics::Clear();
+		entity_renderer->OnEvent(event);
+		window->SwapBuffers();
+		return;
 
 	case EventType::WindowClose:
 		running = false;
@@ -52,30 +58,14 @@ void Game::OnEvent(Event & event)
 		break;
 	}
 
-	renderer->OnEvent(event);
+	entity_renderer->OnEvent(event);
+	tile_renderer->OnEvent(event);
 }
 
-/*void Game::Run()
+void Game::Delete()
 {
-	Graphics::Init();
-
-	EntityRenderer* renderer = new EntityRenderer();
-	renderer->CreateEntity("entity");
-	renderer->CreateEntity("entity2");
-
-	while (running)
-	{
-		Graphics::ClearColor(0.7f, 0.9f, 0.9f, 1.0f);
-		Graphics::Clear();
-		Graphics::Move();
-		renderer->OnEvent(UpdateEvent(1.0f));
-		renderer->OnEvent(RenderEvent());
-		window->OnUpdate();
-	}
-
 	window->DeleteContext();
-	std::cin.get();
-}*/
+}
 
 Application * Application::CreateApplication()
 {

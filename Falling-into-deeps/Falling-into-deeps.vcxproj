@@ -163,6 +163,8 @@
     <ClInclude Include="src\graphics\VertexBufferLayout.h" />
     <ClInclude Include="src\sgtpch.h" />
     <ClInclude Include="src\entity\component\TransformComponent.h" />
+    <ClInclude Include="src\tile\TileRenderer.h" />
+    <ClInclude Include="src\tile\Tile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp" />
@@ -185,6 +187,8 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\entity\component\TransformComponent.cpp" />
+    <ClCompile Include="src\tile\TileRenderer.cpp" />
+    <ClCompile Include="src\tile\Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="lib\GLFW\GLFW.vcxproj">
@@ -200,6 +204,8 @@
   <ItemGroup>
     <None Include="res\scripts\entity.lua" />
     <None Include="res\scripts\entity2.lua" />
+    <None Include="res\scripts\tile_entity.lua" />
+    <None Include="res\scripts\tile_entity2.lua" />
     <None Include="res\scripts\window.lua" />
     <None Include="res\shader\Basic.shader" />
   </ItemGroup>

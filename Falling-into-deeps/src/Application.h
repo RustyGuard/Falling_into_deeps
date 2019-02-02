@@ -9,6 +9,7 @@ public:
 	Application(float delta);
 
 	virtual void OnEvent(Event& event) = 0;
+	virtual void Delete() = 0;
 
 	void Run();
 	float GetElapsedTime();
@@ -16,7 +17,6 @@ public:
 
 	static Application * CreateApplication();
 protected:
-	Window * window;
 	bool running;
 	float delta;
 };

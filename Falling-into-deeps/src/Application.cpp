@@ -43,7 +43,6 @@ void Application::Run()
 		{
 			processed -= delta;
 			OnEvent(UpdateEvent(delta));
-			window->PollEvents();
 			updated = true;
 		}
 
@@ -55,13 +54,11 @@ void Application::Run()
 
 		if (updated)
 		{
-			Graphics::Clear();
 			OnEvent(RenderEvent());
-			window->SwapBuffers();
 			fps++;
 		}
 	}
-	window->DeleteContext();
+	Delete();
 
 	std::cin.get();
 }
