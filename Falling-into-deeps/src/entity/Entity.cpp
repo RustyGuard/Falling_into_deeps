@@ -29,16 +29,16 @@ Entity::~Entity()
 
 void Entity::OnEvent(Event & event)
 {
-	TransformComponent * transform = getComponent<TransformComponent>("transform");
+	//TransformComponent * transform = getComponent<TransformComponent>("transform");
 	switch (event.GetEventType())
 	{
 	case EventType::AppRender:
-		Graphics::Draw(transform->position, transform->half_extern);
+		//Graphics::Draw(transform->position, transform->half_extern);
 		getGlobal(obj, "render")(this);
 		break;
 	case EventType::AppUpdate:
 		getGlobal(obj, "update")(this, 1.0f);
-		if (Input::isKeyPressed(GLFW_KEY_A))
+		/*if (Input::isKeyPressed(GLFW_KEY_A))
 			transform->Move(-1.1f, 0.0f);
 		if (Input::isKeyPressed(GLFW_KEY_D))
 			transform->Move(1.1f, 0.0f);
@@ -46,7 +46,7 @@ void Entity::OnEvent(Event & event)
 			transform->Move(0.0f, -1.1f);
 		if (Input::isKeyPressed(GLFW_KEY_S))
 			transform->Move(0.0f, 1.1f);
-		break;
+		break;*/
 	}
 }
 

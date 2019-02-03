@@ -164,7 +164,6 @@
     <ClInclude Include="src\sgtpch.h" />
     <ClInclude Include="src\entity\component\TransformComponent.h" />
     <ClInclude Include="src\tile\TileRenderer.h" />
-    <ClInclude Include="src\tile\Tile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp" />
@@ -188,7 +187,6 @@
     </ClCompile>
     <ClCompile Include="src\entity\component\TransformComponent.cpp" />
     <ClCompile Include="src\tile\TileRenderer.cpp" />
-    <ClCompile Include="src\tile\Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="lib\GLFW\GLFW.vcxproj">
@@ -202,10 +200,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\scripts\entity.lua" />
-    <None Include="res\scripts\entity2.lua" />
-    <None Include="res\scripts\tile_entity.lua" />
-    <None Include="res\scripts\tile_entity2.lua" />
+    <None Include="res\scripts\entity\entity.lua" />
+    <None Include="res\scripts\entity\entity2.lua" />
+    <None Include="res\scripts\tile\air.lua" />
+    <None Include="res\scripts\tile\grass.lua" />
+    <None Include="res\scripts\tile_entities\tile_entity.lua" />
+    <None Include="res\scripts\tile_entities\tile_entity2.lua" />
     <None Include="res\scripts\window.lua" />
     <None Include="res\shader\Basic.shader" />
   </ItemGroup>

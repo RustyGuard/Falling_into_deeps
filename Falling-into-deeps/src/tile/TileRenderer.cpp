@@ -1,25 +1,20 @@
 #include "sgtpch.h"
 #include "TileRenderer.h"
-
-std::map<unsigned int, Tile*>registered;
+#include "LuaManager.h"
 
 TileRenderer::TileRenderer()
 {
 	Init();
-	for (int i = 0; i < HEIGHT; i++)
+
+	for (int i = 0; i < HEIGHT * WIDTH; i++)
 	{
-		for (int j = 0; j < WIDTH; j++)
-		{
-			/* Set all to None */
-			SetTile(j, i, 0);
-		}
+		tiles[i] = 0;
 	}
 
 	SetTile(1, 1, 1);
-	SetTile(1, 0, 1);
 
-	tile_entities[1 * WIDTH + 1] = new Entity("tile_entity");
-	tile_entities[1] = new Entity("tile_entity2");
+	//tile_entities[1 * WIDTH + 1] = new Entity("tile_entity");
+	//tile_entities[1] = new Entity("tile_entity2");
 }
 
 TileRenderer::~TileRenderer()
@@ -47,15 +42,37 @@ unsigned int TileRenderer::GetTile(unsigned int x, unsigned int y)
 
 void TileRenderer::SetTile(unsigned int x, unsigned int y, unsigned int tile)
 {
-	if (x < WIDTH && y < HEIGHT)
+	if (x < WIDTH && y < HEIGHT) {
 		tiles[x + y * WIDTH] = tile;
+		try
+		{
+			getGlobal(registered[tile], "init")(this, x + y * WIDTH);
+		}
+		catch (const LuaException& e)
+		{
+			SGT_ERROR(e.what());
+		}
+	}
+}
+
+void TileRenderer::SetTileEntity(unsigned int pos, const std::string & file)
+{
+	tile_entities[pos] = new Entity("tile_entities/" + file);
 }
 
 void TileRenderer::Init()
 {
-	// None
-	registered[0] = new Tile();
+	RegisterTile(0, "air");
+	RegisterTile(1, "grass");
+}
 
-	// Grass
-	registered[1] = new Tile();
+void TileRenderer::RegisterTile(unsigned int id, const std::string & file)
+{
+	lua_State* obj = LuaManager::CreateRaw();
+	getGlobalNamespace(obj)
+		.beginClass<TileRenderer>("tile_renderer")
+			.addFunction("CreateTileEntity", &TileRenderer::SetTileEntity)
+		.endClass();
+	LuaManager::Push(obj, "tile/" + file + ".lua");
+	registered[id] = obj;
 }

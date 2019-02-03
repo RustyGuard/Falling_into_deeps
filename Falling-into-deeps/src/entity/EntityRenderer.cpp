@@ -9,7 +9,7 @@ EntityRenderer::EntityRenderer()
 
 unsigned int EntityRenderer::CreateEntity(const std::string & name)
 {
-	Entity* entity = new Entity(name);
+	Entity* entity = new Entity("entity/" + name);
 	for (unsigned int i = 0; i < 1000; i++)
 	{
 		if (entities.find(i) == entities.end())
