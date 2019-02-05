@@ -8,8 +8,12 @@
 
 #include "graphics/Graphics.h"
 
+#include "entity/component/StackComponent.h"
+
 Game::Game() : Application(1.0f / 60.0f)
 {
+	StackComponent::Init();
+
 	entity_renderer = new EntityRenderer();
 	entity_renderer->CreateEntity("entity");
 	entity_renderer->CreateEntity("entity2");

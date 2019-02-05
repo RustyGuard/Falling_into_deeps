@@ -1,6 +1,5 @@
 #include "sgtpch.h"
 #include "Entity.h"
-#include "component/TransformComponent.h"
 #include "graphics/Graphics.h"
 
 std::map<std::string, std::function<Component*()>> s_components;
@@ -33,6 +32,10 @@ void Entity::OnEvent(Event & event)
 	switch (event.GetEventType())
 	{
 	case EventType::AppRender:
+		if (components["inventory"] != nullptr)
+		{
+			GetInventory()->Print();
+		}
 		//Graphics::Draw(transform->position, transform->half_extern);
 		getGlobal(obj, "render")(this);
 		break;
@@ -53,6 +56,7 @@ void Entity::OnEvent(Event & event)
 void Entity::InitComponents()
 {
 	RegisterComponent<TransformComponent>("transform");
+	RegisterComponent<InventoryComponent>("inventory");
 }
 
 void Entity::AddComponent(const std::string & name)

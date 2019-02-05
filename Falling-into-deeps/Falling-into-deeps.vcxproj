@@ -140,6 +140,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\entity\component\InventoryComponent.h" />
+    <ClInclude Include="src\entity\component\StackComponent.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\entity\component\Component.h" />
     <ClInclude Include="src\entity\Entity.h" />
@@ -166,6 +168,8 @@
     <ClInclude Include="src\tile\TileRenderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\entity\component\InventoryComponent.cpp" />
+    <ClCompile Include="src\entity\component\StackComponent.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\entity\component\Component.cpp" />
     <ClCompile Include="src\entity\Entity.cpp" />
@@ -202,6 +206,8 @@
   <ItemGroup>
     <None Include="res\scripts\entity\entity.lua" />
     <None Include="res\scripts\entity\entity2.lua" />
+    <None Include="res\scripts\item\air.lua" />
+    <None Include="res\scripts\item\apple.lua" />
     <None Include="res\scripts\tile\air.lua" />
     <None Include="res\scripts\tile\grass.lua" />
     <None Include="res\scripts\tile_entities\tile_entity.lua" />

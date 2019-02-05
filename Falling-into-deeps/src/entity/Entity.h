@@ -1,7 +1,10 @@
 #pragma once
 #include "sgtpch.h"
+
 #include "component/Component.h"
 #include "component/TransformComponent.h"
+#include "component/InventoryComponent.h"
+
 #include "events/Event.h"
 #include "Input.h"
 #include "LuaManager.h"
@@ -29,6 +32,14 @@ public:
 	{
 		return getComponent<TransformComponent>("transform");
 	}
+	InventoryComponent * GetInventory()
+	{
+		return getComponent<InventoryComponent>("inventory");
+	}
+	/*InventoryComponent * GetInventory()
+	{
+		return getComponent<InventoryComponent>("inventory");
+	}*/
 private:
 	std::map<std::string, Component*> components;
 	lua_State* obj;
