@@ -57,21 +57,21 @@ project "Falling-into-deeps"
 
 		defines
 		{
-			"SGT_PLATFORM_WINDOWS",
+			"GEAR_PLATFORM_WINDOWS",
 			"GLFW_INCLUDE_NONE"
 		}
 
 	filter "configurations:Debug"
-		defines "SGT_DEBUG"
-		buildoptions "/MDd"
+		defines "GEAR_DEBUG"
+		runtime "Debug"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "SGT_RELEASE"
-		buildoptions "/MD"
+		defines "GEAR_RELEASE"
+		runtime "Release"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "SGT_DIST"
-		buildoptions "/MD"
+		defines "GEAR_DIST"
+		runtime "Release"
 		optimize "On"
