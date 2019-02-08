@@ -22,13 +22,14 @@ project "Falling-into-deeps"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "sgtpch.h"
-	pchsource "Falling-into-deeps/src/sgtpch.cpp"
+	pchheader "gearpch.h"
+	pchsource "Falling-into-deeps/src/gearpch.cpp"
 
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/res/**"
 	}
 
 	includedirs

@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "Entity.h"
 #include "graphics/Graphics.h"
 

@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 
 #include "VertexBuffer.h"
 #include <glad/glad.h>

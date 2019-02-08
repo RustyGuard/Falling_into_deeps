@@ -77,14 +77,13 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>sgtpch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>gearpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SGT_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;SGT_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GEAR_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;GEAR_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;lib\spdlog\include;lib\GLFW\include;lib\Glad\include;lib\nlohman\include;lib\graphics;lib\Lua\src;lib\luabridge\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -96,9 +95,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>sgtpch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>gearpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SGT_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;SGT_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GEAR_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;GEAR_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;lib\spdlog\include;lib\GLFW\include;lib\Glad\include;lib\nlohman\include;lib\graphics;lib\Lua\src;lib\luabridge\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -106,7 +105,6 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -119,9 +117,9 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>sgtpch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>gearpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>SGT_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;SGT_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GEAR_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;GEAR_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;lib\spdlog\include;lib\GLFW\include;lib\Glad\include;lib\nlohman\include;lib\graphics;lib\Lua\src;lib\luabridge\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -129,7 +127,6 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -140,68 +137,57 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\entity\component\InventoryComponent.h" />
-    <ClInclude Include="src\entity\component\StackComponent.h" />
-    <ClInclude Include="src\Game.h" />
-    <ClInclude Include="src\entity\component\Component.h" />
-    <ClInclude Include="src\entity\Entity.h" />
-    <ClInclude Include="src\entity\EntityRenderer.h" />
-    <ClInclude Include="src\events\ApplicationEvent.h" />
-    <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\Application.h" />
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\Log.h" />
     <ClInclude Include="src\LuaManager.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\WindowsWindow.h" />
+    <ClInclude Include="src\entity\Entity.h" />
+    <ClInclude Include="src\entity\EntityRenderer.h" />
+    <ClInclude Include="src\entity\component\Component.h" />
+    <ClInclude Include="src\entity\component\InventoryComponent.h" />
+    <ClInclude Include="src\entity\component\StackComponent.h" />
+    <ClInclude Include="src\entity\component\TransformComponent.h" />
+    <ClInclude Include="src\events\ApplicationEvent.h" />
     <ClInclude Include="src\events\Event.h" />
     <ClInclude Include="src\events\KeyEvent.h" />
     <ClInclude Include="src\events\MouseEvent.h" />
     <ClInclude Include="src\events\WindowEvent.h" />
+    <ClInclude Include="src\gearpch.h" />
     <ClInclude Include="src\graphics\Graphics.h" />
     <ClInclude Include="src\graphics\IndexBuffer.h" />
     <ClInclude Include="src\graphics\Shader.h" />
     <ClInclude Include="src\graphics\VertexArray.h" />
     <ClInclude Include="src\graphics\VertexBuffer.h" />
     <ClInclude Include="src\graphics\VertexBufferLayout.h" />
-    <ClInclude Include="src\sgtpch.h" />
-    <ClInclude Include="src\entity\component\TransformComponent.h" />
     <ClInclude Include="src\tile\TileRenderer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\entity\component\InventoryComponent.cpp" />
-    <ClCompile Include="src\entity\component\StackComponent.cpp" />
-    <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\entity\component\Component.cpp" />
-    <ClCompile Include="src\entity\Entity.cpp" />
-    <ClCompile Include="src\entity\EntityRenderer.cpp" />
-    <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Application.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\LuaManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\WindowsWindow.cpp" />
+    <ClCompile Include="src\entity\Entity.cpp" />
+    <ClCompile Include="src\entity\EntityRenderer.cpp" />
+    <ClCompile Include="src\entity\component\Component.cpp" />
+    <ClCompile Include="src\entity\component\InventoryComponent.cpp" />
+    <ClCompile Include="src\entity\component\StackComponent.cpp" />
+    <ClCompile Include="src\entity\component\TransformComponent.cpp" />
+    <ClCompile Include="src\gearpch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="src\graphics\Graphics.cpp" />
     <ClCompile Include="src\graphics\IndexBuffer.cpp" />
     <ClCompile Include="src\graphics\Shader.cpp" />
     <ClCompile Include="src\graphics\VertexArray.cpp" />
     <ClCompile Include="src\graphics\VertexBuffer.cpp" />
     <ClCompile Include="src\graphics\VertexBufferLayout.cpp" />
-    <ClCompile Include="src\sgtpch.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\entity\component\TransformComponent.cpp" />
     <ClCompile Include="src\tile\TileRenderer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="lib\GLFW\GLFW.vcxproj">
-      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="lib\Glad\Glad.vcxproj">
-      <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="lib\Lua\Lua.vcxproj">
-      <Project>{A705880B-130F-887C-9C8A-9E7C0893937C}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\scripts\entity\entity.lua" />
@@ -217,6 +203,17 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="lib\GLFW\GLFW.vcxproj">
+      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="lib\Glad\Glad.vcxproj">
+      <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="lib\Lua\Lua.vcxproj">
+      <Project>{A705880B-130F-887C-9C8A-9E7C0893937C}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

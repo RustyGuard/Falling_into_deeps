@@ -1,109 +1,229 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="events">
-      <UniqueIdentifier>{5A9D08FC-463F-33D2-2FFA-46261B3BBA22}</UniqueIdentifier>
+    <Filter Include="res">
+      <UniqueIdentifier>{4FA5880B-BBAE-887C-442A-9F7CB032947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="graphics">
-      <UniqueIdentifier>{36EF08BC-22BC-63C7-4BD5-516F37019955}</UniqueIdentifier>
+    <Filter Include="res\scripts">
+      <UniqueIdentifier>{A6037D1E-12B9-F513-9BAD-EFEA0762EC17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\scripts\entity">
+      <UniqueIdentifier>{52CD9D5D-3EB1-5EB3-A711-590693144935}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\scripts\item">
+      <UniqueIdentifier>{C449DD3A-B042-FC8C-D974-E111C5CCDB98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\scripts\tile">
+      <UniqueIdentifier>{0324E33A-EF1C-028D-184F-E71104A7E198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\scripts\tile_entities">
+      <UniqueIdentifier>{673CBC4C-D3FE-EFD6-1CAF-7E6388B0C8B4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\shader">
+      <UniqueIdentifier>{35FAD04E-21B2-129C-8AB9-EBF77690AD8C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res\textures">
+      <UniqueIdentifier>{227C1C83-0EDF-AB27-B764-E4DDA3A677AA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity">
+      <UniqueIdentifier>{F9D6DE58-E58E-20A6-4E96-F9013A6DBB96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entity\component">
+      <UniqueIdentifier>{BB9A8ECB-A729-1895-5048-2C903CB6283B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\events">
+      <UniqueIdentifier>{91766759-7D2E-A9A6-E635-8202D20C4497}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\graphics">
+      <UniqueIdentifier>{2DF282EC-1955-1291-C2DA-4A47AE1CDE13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tile">
+      <UniqueIdentifier>{EA9737CF-D664-92DA-FF7D-8082EBA9C768}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Application.h" />
-    <ClInclude Include="src\Log.h" />
-    <ClInclude Include="src\LuaManager.h" />
-    <ClInclude Include="src\Window.h" />
-    <ClInclude Include="src\WindowsWindow.h" />
+    <ClInclude Include="src\Application.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Input.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Log.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LuaManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WindowsWindow.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entity\Entity.h">
+      <Filter>src\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entity\EntityRenderer.h">
+      <Filter>src\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entity\component\Component.h">
+      <Filter>src\entity\component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entity\component\InventoryComponent.h">
+      <Filter>src\entity\component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entity\component\StackComponent.h">
+      <Filter>src\entity\component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entity\component\TransformComponent.h">
+      <Filter>src\entity\component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\events\ApplicationEvent.h">
+      <Filter>src\events</Filter>
+    </ClInclude>
     <ClInclude Include="src\events\Event.h">
-      <Filter>events</Filter>
+      <Filter>src\events</Filter>
     </ClInclude>
     <ClInclude Include="src\events\KeyEvent.h">
-      <Filter>events</Filter>
+      <Filter>src\events</Filter>
     </ClInclude>
     <ClInclude Include="src\events\MouseEvent.h">
-      <Filter>events</Filter>
+      <Filter>src\events</Filter>
     </ClInclude>
     <ClInclude Include="src\events\WindowEvent.h">
-      <Filter>events</Filter>
+      <Filter>src\events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gearpch.h">
+      <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\Graphics.h">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\IndexBuffer.h">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\Shader.h">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\VertexArray.h">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\VertexBuffer.h">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\graphics\VertexBufferLayout.h">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\sgtpch.h" />
-    <ClInclude Include="src\Input.h" />
-    <ClInclude Include="src\entity\EntityRenderer.h" />
-    <ClInclude Include="src\entity\Entity.h" />
-    <ClInclude Include="src\entity\component\Component.h" />
-    <ClInclude Include="src\entity\component\TransformComponent.h" />
-    <ClInclude Include="src\events\ApplicationEvent.h" />
-    <ClInclude Include="src\Game.h" />
-    <ClInclude Include="src\tile\TileRenderer.h" />
-    <ClInclude Include="src\entity\component\InventoryComponent.h" />
-    <ClInclude Include="src\entity\component\StackComponent.h" />
+    <ClInclude Include="src\tile\TileRenderer.h">
+      <Filter>src\tile</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\Log.cpp" />
-    <ClCompile Include="src\LuaManager.cpp" />
-    <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\WindowsWindow.cpp" />
+    <ClCompile Include="src\Application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Input.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Log.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LuaManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WindowsWindow.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\Entity.cpp">
+      <Filter>src\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\EntityRenderer.cpp">
+      <Filter>src\entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\component\Component.cpp">
+      <Filter>src\entity\component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\component\InventoryComponent.cpp">
+      <Filter>src\entity\component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\component\StackComponent.cpp">
+      <Filter>src\entity\component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entity\component\TransformComponent.cpp">
+      <Filter>src\entity\component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gearpch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\graphics\Graphics.cpp">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\IndexBuffer.cpp">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\Shader.cpp">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\VertexArray.cpp">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\VertexBuffer.cpp">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\graphics\VertexBufferLayout.cpp">
-      <Filter>graphics</Filter>
+      <Filter>src\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\sgtpch.cpp" />
-    <ClCompile Include="src\Input.cpp" />
-    <ClCompile Include="src\entity\EntityRenderer.cpp" />
-    <ClCompile Include="src\entity\Entity.cpp" />
-    <ClCompile Include="src\entity\component\Component.cpp" />
-    <ClCompile Include="src\entity\component\TransformComponent.cpp" />
-    <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\tile\TileRenderer.cpp" />
-    <ClCompile Include="src\entity\component\InventoryComponent.cpp" />
-    <ClCompile Include="src\entity\component\StackComponent.cpp" />
+    <ClCompile Include="src\tile\TileRenderer.cpp">
+      <Filter>src\tile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\scripts\window.lua" />
-    <None Include="res\shader\Basic.shader" />
-    <None Include="res\scripts\tile\air.lua" />
-    <None Include="res\scripts\tile\grass.lua" />
-    <None Include="res\scripts\entity\entity.lua" />
-    <None Include="res\scripts\entity\entity2.lua" />
-    <None Include="res\scripts\tile_entities\tile_entity.lua" />
-    <None Include="res\scripts\tile_entities\tile_entity2.lua" />
-    <None Include="res\scripts\item\air.lua" />
-    <None Include="res\scripts\item\apple.lua" />
+    <None Include="res\scripts\entity\entity.lua">
+      <Filter>res\scripts\entity</Filter>
+    </None>
+    <None Include="res\scripts\entity\entity2.lua">
+      <Filter>res\scripts\entity</Filter>
+    </None>
+    <None Include="res\scripts\item\air.lua">
+      <Filter>res\scripts\item</Filter>
+    </None>
+    <None Include="res\scripts\item\apple.lua">
+      <Filter>res\scripts\item</Filter>
+    </None>
+    <None Include="res\scripts\tile\air.lua">
+      <Filter>res\scripts\tile</Filter>
+    </None>
+    <None Include="res\scripts\tile\grass.lua">
+      <Filter>res\scripts\tile</Filter>
+    </None>
+    <None Include="res\scripts\tile_entities\tile_entity.lua">
+      <Filter>res\scripts\tile_entities</Filter>
+    </None>
+    <None Include="res\scripts\tile_entities\tile_entity2.lua">
+      <Filter>res\scripts\tile_entities</Filter>
+    </None>
+    <None Include="res\scripts\window.lua">
+      <Filter>res\scripts</Filter>
+    </None>
+    <None Include="res\shader\Basic.shader">
+      <Filter>res\shader</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\textures\test.png" />
+    <Image Include="res\textures\test.png">
+      <Filter>res\textures</Filter>
+    </Image>
   </ItemGroup>
 </Project>

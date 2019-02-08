@@ -1,10 +1,10 @@
 #pragma once
 
-#include "sgtpch.h"
+#include "gearpch.h"
 
 #include "spdlog/spdlog.h"
 
-namespace sgt {
+namespace Gear {
 
 	class Log
 	{
@@ -21,23 +21,23 @@ namespace sgt {
 }
 
 // Core log macros
-#define SGT_CORE_TRACE(...)    ::sgt::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define SGT_CORE_INFO(...)     ::sgt::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define SGT_CORE_WARN(...)     ::sgt::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define SGT_CORE_ERROR(...)    ::sgt::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define SGT_CORE_FATAL(...)    ::sgt::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define GEAR_CORE_TRACE(...)    ::Gear::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define GEAR_CORE_INFO(...)     ::Gear::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define GEAR_CORE_WARN(...)     ::Gear::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define GEAR_CORE_ERROR(...)    ::Gear::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define GEAR_CORE_FATAL(...)    ::Gear::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 // Client log macros
-#define SGT_TRACE(...)	      ::sgt::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define SGT_INFO(...)	      ::sgt::Log::GetClientLogger()->info(__VA_ARGS__)
-#define SGT_WARN(...)	      ::sgt::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define SGT_ERROR(...)	      ::sgt::Log::GetClientLogger()->error(__VA_ARGS__)
-#define SGT_FATAL(...)	      ::sgt::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define GEAR_TRACE(...)	      ::Gear::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define GEAR_INFO(...)	      ::Gear::Log::GetClientLogger()->info(__VA_ARGS__)
+#define GEAR_WARN(...)	      ::Gear::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define GEAR_ERROR(...)	      ::Gear::Log::GetClientLogger()->error(__VA_ARGS__)
+#define GEAR_FATAL(...)	      ::Gear::Log::GetClientLogger()->fatal(__VA_ARGS__)
 
-#ifdef SGT_ENABLE_ASSERTS
-	#define SGT_ASSERT(x, ...) { if(!(x)) { HZ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-	#define SGT_CORE_ASSERT(x, ...) { if(!(x)) { HZ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+#ifdef GEAR_ENABLE_ASSERTS
+	#define GEAR_ASSERT(x, ...) { if(!(x)) { HZ_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
+	#define GEAR_CORE_ASSERT(x, ...) { if(!(x)) { HZ_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 #else
-	#define SGT_ASSERT(x, ...)
-	#define SGT_CORE_ASSERT(x, ...)
+	#define GEAR_ASSERT(x, ...)
+	#define GEAR_CORE_ASSERT(x, ...)
 #endif

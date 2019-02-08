@@ -1,5 +1,5 @@
 #pragma once
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "Event.h"
 
 class MouseMovedEvent : public Event

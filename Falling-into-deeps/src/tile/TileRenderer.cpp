@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "TileRenderer.h"
 #include "LuaManager.h"
 
@@ -50,7 +50,7 @@ void TileRenderer::SetTile(unsigned int x, unsigned int y, unsigned int tile)
 		}
 		catch (const LuaException& e)
 		{
-			SGT_ERROR(e.what());
+			GEAR_ERROR(e.what());
 		}
 	}
 }

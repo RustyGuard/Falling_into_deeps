@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "WindowsWindow.h"
 #include <Glad/glad.h>
 #include "events/KeyEvent.h"
@@ -7,7 +7,7 @@
 WindowsWindow::WindowsWindow(int width, int height, std::string title)
 {
 	int success = glfwInit();
-	SGT_CORE_ASSERT(success, "Could not intialize GLFW!");
+	GEAR_CORE_ASSERT(success, "Could not intialize GLFW!");
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -17,7 +17,7 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 	glfwMakeContextCurrent(window);
 
 	int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-	SGT_CORE_ASSERT(status, "Failed to initialize Glad!");
+	GEAR_CORE_ASSERT(status, "Failed to initialize Glad!");
 	glfwSetWindowUserPointer(window, &data);
 
 	// Set GLFW callbacks
@@ -105,7 +105,7 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 
 	glfwSetErrorCallback([](int code, const char* error)
 	{
-		SGT_ERROR(std::to_string(code) + " " + error);
+		GEAR_ERROR(std::to_string(code) + " " + error);
 	});
 }
 

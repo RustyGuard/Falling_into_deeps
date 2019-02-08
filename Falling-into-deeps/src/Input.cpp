@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "Input.h"
 
 bool keys[GLFW_KEY_LAST];

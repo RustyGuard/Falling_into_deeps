@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "StackComponent.h"
 #include "LuaManager.h"
 
@@ -16,7 +16,7 @@ void StackComponent::Init()
 
 void StackComponent::Print()
 {
-	SGT_INFO(item);
+	GEAR_INFO(item);
 }
 
 void StackComponent::RegisterItem(unsigned int id, const std::string& file)

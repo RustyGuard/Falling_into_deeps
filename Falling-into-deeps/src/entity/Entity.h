@@ -1,5 +1,5 @@
 #pragma once
-#include "sgtpch.h"
+#include "gearpch.h"
 
 #include "component/Component.h"
 #include "component/TransformComponent.h"

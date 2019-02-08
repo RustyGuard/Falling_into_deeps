@@ -1,8 +1,8 @@
 #pragma once
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "events/Event.h"
 
-#include "sgtpch.h"
+#include "gearpch.h"
 
 class Window
 {

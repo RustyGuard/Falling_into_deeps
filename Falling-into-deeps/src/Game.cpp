@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "Game.h"
 
 #include "events/ApplicationEvent.h"
@@ -45,20 +45,20 @@ void Game::OnEvent(Event & event)
 		break;
 
 	case EventType::AppUpdate:
-		Graphics::Move();
+		Gear::Move();
 		window->PollEvents();
 		break;
 
 	case EventType::AppRender:
-		Graphics::ClearColor(0.6f, 1.0f, 0.2f, 1.0f);
-		Graphics::Clear();
+		Gear::ClearColor(0.6f, 1.0f, 0.2f, 1.0f);
+		Gear::Clear();
 		entity_renderer->OnEvent(event);
 		window->SwapBuffers();
 		return;
 
 	case EventType::WindowClose:
 		running = false;
-		SGT_INFO("Window closed");
+		GEAR_INFO("Window closed");
 		break;
 	}
 

@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "Graphics.h"
 #include <Glad/glad.h>
 
@@ -25,7 +25,7 @@ std::unordered_map<std::string, unsigned int> textures;
 float scale;
 glm::vec3 view;
 
-void Graphics::Init()
+void Gear::Init()
 {
 	//glEnable(GL_BLEND);
 	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -62,7 +62,7 @@ void Graphics::Init()
 	shader->setUniform1i("u_Texture", 0);
 }
 
-void Graphics::Draw(glm::vec3 pos, glm::vec3 half_extern)
+void Gear::Draw(glm::vec3 pos, glm::vec3 half_extern)
 {
 	glColor4f(1.0f, 0.2f, 0.3f, 1.0f);
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
@@ -74,7 +74,7 @@ void Graphics::Draw(glm::vec3 pos, glm::vec3 half_extern)
 	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
 }
 
-void Graphics::Move()
+void Gear::Move()
 {
 	if (Input::isKeyPressed(GLFW_KEY_UP))
 		scale += 0.1f;
@@ -86,12 +86,12 @@ void Graphics::Move()
 		view.x += 1.1f;
 }
 
-void Graphics::ClearColor(float r, float g, float b, float a)
+void Gear::ClearColor(float r, float g, float b, float a)
 {
 	glClearColor(r, g, b, a);
 }
 
-void Graphics::Clear()
+void Gear::Clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 }

@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "Application.h"
 #include "glm/glm.hpp"
 

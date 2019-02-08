@@ -1,5 +1,5 @@
 #include "Window.h"
-#include "sgtpch.h"
+#include "gearpch.h"
 #include <GLFW/glfw3.h>
 #include "events/WindowEvent.h"
 

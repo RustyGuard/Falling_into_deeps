@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "LuaManager.h"
 
 using namespace luabridge;

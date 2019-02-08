@@ -14,6 +14,6 @@
 
 #include "Log.h"
 
-#ifdef SGT_PLATFORM_WINDOWS
+#ifdef GEAR_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

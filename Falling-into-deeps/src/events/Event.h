@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sgtpch.h"
+#include "gearpch.h"
 #define BIT(x) 1 << x
 
 enum class EventType

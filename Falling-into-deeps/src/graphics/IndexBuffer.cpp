@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "IndexBuffer.h"
 #include <glad/glad.h>
 

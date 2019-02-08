@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "Application.h"
 #include "events/KeyEvent.h"
 #include "events/MouseEvent.h"
@@ -16,15 +16,15 @@ high_resolution_clock::time_point lastTime = high_resolution_clock::now();
 
 Application::Application(float d) : delta(d)
 {
-	sgt::Log::Init();
-	SGT_CORE_INFO("Application created.");
+	Gear::Log::Init();
+	GEAR_CORE_INFO("Application created.");
 }
 
 
 void Application::Run()
 {
 	UpdateClock(high_resolution_clock::now());
-	Graphics::Init();
+	Gear::Init();
 
 	float processed = 0.0f;
 	float frame_time = 0.0f;
@@ -48,7 +48,7 @@ void Application::Run()
 
 		if (frame_time >= 1) {
 			frame_time -= 1;
-			SGT_CORE_INFO("FPS: " + std::to_string(fps));
+			GEAR_CORE_INFO("FPS: " + std::to_string(fps));
 			fps = 0;
 		}
 

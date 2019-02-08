@@ -1,4 +1,4 @@
-#include "sgtpch.h"
+#include "gearpch.h"
 #include "EntityRenderer.h"
 
 
@@ -18,7 +18,7 @@ unsigned int EntityRenderer::CreateEntity(const std::string & name)
 			return i;
 		}
 	}
-	SGT_ERROR("To many entities on the world!!!");
+	GEAR_ERROR("To many entities on the world!!!");
 	return 0;
 }
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Application.h"
-#include "sgtpch.h"
+#include "gearpch.h"
 
 extern "C" {
 	#include "lua.h"
