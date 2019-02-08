@@ -10,56 +10,56 @@ void SetKey(const std::string& key, int k)
 
 void Gear::InitKeys()
 {
-	/*SetKey("", GLFW_KEY_SPACE
-	SetKey("", GLFW_KEY_APOSTROPHE
-	SetKey("", GLFW_KEY_COMMA
-	SetKey("", GLFW_KEY_MINUS
-	SetKey("", GLFW_KEY_PERIOD
-	SetKey("", GLFW_KEY_SLASH
-	SetKey("", GLFW_KEY_0                  48
-	SetKey("", GLFW_KEY_1                  49
-	SetKey("", GLFW_KEY_2                  50
-	SetKey("", GLFW_KEY_3                  51
-	SetKey("", GLFW_KEY_4                  52
-	SetKey("", GLFW_KEY_5                  53
-	SetKey("", GLFW_KEY_6                  54
-	SetKey("", GLFW_KEY_7                  55
-	SetKey("", GLFW_KEY_8                  56
-	SetKey("", GLFW_KEY_9                  57
-	SetKey("", GLFW_KEY_SEMICOLON          59 
-	SetKey("", GLFW_KEY_EQUAL              61*/  
+	SetKey("space", GLFW_KEY_SPACE
+	SetKey("apostrophe", GLFW_KEY_APOSTROPHE);
+	SetKey("comma", GLFW_KEY_COMMA);
+	SetKey("minus", GLFW_KEY_MINUS);
+	SetKey("period", GLFW_KEY_PERIOD);
+	SetKey("slash", GLFW_KEY_SLASH);
+	SetKey("0", GLFW_KEY_0);
+	SetKey("1", GLFW_KEY_1);
+	SetKey("2", GLFW_KEY_2);
+	SetKey("3", GLFW_KEY_3);
+	SetKey("4", GLFW_KEY_4);
+	SetKey("5", GLFW_KEY_5);
+	SetKey("6", GLFW_KEY_6);
+	SetKey("7", GLFW_KEY_7);
+	SetKey("8", GLFW_KEY_8);
+	SetKey("9", GLFW_KEY_9);
+	SetKey("0", GLFW_KEY_SEMICOLON);
+	SetKey("equal", GLFW_KEY_EQUAL);
 	SetKey("a", GLFW_KEY_A);
-	//SetKey("", GLFW_KEY_B                  66
-	//SetKey("", GLFW_KEY_C                  67
+	SetKey("b", GLFW_KEY_B);
+	SetKey("c", GLFW_KEY_C);
 	SetKey("d", GLFW_KEY_D);
-	/*SetKey("", GLFW_KEY_E                  69
-	SetKey("", GLFW_KEY_F                  70
-	SetKey("", GLFW_KEY_G                  71
-	SetKey("", GLFW_KEY_H                  72
-	SetKey("", GLFW_KEY_I                  73
-	SetKey("", GLFW_KEY_J                  74
-	SetKey("", GLFW_KEY_K                  75
-	SetKey("", GLFW_KEY_L                  76
-	SetKey("", GLFW_KEY_M                  77
-	SetKey("", GLFW_KEY_N                  78
-	SetKey("", GLFW_KEY_O                  79
-	SetKey("", GLFW_KEY_P                  80
-	SetKey("", GLFW_KEY_Q                  81
-	SetKey("", GLFW_KEY_R                  82*/
+	SetKey("e", GLFW_KEY_E);
+	SetKey("f", GLFW_KEY_F);
+	SetKey("g", GLFW_KEY_G);
+	SetKey("h", GLFW_KEY_H);
+	SetKey("i", GLFW_KEY_I);
+	SetKey("j", GLFW_KEY_J);
+	SetKey("k", GLFW_KEY_K);
+	SetKey("l", GLFW_KEY_L);
+	SetKey("m", GLFW_KEY_M);
+	SetKey("n", GLFW_KEY_N);
+	SetKey("o", GLFW_KEY_O);
+	SetKey("p", GLFW_KEY_P);
+	SetKey("q", GLFW_KEY_Q);
+	SetKey("r", GLFW_KEY_R);
 	SetKey("s", GLFW_KEY_S);
-	/*SetKey("", GLFW_KEY_T                  84
-	SetKey("", GLFW_KEY_U                  85
-	SetKey("", GLFW_KEY_V                  86*/
+	SetKey("t", GLFW_KEY_T);
+	SetKey("u", GLFW_KEY_U);
+	SetKey("v", GLFW_KEY_V);
 	SetKey("w", GLFW_KEY_W);
-	/*SetKey("", GLFW_KEY_X                  88
-	SetKey("", GLFW_KEY_Y                  89
-	SetKey("", GLFW_KEY_Z                  90
-	SetKey("", GLFW_KEY_LEFT_BRACKET
-	SetKey("", GLFW_KEY_BACKSLASH
-	SetKey("", GLFW_KEY_RIGHT_BRACKET
-	SetKey("", GLFW_KEY_GRAVE_ACCENT
-	SetKey("", GLFW_KEY_WORLD_1
-	SetKey("", GLFW_KEY_WORLD_2
+	SetKey("x", GLFW_KEY_X);
+	SetKey("y", GLFW_KEY_Y);
+	SetKey("z", GLFW_KEY_Z);
+	SetKey("left_bracket", GLFW_KEY_LEFT_BRACKET);
+	SetKey("backslash", GLFW_KEY_BACKSLASH);
+	SetKey("rigth_bracket", GLFW_KEY_RIGHT_BRACKET);
+	SetKey("grave_accent", GLFW_KEY_GRAVE_ACCENT);
+	SetKey("world_1", GLFW_KEY_WORLD_1);
+	SetKey("world_2", GLFW_KEY_WORLD_2);
 
 	/* Function keys */
 	/*SetKey("", GLFW_KEY_ESCAPE             256
