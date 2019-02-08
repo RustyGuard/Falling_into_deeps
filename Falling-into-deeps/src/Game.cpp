@@ -34,14 +34,14 @@ void Game::OnEvent(Event & event)
 	switch (event.GetEventType())
 	{
 	case EventType::KeyReleased:
-		Input::keyReleased(((KeyReleaseEvent&)event).GetKeyCode());
+		Gear::keyReleased(((KeyReleaseEvent&)event).GetKeyCode());
 		if (((KeyReleaseEvent&)event).GetKeyCode() == GLFW_KEY_ESCAPE)
 		{
 			window->Close();
 		}
 		break;
 	case EventType::KeyPressed:
-		Input::keyPressed(((KeyReleaseEvent&)event).GetKeyCode());
+		Gear::keyPressed(((KeyReleaseEvent&)event).GetKeyCode());
 		break;
 
 	case EventType::AppUpdate:

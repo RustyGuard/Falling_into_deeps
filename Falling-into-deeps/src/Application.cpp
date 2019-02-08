@@ -16,6 +16,7 @@ high_resolution_clock::time_point lastTime = high_resolution_clock::now();
 
 Application::Application(float d) : delta(d)
 {
+	Gear::InitKeys();
 	Gear::Log::Init();
 	GEAR_CORE_INFO("Application created.");
 }

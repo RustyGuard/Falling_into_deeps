@@ -1,5 +1,6 @@
 #include "gearpch.h"
 #include "Entity.h"
+#include "Input.h"
 #include "graphics/Graphics.h"
 
 std::map<std::string, std::function<Component*()>> s_components;
@@ -11,11 +12,14 @@ Entity::Entity(std::string file) : obj(LuaManager::CreateRaw())
 	getGlobalNamespace(obj)
 		.beginClass<TransformComponent>("transform_component")
 			.addFunction("move", &TransformComponent::Move)
+			.addFunction("draw", &TransformComponent::Draw)
 		.endClass()
 		.beginClass<Entity>("Entity")
 			.addFunction("AddComponent", &Entity::AddComponent)
 			.addFunction("GetTransform", &Entity::GetTransform)
-		.endClass();
+		.endClass()
+		.addFunction("Draw", &Gear::Draw)
+		.addFunction("isPressed", &Gear::isPressed);
 
 	getGlobal(obj, "init")(this);
 }
@@ -28,28 +32,14 @@ Entity::~Entity()
 
 void Entity::OnEvent(Event & event)
 {
-	//TransformComponent * transform = getComponent<TransformComponent>("transform");
 	switch (event.GetEventType())
 	{
 	case EventType::AppRender:
-		if (components["inventory"] != nullptr)
-		{
-			GetInventory()->Print();
-		}
-		//Graphics::Draw(transform->position, transform->half_extern);
 		getGlobal(obj, "render")(this);
 		break;
 	case EventType::AppUpdate:
 		getGlobal(obj, "update")(this, 1.0f);
-		/*if (Input::isKeyPressed(GLFW_KEY_A))
-			transform->Move(-1.1f, 0.0f);
-		if (Input::isKeyPressed(GLFW_KEY_D))
-			transform->Move(1.1f, 0.0f);
-		if (Input::isKeyPressed(GLFW_KEY_W))
-			transform->Move(0.0f, -1.1f);
-		if (Input::isKeyPressed(GLFW_KEY_S))
-			transform->Move(0.0f, 1.1f);
-		break;*/
+		break;
 	}
 }
 

@@ -220,6 +220,7 @@
     <None Include="res\shader\Basic.shader">
       <Filter>res\shader</Filter>
     </None>
+    <None Include="res\scripts\keys.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">

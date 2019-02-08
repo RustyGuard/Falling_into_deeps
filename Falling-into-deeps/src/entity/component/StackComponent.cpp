@@ -14,11 +14,6 @@ void StackComponent::Init()
 	RegisterItem(1, "apple");
 }
 
-void StackComponent::Print()
-{
-	GEAR_INFO(item);
-}
-
 void StackComponent::RegisterItem(unsigned int id, const std::string& file)
 {
 	lua_State* obj = LuaManager::CreateRaw();

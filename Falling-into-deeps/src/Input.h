@@ -1,12 +1,12 @@
 #pragma once
 #include "GLFW/glfw3.h"
 
-class Input
-{
-public:
-	static void keyPressed(int key);
-	static void keyReleased(int key);
+namespace Gear {
+	void InitKeys();
+	void keyPressed(int key);
+	void keyReleased(int key);
 	
-	static bool isKeyPressed(int key);
-};
+	bool isKeyPressed(int key);
+	bool isPressed(const std::string& key);
+}
 
