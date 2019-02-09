@@ -7,6 +7,6 @@ namespace Gear {
 	void keyReleased(int key);
 	
 	bool isKeyPressed(int key);
-	bool isPressed(const std::string& key);
+	bool isKeyPressed(const std::string& key);
 }
 

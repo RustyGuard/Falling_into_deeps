@@ -19,7 +19,7 @@ Entity::Entity(std::string file) : obj(LuaManager::CreateRaw())
 			.addFunction("GetTransform", &Entity::GetTransform)
 		.endClass()
 		.addFunction("Draw", &Gear::Draw)
-		.addFunction("isPressed", &Gear::isPressed);
+		.addFunction<bool(*)(const std::string&)>("isPressed", &Gear::isKeyPressed);
 
 	getGlobal(obj, "init")(this);
 }

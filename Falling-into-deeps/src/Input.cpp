@@ -10,7 +10,7 @@ void SetKey(const std::string& key, int k)
 
 void Gear::InitKeys()
 {
-	SetKey("space", GLFW_KEY_SPACE
+	SetKey("space", GLFW_KEY_SPACE);
 	SetKey("apostrophe", GLFW_KEY_APOSTROPHE);
 	SetKey("comma", GLFW_KEY_COMMA);
 	SetKey("minus", GLFW_KEY_MINUS);
@@ -83,7 +83,7 @@ void Gear::InitKeys()
 	SetKey("pause", GLFW_KEY_PAUSE);
 	SetKey("f1", GLFW_KEY_F1);
 	SetKey("f2", GLFW_KEY_F2);
-SetKey("f3", GLFW_KEY_F3);
+	SetKey("f3", GLFW_KEY_F3);
 	SetKey("f4", GLFW_KEY_F4);
 	SetKey("f5", GLFW_KEY_F5);
 	SetKey("f6", GLFW_KEY_F6);
@@ -150,7 +150,7 @@ bool Gear::isKeyPressed(int key)
 	return keys[key];
 }
 
-bool Gear::isPressed(const std::string & key)
+bool Gear::isKeyPressed(const std::string & key)
 {
 	return isKeyPressed(registered[key]);
 }

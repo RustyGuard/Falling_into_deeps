@@ -76,13 +76,13 @@ void Gear::Draw(glm::vec3 pos, glm::vec3 half_extern)
 
 void Gear::Move()
 {
-	if (Gear::isKeyPressed(GLFW_KEY_UP))
+	if (Gear::isKeyPressed("up"))
 		scale += 0.1f;
-	if (Gear::isKeyPressed(GLFW_KEY_DOWN) && scale > 0.15f)
+	if (Gear::isKeyPressed("down") && scale > 0.15f)
 		scale -= 0.1f;
-	if (Gear::isKeyPressed(GLFW_KEY_LEFT))
+	if (Gear::isKeyPressed("left"))
 		view.x -= 1.1f;
-	if (Gear::isKeyPressed(GLFW_KEY_RIGHT))
+	if (Gear::isKeyPressed("right"))
 		view.x += 1.1f;
 }
 
