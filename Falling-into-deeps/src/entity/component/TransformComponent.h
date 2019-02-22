@@ -18,4 +18,5 @@ public:
 	TransformComponent();
 	glm::vec3 position;
 	glm::vec3 half_extern;
+	void Collide(TransformComponent * transform);
 };

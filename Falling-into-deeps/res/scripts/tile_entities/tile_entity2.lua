@@ -8,3 +8,7 @@ end
 render = function(inst)
 	--print("render1")
 end
+
+interact = function(inst, entity)
+	--print("interact")
+end

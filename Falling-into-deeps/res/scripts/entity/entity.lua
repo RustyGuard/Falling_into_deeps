@@ -24,3 +24,10 @@ end
 render = function(inst)
 	inst:GetTransform():draw()
 end
+
+interact = function(inst, entity)
+	--print("interact")
+	if (entity:GetTransform()) then
+		entity:GetTransform():collide(inst:GetTransform())
+	end
+end

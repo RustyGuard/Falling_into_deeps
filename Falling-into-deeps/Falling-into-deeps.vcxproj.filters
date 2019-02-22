@@ -123,6 +123,7 @@
     <ClInclude Include="src\tile\TileRenderer.h">
       <Filter>src\tile</Filter>
     </ClInclude>
+    <ClInclude Include="src\entity\component\ElementComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -188,6 +189,7 @@
     <ClCompile Include="src\tile\TileRenderer.cpp">
       <Filter>src\tile</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\component\ElementComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\scripts\entity\entity.lua">

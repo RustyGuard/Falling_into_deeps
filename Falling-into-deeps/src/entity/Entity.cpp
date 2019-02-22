@@ -13,6 +13,7 @@ Entity::Entity(std::string file) : obj(LuaManager::CreateRaw())
 		.beginClass<TransformComponent>("transform_component")
 			.addFunction("move", &TransformComponent::Move)
 			.addFunction("draw", &TransformComponent::Draw)
+			.addFunction("collide", &TransformComponent::Collide)
 		.endClass()
 		.beginClass<Entity>("Entity")
 			.addFunction("AddComponent", &Entity::AddComponent)
@@ -41,6 +42,11 @@ void Entity::OnEvent(Event & event)
 		getGlobal(obj, "update")(this, 1.0f);
 		break;
 	}
+}
+
+void Entity::Interact(Entity * entity)
+{
+	getGlobal(obj, "interact")(this, entity);
 }
 
 void Entity::InitComponents()

@@ -15,6 +15,6 @@ public:
 private:
 	Window * window;
 	EntityRenderer * entity_renderer;
-	TileRenderer * tile_renderer;
+	//TileRenderer * tile_renderer;
 };
 

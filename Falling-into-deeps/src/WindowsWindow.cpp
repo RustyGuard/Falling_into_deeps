@@ -119,7 +119,13 @@ void WindowsWindow::SwapBuffers()
 	glfwSwapBuffers(window);
 }
 
+#ifdef GEAR_PLATFORM_WINDOWS
+
 Window* Window::Create(int width, int height, std::string title)
 {
 	return new WindowsWindow(width, height, title);
 }
+
+#endif
+
+

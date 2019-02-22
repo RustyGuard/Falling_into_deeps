@@ -1,5 +1,5 @@
 init = function(renderer, pos)
-	print("air...")
+	--print("air...")
 end
 
 update = function(inst, delta)

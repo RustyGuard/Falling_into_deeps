@@ -15,6 +15,7 @@ public:
 	Entity(std::string file);
 	~Entity();
 	void OnEvent(Event& event);
+	void Interact(Entity* entity);
 	static void InitComponents();
 	
 	template<typename T>
