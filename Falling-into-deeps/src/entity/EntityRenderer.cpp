@@ -12,12 +12,17 @@ EntityRenderer::EntityRenderer()
 		tiles[i] = 0;
 	}
 
-	SetTile(1, 1, 1);
+	//SetTile(1, 1, 1);
 }
 
 unsigned int EntityRenderer::CreateEntity(const std::string & name, const std::string& path)
 {
 	Entity* entity = new Entity(path + name);
+	getGlobalNamespace(entity->GetState())
+		.beginClass<EntityRenderer>("renderer")
+			.addFunction("collide", &EntityRenderer::CollideEntity)
+		.endClass();
+
 	for (unsigned int i = 0; i < 1000; i++)
 	{
 		if (entities.find(i) == entities.end())
@@ -33,11 +38,22 @@ unsigned int EntityRenderer::CreateEntity(const std::string & name, const std::s
 
 void EntityRenderer::OnEvent(Event & e)
 {
-	for (auto& item : entities)
+	switch (e.GetEventType())
 	{
-		item.second->OnEvent(e);
-	}
-	for (auto& item1 : entities)
+	case EventType::AppRender:
+		for (auto& item : entities)
+		{
+			item.second->GetField("render")(item.second);
+		}
+		break;
+	case EventType::AppUpdate:
+		for (auto& item : entities)
+		{
+			item.second->GetField("update")(this, item.second, 1.0f);
+		}
+		break;
+	}	
+	/*for (auto& item1 : entities)
 	{
 		for (auto& item2 : entities)
 		{
@@ -46,7 +62,7 @@ void EntityRenderer::OnEvent(Event & e)
 				item1.second->Interact(item2.second);
 			}
 		}
-	}
+	}*/
 }
 
 Entity * EntityRenderer::GetEntity(unsigned int id)
@@ -96,4 +112,24 @@ void EntityRenderer::SetTile(unsigned int x, unsigned int y, unsigned int tile)
 void EntityRenderer::SetTileEntity(unsigned int pos, const std::string & file)
 {
 	tile_entities[pos] = CreateEntity(file, "tile_entities/");
+}
+
+void EntityRenderer::CollideEntity(TransformComponent * c)
+{
+	for (auto& item : entities)
+	{
+		TransformComponent * t = item.second->GetTransform();
+		if (t != nullptr && t != c) {
+			if (t->isMovable())
+			{
+				if (t->Collide(c))
+					CollideEntity(t);
+			}
+			else
+			{
+				if (c->Collide(t))
+					CollideEntity(c);
+			}
+		}
+	}
 }

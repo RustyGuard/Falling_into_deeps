@@ -10,13 +10,33 @@ public:
 	{
 		position.x += x;
 		position.y += y;
+		moved = true;
 	}
 	void Draw()
 	{
 		Gear::Draw(position, half_extern);
 	}
+	bool isMoved()
+	{
+		if (moved)
+		{
+			moved = false;
+			return true;
+		}
+		return false;
+	}
+	bool isMovable()
+	{
+		return movable;
+	}
+	void setMovable(bool m)
+	{
+		movable = m;
+	}
 	TransformComponent();
 	glm::vec3 position;
 	glm::vec3 half_extern;
-	void Collide(TransformComponent * transform);
+	bool moved = true;
+	bool movable = true;
+	bool Collide(TransformComponent * transform);
 };

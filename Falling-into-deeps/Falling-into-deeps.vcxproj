@@ -163,7 +163,6 @@
     <ClInclude Include="src\graphics\VertexArray.h" />
     <ClInclude Include="src\graphics\VertexBuffer.h" />
     <ClInclude Include="src\graphics\VertexBufferLayout.h" />
-    <ClInclude Include="src\tile\TileRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
@@ -189,11 +188,11 @@
     <ClCompile Include="src\graphics\VertexArray.cpp" />
     <ClCompile Include="src\graphics\VertexBuffer.cpp" />
     <ClCompile Include="src\graphics\VertexBufferLayout.cpp" />
-    <ClCompile Include="src\tile\TileRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\scripts\entity\entity.lua" />
     <None Include="res\scripts\entity\entity2.lua" />
+    <None Include="res\scripts\entity\entity3.lua" />
     <None Include="res\scripts\item\air.lua" />
     <None Include="res\scripts\item\apple.lua" />
     <None Include="res\scripts\keys.lua" />

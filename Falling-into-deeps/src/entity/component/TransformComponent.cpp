@@ -8,10 +8,10 @@ TransformComponent::TransformComponent()
 	position = glm::vec3(0.0f, 0.0f, 0.0f);
 }
 
-void TransformComponent::Collide(TransformComponent * transform)
+bool TransformComponent::Collide(TransformComponent * transform)
 {
-	int distX = position.x - transform->position.x;
-	int distY = position.y - transform->position.y;
+	float distX = position.x - transform->position.x;
+	float distY = position.y - transform->position.y;
 
 	if (abs(distX) < half_extern.x + transform->half_extern.x && abs(distY) < half_extern.y + transform->half_extern.y)
 	{
@@ -37,5 +37,7 @@ void TransformComponent::Collide(TransformComponent * transform)
 				position.y = transform->position.y - (half_extern.y + transform->half_extern.y);
 			}
 		}
+		return true;
 	}
+	return false;
 }

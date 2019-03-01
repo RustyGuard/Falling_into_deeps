@@ -1,4 +1,5 @@
 #pragma once
+
 #include "gearpch.h"
 
 #include "component/Component.h"
@@ -12,16 +13,24 @@
 class Entity
 {
 public:
-	Entity(std::string file);
+	Entity(const std::string& file);
 	~Entity();
-	void OnEvent(Event& event);
-	void Interact(Entity* entity);
 	static void InitComponents();
 	
 	template<typename T>
 	static void RegisterComponent(const std::string& name);
 
 	void AddComponent(const std::string& name);
+
+	LuaRef GetField(const std::string& field)
+	{
+		return getGlobal(obj, field.c_str());
+	}
+
+	lua_State * GetState()
+	{
+		return obj;
+	}
 
 	template<class T>
 	T * getComponent(const std::string& name)
@@ -37,10 +46,6 @@ public:
 	{
 		return getComponent<InventoryComponent>("inventory");
 	}
-	/*InventoryComponent * GetInventory()
-	{
-		return getComponent<InventoryComponent>("inventory");
-	}*/
 private:
 	std::map<std::string, Component*> components;
 	lua_State* obj;

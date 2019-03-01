@@ -1,12 +1,10 @@
 init = function(inst)
 	inst:AddComponent("transform")
+	inst:GetTransform():move(-50.0, 0.0)
+	inst:GetTransform():setMovable(false)
 end
 
 update = function(world, inst, delta)
-	--inst:GetTransform():move(0.1, 0.1)
-	if (inst:GetTransform():isMoved()) then
-		world:collide(inst:GetTransform());
-	end
 end
 
 render = function(inst)

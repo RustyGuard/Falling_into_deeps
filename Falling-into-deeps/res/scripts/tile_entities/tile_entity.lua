@@ -3,7 +3,7 @@ init = function(inst)
 
 end
 
-update = function(inst, delta)
+update = function(world, inst, delta)
 	--print("It`s me grassio!")
 	--if (inst:GetTransform()) then
 		--print("I has!")
@@ -14,8 +14,4 @@ end
 
 render = function(inst)
 	--print("render1")
-end
-
-interact = function(inst, entity)
-	--print("interact tile")
 end

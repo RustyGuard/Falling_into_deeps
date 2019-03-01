@@ -1,14 +1,10 @@
 init = function(inst)
 end
 
-update = function(inst, delta)
+update = function(world, inst, delta)
 	--print("It`s me again!")
 end
 
 render = function(inst)
 	--print("render1")
-end
-
-interact = function(inst, entity)
-	--print("interact")
 end

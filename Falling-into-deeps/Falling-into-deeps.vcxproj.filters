@@ -120,9 +120,6 @@
     <ClInclude Include="src\graphics\VertexBufferLayout.h">
       <Filter>src\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\tile\TileRenderer.h">
-      <Filter>src\tile</Filter>
-    </ClInclude>
     <ClInclude Include="src\entity\component\ElementComponent.h" />
   </ItemGroup>
   <ItemGroup>
@@ -186,9 +183,6 @@
     <ClCompile Include="src\graphics\VertexBufferLayout.cpp">
       <Filter>src\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\tile\TileRenderer.cpp">
-      <Filter>src\tile</Filter>
-    </ClCompile>
     <ClCompile Include="src\entity\component\ElementComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +217,7 @@
       <Filter>res\shader</Filter>
     </None>
     <None Include="res\scripts\keys.lua" />
+    <None Include="res\scripts\entity\entity3.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">

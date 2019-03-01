@@ -10,13 +10,13 @@ public:
 
 	unsigned int CreateEntity(const std::string& file, const std::string& path = "entity/");
 	void OnEvent(Event& e);
-	Entity* GetEntity(unsigned int id);
+	Entity * GetEntity(unsigned int id);
 
 	static const int WIDTH = 2, HEIGHT = 2;
 	unsigned int GetTile(unsigned int x, unsigned int y);
 	void SetTile(unsigned int x, unsigned int y, unsigned int tile);
 	void SetTileEntity(unsigned int pos, const std::string& file);
-
+	void CollideEntity(TransformComponent * c);
 private:
 	/* Tile Rendering */
 	void InitTiles();

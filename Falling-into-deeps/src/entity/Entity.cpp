@@ -5,7 +5,7 @@
 
 std::map<std::string, std::function<Component*()>> s_components;
 
-Entity::Entity(std::string file) : obj(LuaManager::CreateRaw())
+Entity::Entity(const std::string& file) : obj(LuaManager::CreateRaw())
 {
 	LuaManager::Push(obj, file + ".lua");
 
@@ -14,6 +14,9 @@ Entity::Entity(std::string file) : obj(LuaManager::CreateRaw())
 			.addFunction("move", &TransformComponent::Move)
 			.addFunction("draw", &TransformComponent::Draw)
 			.addFunction("collide", &TransformComponent::Collide)
+			.addFunction("setMovable", &TransformComponent::setMovable)
+			.addFunction("isMovable", &TransformComponent::isMovable)
+			.addFunction("isMoved", &TransformComponent::isMoved)
 		.endClass()
 		.beginClass<Entity>("Entity")
 			.addFunction("AddComponent", &Entity::AddComponent)
@@ -29,24 +32,6 @@ Entity::Entity(std::string file) : obj(LuaManager::CreateRaw())
 Entity::~Entity()
 {
 
-}
-
-void Entity::OnEvent(Event & event)
-{
-	switch (event.GetEventType())
-	{
-	case EventType::AppRender:
-		getGlobal(obj, "render")(this);
-		break;
-	case EventType::AppUpdate:
-		getGlobal(obj, "update")(this, 1.0f);
-		break;
-	}
-}
-
-void Entity::Interact(Entity * entity)
-{
-	getGlobal(obj, "interact")(this, entity);
 }
 
 void Entity::InitComponents()

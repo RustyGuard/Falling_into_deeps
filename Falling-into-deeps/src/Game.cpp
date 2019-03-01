@@ -18,8 +18,7 @@ Game::Game() : Application(1.0f / 60.0f)
 	entity_renderer->CreateEntity("entity");
 	entity_renderer->CreateEntity("entity2");
 	entity_renderer->CreateEntity("entity2");
-
-	//tile_renderer = new TileRenderer();
+	entity_renderer->CreateEntity("entity3");
 
 	window = Window::Create(1200, 675, "Application");
 	window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
