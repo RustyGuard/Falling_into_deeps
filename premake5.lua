@@ -29,7 +29,8 @@ project "Falling-into-deeps"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/res/**"
+		"%{prj.name}/res/**",
+		"%{prj.name}/scripts/**"
 	}
 
 	includedirs

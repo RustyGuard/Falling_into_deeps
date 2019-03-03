@@ -137,8 +137,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Application.h" />
-    <ClInclude Include="src\entity\component\ElementComponent.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\Log.h" />
@@ -148,6 +148,7 @@
     <ClInclude Include="src\entity\Entity.h" />
     <ClInclude Include="src\entity\EntityRenderer.h" />
     <ClInclude Include="src\entity\component\Component.h" />
+    <ClInclude Include="src\entity\component\ElementComponent.h" />
     <ClInclude Include="src\entity\component\InventoryComponent.h" />
     <ClInclude Include="src\entity\component\StackComponent.h" />
     <ClInclude Include="src\entity\component\TransformComponent.h" />
@@ -165,8 +166,8 @@
     <ClInclude Include="src\graphics\VertexBufferLayout.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\entity\component\ElementComponent.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Log.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="src\entity\Entity.cpp" />
     <ClCompile Include="src\entity\EntityRenderer.cpp" />
     <ClCompile Include="src\entity\component\Component.cpp" />
+    <ClCompile Include="src\entity\component\ElementComponent.cpp" />
     <ClCompile Include="src\entity\component\InventoryComponent.cpp" />
     <ClCompile Include="src\entity\component\StackComponent.cpp" />
     <ClCompile Include="src\entity\component\TransformComponent.cpp" />
@@ -190,18 +192,22 @@
     <ClCompile Include="src\graphics\VertexBufferLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\scripts\entity\entity.lua" />
-    <None Include="res\scripts\entity\entity2.lua" />
-    <None Include="res\scripts\entity\entity3.lua" />
-    <None Include="res\scripts\item\air.lua" />
-    <None Include="res\scripts\item\apple.lua" />
-    <None Include="res\scripts\keys.lua" />
-    <None Include="res\scripts\tile\air.lua" />
-    <None Include="res\scripts\tile\grass.lua" />
-    <None Include="res\scripts\tile_entities\tile_entity.lua" />
-    <None Include="res\scripts\tile_entities\tile_entity2.lua" />
-    <None Include="res\scripts\window.lua" />
     <None Include="res\shader\Basic.shader" />
+    <None Include="scripts\components\transform.lua" />
+    <None Include="scripts\entity\entity.lua" />
+    <None Include="scripts\entity\entity2.lua" />
+    <None Include="scripts\entity\entity3.lua" />
+    <None Include="scripts\entity\test.lua" />
+    <None Include="scripts\entity\test2.lua" />
+    <None Include="scripts\item\air.lua" />
+    <None Include="scripts\item\apple.lua" />
+    <None Include="scripts\keys.lua" />
+    <None Include="scripts\renderer.lua" />
+    <None Include="scripts\tile\air.lua" />
+    <None Include="scripts\tile\grass.lua" />
+    <None Include="scripts\tile_entities\tile_entity.lua" />
+    <None Include="scripts\tile_entities\tile_entity2.lua" />
+    <None Include="scripts\window.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png" />

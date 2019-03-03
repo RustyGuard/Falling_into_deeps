@@ -14,7 +14,7 @@ lua_State * LuaManager::CreateRaw()
 
 void LuaManager::Push(lua_State * state, std::string name)
 {
-	std::string path = "res/scripts/" + name;
+	std::string path = "scripts/" + name;
 	luaL_dofile(state, path.c_str());
 	lua_pcall(state, 0, 0, 0);
 	lua_files[name] = state;

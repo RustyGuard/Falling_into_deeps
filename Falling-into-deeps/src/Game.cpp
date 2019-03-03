@@ -7,18 +7,20 @@
 #include "events/WindowEvent.h"
 
 #include "graphics/Graphics.h"
+#include "Input.h"
 
-#include "entity/component/StackComponent.h"
+//#include "entity/component/StackComponent.h"
 
 Game::Game() : Application(1.0f / 60.0f)
 {
-	StackComponent::Init();
+	//StackComponent::Init();
 
-	entity_renderer = new EntityRenderer();
+	/*entity_renderer = new EntityRenderer();
 	entity_renderer->CreateEntity("entity");
 	entity_renderer->CreateEntity("entity2");
 	entity_renderer->CreateEntity("entity2");
-	entity_renderer->CreateEntity("entity3");
+	entity_renderer->CreateEntity("entity3");*/
+	renderer = new Renderer();
 
 	window = Window::Create(1200, 675, "Application");
 	window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
@@ -46,13 +48,15 @@ void Game::OnEvent(Event & event)
 
 	case EventType::AppUpdate:
 		Gear::Move();
+		renderer->OnEvent(event);
 		window->PollEvents();
 		break;
 
 	case EventType::AppRender:
 		Gear::ClearColor(0.6f, 1.0f, 0.2f, 1.0f);
 		Gear::Clear();
-		entity_renderer->OnEvent(event);
+		renderer->OnEvent(event);
+		//entity_renderer->OnEvent(event);
 		window->SwapBuffers();
 		return;
 
@@ -62,7 +66,7 @@ void Game::OnEvent(Event & event)
 		break;
 	}
 
-	entity_renderer->OnEvent(event);
+	//entity_renderer->OnEvent(event);
 	//tile_renderer->OnEvent(event);
 }
 

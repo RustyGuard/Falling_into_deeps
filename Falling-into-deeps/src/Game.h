@@ -1,8 +1,9 @@
 #pragma once
 #include "Application.h"
-#include "entity/EntityRenderer.h"
+//#include "entity/EntityRenderer.h"
 #include "Window.h"
 #include "events/Event.h"
+#include "Renderer.h"
 
 class Game : public Application
 {
@@ -13,6 +14,7 @@ public:
 	void Delete() override;
 private:
 	Window * window;
-	EntityRenderer * entity_renderer;
+	//EntityRenderer * entity_renderer;
+	Renderer * renderer;
 };
 

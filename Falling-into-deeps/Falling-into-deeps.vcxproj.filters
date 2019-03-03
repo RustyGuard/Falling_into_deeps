@@ -4,26 +4,26 @@
     <Filter Include="res">
       <UniqueIdentifier>{4FA5880B-BBAE-887C-442A-9F7CB032947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="res\scripts">
-      <UniqueIdentifier>{A6037D1E-12B9-F513-9BAD-EFEA0762EC17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="res\scripts\entity">
-      <UniqueIdentifier>{52CD9D5D-3EB1-5EB3-A711-590693144935}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="res\scripts\item">
-      <UniqueIdentifier>{C449DD3A-B042-FC8C-D974-E111C5CCDB98}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="res\scripts\tile">
-      <UniqueIdentifier>{0324E33A-EF1C-028D-184F-E71104A7E198}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="res\scripts\tile_entities">
-      <UniqueIdentifier>{673CBC4C-D3FE-EFD6-1CAF-7E6388B0C8B4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="res\shader">
       <UniqueIdentifier>{35FAD04E-21B2-129C-8AB9-EBF77690AD8C}</UniqueIdentifier>
     </Filter>
     <Filter Include="res\textures">
       <UniqueIdentifier>{227C1C83-0EDF-AB27-B764-E4DDA3A677AA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts">
+      <UniqueIdentifier>{6D076287-D9E6-E022-E2FE-6BF94E5D4784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\entity">
+      <UniqueIdentifier>{39EB8D9F-25B9-81A5-0E4D-F2CBFAB95D0A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\item">
+      <UniqueIdentifier>{EBC18ECA-D724-1E6F-80AA-56256CECE9F1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\tile">
+      <UniqueIdentifier>{2A9C94CA-16FF-236F-BF84-5C25ABC6EFF1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scripts\tile_entities">
+      <UniqueIdentifier>{6ED030A5-DA3C-EC9F-A330-84FD0F5C0E08}</UniqueIdentifier>
     </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
@@ -39,9 +39,6 @@
     </Filter>
     <Filter Include="src\graphics">
       <UniqueIdentifier>{2DF282EC-1955-1291-C2DA-4A47AE1CDE13}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\tile">
-      <UniqueIdentifier>{EA9737CF-D664-92DA-FF7D-8082EBA9C768}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +70,9 @@
       <Filter>src\entity</Filter>
     </ClInclude>
     <ClInclude Include="src\entity\component\Component.h">
+      <Filter>src\entity\component</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entity\component\ElementComponent.h">
       <Filter>src\entity\component</Filter>
     </ClInclude>
     <ClInclude Include="src\entity\component\InventoryComponent.h">
@@ -120,7 +120,7 @@
     <ClInclude Include="src\graphics\VertexBufferLayout.h">
       <Filter>src\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\entity\component\ElementComponent.h" />
+    <ClInclude Include="src\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -153,6 +153,9 @@
     <ClCompile Include="src\entity\component\Component.cpp">
       <Filter>src\entity\component</Filter>
     </ClCompile>
+    <ClCompile Include="src\entity\component\ElementComponent.cpp">
+      <Filter>src\entity\component</Filter>
+    </ClCompile>
     <ClCompile Include="src\entity\component\InventoryComponent.cpp">
       <Filter>src\entity\component</Filter>
     </ClCompile>
@@ -183,41 +186,49 @@
     <ClCompile Include="src\graphics\VertexBufferLayout.cpp">
       <Filter>src\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\component\ElementComponent.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\scripts\entity\entity.lua">
-      <Filter>res\scripts\entity</Filter>
-    </None>
-    <None Include="res\scripts\entity\entity2.lua">
-      <Filter>res\scripts\entity</Filter>
-    </None>
-    <None Include="res\scripts\item\air.lua">
-      <Filter>res\scripts\item</Filter>
-    </None>
-    <None Include="res\scripts\item\apple.lua">
-      <Filter>res\scripts\item</Filter>
-    </None>
-    <None Include="res\scripts\tile\air.lua">
-      <Filter>res\scripts\tile</Filter>
-    </None>
-    <None Include="res\scripts\tile\grass.lua">
-      <Filter>res\scripts\tile</Filter>
-    </None>
-    <None Include="res\scripts\tile_entities\tile_entity.lua">
-      <Filter>res\scripts\tile_entities</Filter>
-    </None>
-    <None Include="res\scripts\tile_entities\tile_entity2.lua">
-      <Filter>res\scripts\tile_entities</Filter>
-    </None>
-    <None Include="res\scripts\window.lua">
-      <Filter>res\scripts</Filter>
-    </None>
     <None Include="res\shader\Basic.shader">
       <Filter>res\shader</Filter>
     </None>
-    <None Include="res\scripts\keys.lua" />
-    <None Include="res\scripts\entity\entity3.lua" />
+    <None Include="scripts\entity\entity.lua">
+      <Filter>scripts\entity</Filter>
+    </None>
+    <None Include="scripts\entity\entity2.lua">
+      <Filter>scripts\entity</Filter>
+    </None>
+    <None Include="scripts\entity\entity3.lua">
+      <Filter>scripts\entity</Filter>
+    </None>
+    <None Include="scripts\item\air.lua">
+      <Filter>scripts\item</Filter>
+    </None>
+    <None Include="scripts\item\apple.lua">
+      <Filter>scripts\item</Filter>
+    </None>
+    <None Include="scripts\keys.lua">
+      <Filter>scripts</Filter>
+    </None>
+    <None Include="scripts\tile\air.lua">
+      <Filter>scripts\tile</Filter>
+    </None>
+    <None Include="scripts\tile\grass.lua">
+      <Filter>scripts\tile</Filter>
+    </None>
+    <None Include="scripts\tile_entities\tile_entity.lua">
+      <Filter>scripts\tile_entities</Filter>
+    </None>
+    <None Include="scripts\tile_entities\tile_entity2.lua">
+      <Filter>scripts\tile_entities</Filter>
+    </None>
+    <None Include="scripts\window.lua">
+      <Filter>scripts</Filter>
+    </None>
+    <None Include="scripts\renderer.lua" />
+    <None Include="scripts\entity\test.lua" />
+    <None Include="scripts\components\transform.lua" />
+    <None Include="scripts\entity\test2.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">
