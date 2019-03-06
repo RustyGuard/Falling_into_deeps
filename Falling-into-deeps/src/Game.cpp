@@ -9,17 +9,8 @@
 #include "graphics/Graphics.h"
 #include "Input.h"
 
-//#include "entity/component/StackComponent.h"
-
 Game::Game() : Application(1.0f / 60.0f)
 {
-	//StackComponent::Init();
-
-	/*entity_renderer = new EntityRenderer();
-	entity_renderer->CreateEntity("entity");
-	entity_renderer->CreateEntity("entity2");
-	entity_renderer->CreateEntity("entity2");
-	entity_renderer->CreateEntity("entity3");*/
 	renderer = new Renderer();
 
 	window = Window::Create(1200, 675, "Application");
@@ -56,7 +47,6 @@ void Game::OnEvent(Event & event)
 		Gear::ClearColor(0.6f, 1.0f, 0.2f, 1.0f);
 		Gear::Clear();
 		renderer->OnEvent(event);
-		//entity_renderer->OnEvent(event);
 		window->SwapBuffers();
 		return;
 
@@ -65,9 +55,6 @@ void Game::OnEvent(Event & event)
 		GEAR_INFO("Window closed");
 		break;
 	}
-
-	//entity_renderer->OnEvent(event);
-	//tile_renderer->OnEvent(event);
 }
 
 void Game::Delete()

@@ -8,8 +8,6 @@
 #include "glm/glm.hpp"
 #include "graphics/Graphics.h"
 #include "Input.h"
-#include "entity/Entity.h"
-#include "entity/EntityRenderer.h"
 
 using namespace std::chrono;
 high_resolution_clock::time_point lastTime = high_resolution_clock::now();

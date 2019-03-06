@@ -1,10 +1,14 @@
 #include "gearpch.h"
 #include "Renderer.h"
 #include "glm/glm.hpp"
+#include "graphics/Graphics.h"
+#include "Input.h"
 
 Renderer::Renderer() : instance(LuaManager::CreateRaw())
 {
 	getGlobalNamespace(instance)
+		.addFunction("Draw", &Gear::Draw)
+		.addFunction<bool(*)(const std::string&)>("isPressed", &Gear::isKeyPressed)
 		.beginClass<glm::vec3>("vec3")
 			.addConstructor<void (*) (void)>()
 			.addData("x", &glm::vec3::x, true)

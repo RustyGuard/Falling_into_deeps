@@ -145,13 +145,6 @@
     <ClInclude Include="src\LuaManager.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\WindowsWindow.h" />
-    <ClInclude Include="src\entity\Entity.h" />
-    <ClInclude Include="src\entity\EntityRenderer.h" />
-    <ClInclude Include="src\entity\component\Component.h" />
-    <ClInclude Include="src\entity\component\ElementComponent.h" />
-    <ClInclude Include="src\entity\component\InventoryComponent.h" />
-    <ClInclude Include="src\entity\component\StackComponent.h" />
-    <ClInclude Include="src\entity\component\TransformComponent.h" />
     <ClInclude Include="src\events\ApplicationEvent.h" />
     <ClInclude Include="src\events\Event.h" />
     <ClInclude Include="src\events\KeyEvent.h" />
@@ -174,13 +167,6 @@
     <ClCompile Include="src\LuaManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\WindowsWindow.cpp" />
-    <ClCompile Include="src\entity\Entity.cpp" />
-    <ClCompile Include="src\entity\EntityRenderer.cpp" />
-    <ClCompile Include="src\entity\component\Component.cpp" />
-    <ClCompile Include="src\entity\component\ElementComponent.cpp" />
-    <ClCompile Include="src\entity\component\InventoryComponent.cpp" />
-    <ClCompile Include="src\entity\component\StackComponent.cpp" />
-    <ClCompile Include="src\entity\component\TransformComponent.cpp" />
     <ClCompile Include="src\gearpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -194,20 +180,10 @@
   <ItemGroup>
     <None Include="res\shader\Basic.shader" />
     <None Include="scripts\components\transform.lua" />
-    <None Include="scripts\entity\entity.lua" />
-    <None Include="scripts\entity\entity2.lua" />
-    <None Include="scripts\entity\entity3.lua" />
+    <None Include="scripts\entity\test3.lua" />
     <None Include="scripts\entity\test.lua" />
     <None Include="scripts\entity\test2.lua" />
-    <None Include="scripts\item\air.lua" />
-    <None Include="scripts\item\apple.lua" />
-    <None Include="scripts\keys.lua" />
     <None Include="scripts\renderer.lua" />
-    <None Include="scripts\tile\air.lua" />
-    <None Include="scripts\tile\grass.lua" />
-    <None Include="scripts\tile_entities\tile_entity.lua" />
-    <None Include="scripts\tile_entities\tile_entity2.lua" />
-    <None Include="scripts\window.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png" />

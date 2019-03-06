@@ -63,27 +63,6 @@
     <ClInclude Include="src\WindowsWindow.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\entity\Entity.h">
-      <Filter>src\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entity\EntityRenderer.h">
-      <Filter>src\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entity\component\Component.h">
-      <Filter>src\entity\component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entity\component\ElementComponent.h">
-      <Filter>src\entity\component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entity\component\InventoryComponent.h">
-      <Filter>src\entity\component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entity\component\StackComponent.h">
-      <Filter>src\entity\component</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entity\component\TransformComponent.h">
-      <Filter>src\entity\component</Filter>
-    </ClInclude>
     <ClInclude Include="src\events\ApplicationEvent.h">
       <Filter>src\events</Filter>
     </ClInclude>
@@ -144,27 +123,6 @@
     <ClCompile Include="src\WindowsWindow.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\entity\Entity.cpp">
-      <Filter>src\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity\EntityRenderer.cpp">
-      <Filter>src\entity</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity\component\Component.cpp">
-      <Filter>src\entity\component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity\component\ElementComponent.cpp">
-      <Filter>src\entity\component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity\component\InventoryComponent.cpp">
-      <Filter>src\entity\component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity\component\StackComponent.cpp">
-      <Filter>src\entity\component</Filter>
-    </ClCompile>
-    <ClCompile Include="src\entity\component\TransformComponent.cpp">
-      <Filter>src\entity\component</Filter>
-    </ClCompile>
     <ClCompile Include="src\gearpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -192,43 +150,13 @@
     <None Include="res\shader\Basic.shader">
       <Filter>res\shader</Filter>
     </None>
-    <None Include="scripts\entity\entity.lua">
-      <Filter>scripts\entity</Filter>
-    </None>
-    <None Include="scripts\entity\entity2.lua">
-      <Filter>scripts\entity</Filter>
-    </None>
-    <None Include="scripts\entity\entity3.lua">
-      <Filter>scripts\entity</Filter>
-    </None>
-    <None Include="scripts\item\air.lua">
-      <Filter>scripts\item</Filter>
-    </None>
-    <None Include="scripts\item\apple.lua">
-      <Filter>scripts\item</Filter>
-    </None>
-    <None Include="scripts\keys.lua">
-      <Filter>scripts</Filter>
-    </None>
-    <None Include="scripts\tile\air.lua">
-      <Filter>scripts\tile</Filter>
-    </None>
-    <None Include="scripts\tile\grass.lua">
-      <Filter>scripts\tile</Filter>
-    </None>
-    <None Include="scripts\tile_entities\tile_entity.lua">
-      <Filter>scripts\tile_entities</Filter>
-    </None>
-    <None Include="scripts\tile_entities\tile_entity2.lua">
-      <Filter>scripts\tile_entities</Filter>
-    </None>
-    <None Include="scripts\window.lua">
-      <Filter>scripts</Filter>
-    </None>
     <None Include="scripts\renderer.lua" />
     <None Include="scripts\entity\test.lua" />
     <None Include="scripts\components\transform.lua" />
     <None Include="scripts\entity\test2.lua" />
+    <None Include="scripts\entity\test3.lua">
+      <Filter>scripts\entity</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">
