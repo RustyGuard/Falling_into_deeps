@@ -157,6 +157,7 @@
     <None Include="scripts\entity\test3.lua">
       <Filter>scripts\entity</Filter>
     </None>
+    <None Include="scripts\tile\void.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">

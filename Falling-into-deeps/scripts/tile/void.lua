@@ -1,12 +1,9 @@
-local function create()
+local function create(x, y)
 	local en = CreateEntity()
-	en.name = "test2"
 	en.transform = CreateComponent("transform")
-	function en:update() 
-		if self.transform.moved then
-			Collide(self)
-		end
-	end
+	en.transform.pos.x = x * 64
+	en.transform.pos.y = y * 64
+	en.transform.static = true
 	function en:render() self.transform:draw() end
 	return en
 end

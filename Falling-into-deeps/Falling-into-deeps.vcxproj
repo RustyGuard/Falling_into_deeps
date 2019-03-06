@@ -184,6 +184,7 @@
     <None Include="scripts\entity\test.lua" />
     <None Include="scripts\entity\test2.lua" />
     <None Include="scripts\renderer.lua" />
+    <None Include="scripts\tile\void.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png" />

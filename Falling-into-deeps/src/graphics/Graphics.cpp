@@ -80,10 +80,22 @@ void Gear::Move()
 		scale += 0.1f;
 	if (Gear::isKeyPressed("down") && scale > 0.15f)
 		scale -= 0.1f;
-	if (Gear::isKeyPressed("left"))
-		view.x -= 1.1f;
-	if (Gear::isKeyPressed("right"))
-		view.x += 1.1f;
+}
+
+float Gear::GetCameraX()
+{
+	return view.x;
+}
+
+float Gear::GetCameraY()
+{
+	return view.y;
+}
+
+void Gear::MoveCamera(float x, float y)
+{
+	view.x += x;
+	view.y += y;
 }
 
 void Gear::ClearColor(float r, float g, float b, float a)
