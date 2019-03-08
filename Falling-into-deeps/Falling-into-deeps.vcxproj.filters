@@ -13,26 +13,17 @@
     <Filter Include="scripts">
       <UniqueIdentifier>{6D076287-D9E6-E022-E2FE-6BF94E5D4784}</UniqueIdentifier>
     </Filter>
+    <Filter Include="scripts\components">
+      <UniqueIdentifier>{8272CD43-6E56-8E99-D7B6-88ECC3B9781B}</UniqueIdentifier>
+    </Filter>
     <Filter Include="scripts\entity">
       <UniqueIdentifier>{39EB8D9F-25B9-81A5-0E4D-F2CBFAB95D0A}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="scripts\item">
-      <UniqueIdentifier>{EBC18ECA-D724-1E6F-80AA-56256CECE9F1}</UniqueIdentifier>
     </Filter>
     <Filter Include="scripts\tile">
       <UniqueIdentifier>{2A9C94CA-16FF-236F-BF84-5C25ABC6EFF1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="scripts\tile_entities">
-      <UniqueIdentifier>{6ED030A5-DA3C-EC9F-A330-84FD0F5C0E08}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src">
       <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\entity">
-      <UniqueIdentifier>{F9D6DE58-E58E-20A6-4E96-F9013A6DBB96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\entity\component">
-      <UniqueIdentifier>{BB9A8ECB-A729-1895-5048-2C903CB6283B}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\events">
       <UniqueIdentifier>{91766759-7D2E-A9A6-E635-8202D20C4497}</UniqueIdentifier>
@@ -55,6 +46,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\LuaManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Window.h">
@@ -99,7 +93,6 @@
     <ClInclude Include="src\graphics\VertexBufferLayout.h">
       <Filter>src\graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp">
@@ -118,6 +111,9 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\WindowsWindow.cpp">
@@ -144,20 +140,32 @@
     <ClCompile Include="src\graphics\VertexBufferLayout.cpp">
       <Filter>src\graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\Basic.shader">
       <Filter>res\shader</Filter>
     </None>
-    <None Include="scripts\renderer.lua" />
-    <None Include="scripts\entity\test.lua" />
-    <None Include="scripts\components\transform.lua" />
-    <None Include="scripts\entity\test2.lua" />
+    <None Include="scripts\components\health.lua">
+      <Filter>scripts\components</Filter>
+    </None>
+    <None Include="scripts\components\transform.lua">
+      <Filter>scripts\components</Filter>
+    </None>
+    <None Include="scripts\entity\player.lua">
+      <Filter>scripts\entity</Filter>
+    </None>
+    <None Include="scripts\entity\test2.lua">
+      <Filter>scripts\entity</Filter>
+    </None>
     <None Include="scripts\entity\test3.lua">
       <Filter>scripts\entity</Filter>
     </None>
-    <None Include="scripts\tile\void.lua" />
+    <None Include="scripts\renderer.lua">
+      <Filter>scripts</Filter>
+    </None>
+    <None Include="scripts\tile\void.lua">
+      <Filter>scripts\tile</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">

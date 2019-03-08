@@ -1,6 +1,5 @@
 local function create()
 	local en = CreateEntity()
-	en.name = "test2"
 	en.transform = CreateComponent("transform")
 	function en:update() 
 		if self.transform.moved then
@@ -8,6 +7,9 @@ local function create()
 		end
 	end
 	function en:render() self.transform:draw() end
+	en.transform.pos.x = math.random(-640, 640)
+	en.transform.pos.y = math.random(-640, 640)
+	SetEntity(en.id, en)
 	return en
 end
 

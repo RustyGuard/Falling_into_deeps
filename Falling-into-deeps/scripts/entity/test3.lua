@@ -5,6 +5,7 @@ local function create()
 	en.transform.static = true
 	function en:update() end
 	function en:render() self.transform:draw() end
+	SetEntity(en.id, en)
 	return en
 end
 

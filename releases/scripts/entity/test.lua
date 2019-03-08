@@ -1,6 +1,7 @@
 local function create()
 	local en = CreateEntity()
 	en.transform = CreateComponent("transform")
+	en.name = "test"
 	function en:update()
 		if (isPressed("a")) then
 			self.transform:move(-1.5, 0)

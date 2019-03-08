@@ -137,12 +137,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\Log.h" />
     <ClInclude Include="src\LuaManager.h" />
+    <ClInclude Include="src\Renderer.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\WindowsWindow.h" />
     <ClInclude Include="src\events\ApplicationEvent.h" />
@@ -159,13 +159,13 @@
     <ClInclude Include="src\graphics\VertexBufferLayout.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Input.cpp" />
     <ClCompile Include="src\Log.cpp" />
     <ClCompile Include="src\LuaManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Renderer.cpp" />
     <ClCompile Include="src\WindowsWindow.cpp" />
     <ClCompile Include="src\gearpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
@@ -179,10 +179,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\Basic.shader" />
+    <None Include="scripts\components\health.lua" />
     <None Include="scripts\components\transform.lua" />
-    <None Include="scripts\entity\test3.lua" />
-    <None Include="scripts\entity\test.lua" />
+    <None Include="scripts\entity\player.lua" />
     <None Include="scripts\entity\test2.lua" />
+    <None Include="scripts\entity\test3.lua" />
     <None Include="scripts\renderer.lua" />
     <None Include="scripts\tile\void.lua" />
   </ItemGroup>

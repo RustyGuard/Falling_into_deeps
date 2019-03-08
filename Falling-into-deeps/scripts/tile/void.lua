@@ -5,6 +5,7 @@ local function create(x, y)
 	en.transform.pos.y = y * 64
 	en.transform.static = true
 	function en:render() self.transform:draw() end
+	SetEntity(en.id, en)
 	return en
 end
 

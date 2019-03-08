@@ -7,8 +7,8 @@ project "Lua"
 
     files
     {
-        "%{prj.name}/src/**.h",
-	"%{prj.name}/src/**.c"
+        "src/**.h",
+		"src/**.c"
     }
 
 	includedirs
@@ -19,6 +19,6 @@ project "Lua"
     filter "system:windows"
         systemversion "latest"
         staticruntime "On"
-        
-    filter { "system:windows", "configurations:Release" }
+
+	filter { "system:windows", "configurations:Release" }
         buildoptions "/MT"
