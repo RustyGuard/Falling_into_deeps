@@ -1,0 +1,3 @@
+local inst
+
+return inst

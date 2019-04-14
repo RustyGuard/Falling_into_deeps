@@ -148,9 +148,6 @@
     <None Include="scripts\components\health.lua">
       <Filter>scripts\components</Filter>
     </None>
-    <None Include="scripts\components\transform.lua">
-      <Filter>scripts\components</Filter>
-    </None>
     <None Include="scripts\entity\player.lua">
       <Filter>scripts\entity</Filter>
     </None>
@@ -160,16 +157,27 @@
     <None Include="scripts\entity\test3.lua">
       <Filter>scripts\entity</Filter>
     </None>
-    <None Include="scripts\renderer.lua">
-      <Filter>scripts</Filter>
-    </None>
     <None Include="scripts\tile\void.lua">
       <Filter>scripts\tile</Filter>
     </None>
+    <None Include="scripts\tile\grass.lua" />
+    <None Include="scripts\renderer2.lua">
+      <Filter>scripts</Filter>
+    </None>
+    <None Include="scripts\renderer.lua" />
+    <None Include="scripts\tile_renderer.lua" />
+    <None Include="scripts\entity_renderer.lua" />
+    <None Include="scripts\ui_renderer.lua" />
+    <None Include="scripts\components\transform2.lua">
+      <Filter>scripts\components</Filter>
+    </None>
+    <None Include="scripts\components\transform.lua" />
+    <None Include="scripts\ui\button.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">
       <Filter>res\textures</Filter>
     </Image>
+    <Image Include="res\textures\test2.png" />
   </ItemGroup>
 </Project>

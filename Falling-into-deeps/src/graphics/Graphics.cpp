@@ -12,6 +12,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 
 #include "Input.h"
+#include "stbi/stbi_image.h"
 
 VertexArray* VAO;
 VertexBuffer* vertexBuffer;
@@ -27,10 +28,11 @@ glm::vec3 view;
 
 void Gear::Init()
 {
-	//glEnable(GL_BLEND);
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-	proj = glm::mat4(glm::ortho(-480.0f, 480.0f, 270.0f, -270.0f, 0.0f, 1.0f));
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	float w = SCREEN_WIDTH / 2;
+	float h = SCREEN_HEIGHT / 2;
+	proj = glm::mat4(glm::ortho(-w, w, h, -h, 0.0f, 1.0f));
 	scale = 1.0f;
 	view = glm::vec3(0, 0, 0);
 
@@ -107,3 +109,38 @@ void Gear::Clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 }
+
+unsigned int Gear::CreateTexture(const std::string & path)
+{
+	unsigned int m_RendererId;
+	unsigned char* m_LocalBuffer;
+	int width, height, BPP;
+
+	//stbi_set_flip_vertically_on_load(1);
+	m_LocalBuffer = stbi_load(path.c_str(), &width, &height, &BPP, 4);
+
+	glGenTextures(1, &m_RendererId);
+	glBindTexture(GL_TEXTURE_2D, m_RendererId);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer);
+
+	if (m_LocalBuffer)
+		stbi_image_free(m_LocalBuffer);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	return m_RendererId;
+}
+
+void Gear::BindTexture(unsigned int texture, unsigned int slot)
+{
+	glActiveTexture(GL_TEXTURE0 + slot);
+	glBindTexture(GL_TEXTURE_2D, texture);
+}
+
+

@@ -11,10 +11,11 @@
 
 Game::Game() : Application(1.0f / 60.0f)
 {
-	renderer = new Renderer();
-
-	window = Window::Create(1200, 675, "Application");
+	window = Window::Create(Gear::SCREEN_WIDTH, Gear::SCREEN_HEIGHT, "Application");
 	window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+
+	renderer = new Renderer();
+	Gear::OnEvent(WindowResizeEvent(1200, 675));
 }
 
 
@@ -27,14 +28,10 @@ void Game::OnEvent(Event & event)
 	switch (event.GetEventType())
 	{
 	case EventType::KeyReleased:
-		Gear::keyReleased(((KeyReleaseEvent&)event).GetKeyCode());
 		if (((KeyReleaseEvent&)event).GetKeyCode() == GLFW_KEY_ESCAPE)
 		{
 			window->Close();
 		}
-		break;
-	case EventType::KeyPressed:
-		Gear::keyPressed(((KeyReleaseEvent&)event).GetKeyCode());
 		break;
 
 	case EventType::AppUpdate:
@@ -55,6 +52,7 @@ void Game::OnEvent(Event & event)
 		GEAR_INFO("Window closed");
 		break;
 	}
+	Gear::OnEvent(event);
 }
 
 void Game::Delete()

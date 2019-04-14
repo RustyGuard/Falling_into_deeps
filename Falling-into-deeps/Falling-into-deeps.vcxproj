@@ -79,7 +79,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>gearpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GEAR_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;GEAR_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GEAR_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;STB_IMAGE_IMPLEMENTATION</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;lib\spdlog\include;lib\GLFW\include;lib\Glad\include;lib\nlohman\include;lib\graphics;lib\Lua\src;lib\luabridge\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -97,7 +97,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>gearpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GEAR_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;GEAR_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GEAR_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;STB_IMAGE_IMPLEMENTATION</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;lib\spdlog\include;lib\GLFW\include;lib\Glad\include;lib\nlohman\include;lib\graphics;lib\Lua\src;lib\luabridge\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -119,7 +119,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>gearpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>GEAR_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;GEAR_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GEAR_PLATFORM_WINDOWS;GLFW_INCLUDE_NONE;STB_IMAGE_IMPLEMENTATION</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;lib\spdlog\include;lib\GLFW\include;lib\Glad\include;lib\nlohman\include;lib\graphics;lib\Lua\src;lib\luabridge\Source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -181,14 +181,22 @@
     <None Include="res\shader\Basic.shader" />
     <None Include="scripts\components\health.lua" />
     <None Include="scripts\components\transform.lua" />
+    <None Include="scripts\components\transform2.lua" />
     <None Include="scripts\entity\player.lua" />
     <None Include="scripts\entity\test2.lua" />
     <None Include="scripts\entity\test3.lua" />
+    <None Include="scripts\entity_renderer.lua" />
     <None Include="scripts\renderer.lua" />
+    <None Include="scripts\renderer2.lua" />
+    <None Include="scripts\tile\grass.lua" />
     <None Include="scripts\tile\void.lua" />
+    <None Include="scripts\tile_renderer.lua" />
+    <None Include="scripts\ui\button.lua" />
+    <None Include="scripts\ui_renderer.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png" />
+    <Image Include="res\textures\test2.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="lib\GLFW\GLFW.vcxproj">

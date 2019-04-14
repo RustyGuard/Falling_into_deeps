@@ -1,7 +1,12 @@
 #include "gearpch.h"
 #include "Input.h"
+#include "events/KeyEvent.h"
+#include "events/MouseEvent.h"
+#include "events/WindowEvent.h"
 
+double x = 0.0, y = 0.0, wd_width = 0.0, wd_height = 0.0;
 bool keys[GLFW_KEY_LAST];
+bool buttons[GLFW_MOUSE_BUTTON_LAST];
 std::unordered_map<std::string, int> registered;
 void SetKey(const std::string& key, int k)
 {
@@ -135,14 +140,32 @@ void Gear::InitKeys()
 
 }
 
-void Gear::keyPressed(int key)
+void Gear::OnEvent(Event & event)
 {
-	keys[key] = true;
-}
-
-void Gear::keyReleased(int key)
-{
-	keys[key] = false;
+	switch (event.GetEventType())
+	{
+	case EventType::KeyPressed:
+		keys[((KeyReleaseEvent&)event).GetKeyCode()] = true;
+		break;
+	case EventType::KeyReleased:
+		keys[((KeyReleaseEvent&)event).GetKeyCode()] = false;
+		break;
+	case EventType::MouseMoved:
+		x = ((MouseMovedEvent&)event).GetX();
+		y = ((MouseMovedEvent&)event).GetY();
+		//GEAR_INFO(std::to_string(x) + " " + std::to_string(y));
+		break;
+	case EventType::MouseButtonPressed:
+		buttons[((MouseButtonEvent&)event).GetMouseButton()] = true;
+		break;
+	case EventType::MouseButtonReleased:
+		buttons[((MouseButtonEvent&)event).GetMouseButton()] = false;
+		break;
+	case EventType::WindowResize:
+		wd_width = ((WindowResizeEvent&)event).GetWidth();
+		wd_height = ((WindowResizeEvent&)event).GetHeight();
+		break;
+	}
 }
 
 bool Gear::isKeyPressed(int key)
@@ -153,4 +176,19 @@ bool Gear::isKeyPressed(int key)
 bool Gear::isKeyPressed(const std::string & key)
 {
 	return isKeyPressed(registered[key]);
+}
+
+bool Gear::isMouseButtonPressed(int button)
+{
+	return buttons[button];
+}
+
+double Gear::getMouseX()
+{
+	return x - wd_width / 2;
+}
+
+double Gear::getMouseY()
+{
+	return y - wd_height / 2;
 }

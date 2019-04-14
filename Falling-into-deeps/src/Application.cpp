@@ -27,7 +27,7 @@ void Application::Run()
 
 	float processed = 0.0f;
 	float frame_time = 0.0f;
-	float delta = 1.0f / 60;
+	float delta = 1.0f / 60.0f;
 
 	int fps = 0;
 	

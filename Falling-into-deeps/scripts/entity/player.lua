@@ -3,8 +3,10 @@ local function create()
 	en.transform = CreateComponent("transform")
 	en.components.health = CreateComponent("health")
 	en.id = "player"
+	en.name = "player"
+	en.level = 1
 	SetEntity(en.id, en)
-	function en:update()
+	function en:update(delta)
 		if (isPressed("a")) then
 			self.transform:move(-1.5, 0)
 		end
