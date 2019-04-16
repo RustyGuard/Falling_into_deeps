@@ -4,41 +4,18 @@
 class KeyEvent : public Event
 {
 public:
+	KeyEvent(int key, int action) : key(key), action(action) {}
+
 	inline int GetKeyCode() const { return key; }
+	inline int GetAction() const { return action; }
 
 	EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 
+	EVENT_CLASS_TYPE(Key)
+
 protected:
 	KeyEvent(int key) : key(key) {}
-	int key;
-};
-
-class KeyReleaseEvent : public KeyEvent
-{
-public:
-	KeyReleaseEvent(int key) : KeyEvent(key) {}
-
-	std::string ToString() const override
-	{
-		std::stringstream ss;
-		ss << "KeyReleasedEvent: " << key;
-		return ss.str();
-	}
-	EVENT_CLASS_TYPE(KeyReleased)
-};
-
-class KeyPressEvent : public KeyEvent
-{
-public:
-	KeyPressEvent(int key) : KeyEvent(key) {}
-
-	std::string ToString() const override
-	{
-		std::stringstream ss;
-		ss << "KeyPressedEvent: " << key;
-		return ss.str();
-	}
-	EVENT_CLASS_TYPE(KeyPressed)
+	int key, action;
 };
 
 class CharInputedEvent : public Event

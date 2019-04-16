@@ -6,7 +6,7 @@ namespace Gear {
 	const int SCREEN_WIDTH = 1200;
 	const int SCREEN_HEIGHT = 675;
 	void Init();
-	void Draw(glm::vec3 pos, glm::vec3 half_extern);
+	void Draw(glm::vec3 pos, glm::vec3 half_extern, float v0);
 	void Move();
 	float GetCameraX();
 	float GetCameraY();

@@ -14,7 +14,7 @@ local function create()
 		self.tex_half.y = 0
 
 		function self:Draw()
-			Draw(self.pos, self.tex_half)
+			Draw(self.pos, self.tex_half, 0.15)
 		end
 
 		function self:IsInside(a)
@@ -22,7 +22,6 @@ local function create()
 			local dist_y = math.abs(self.pos.y - a.y)
 			return dist_x < self.tex_half.x and dist_y < self.tex_half.y
 		end
-
 	end
 	return inst
 end

@@ -46,39 +46,13 @@ private:
 class MouseButtonEvent : public Event
 {
 public:
+	MouseButtonEvent(int button, int action) : button(button), action(action) {}
+
+	inline int GetAction() const { return action; }
 	inline int GetMouseButton() const { return button; }
 	EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
+	EVENT_CLASS_TYPE(MouseButton)
+
 protected:
-	MouseButtonEvent(int x, int y, int button) : button(button) {}
-	int x, y, button;
-};
-
-class MouseButtonReleaseEvent : public MouseButtonEvent
-{
-public:
-	MouseButtonReleaseEvent(int x, int y, int button) : MouseButtonEvent(x, y, button) {}
-
-	std::string ToString() const override
-	{
-		std::stringstream ss;
-		ss << "MouseButtonReleasedEvent: " << button;
-		return ss.str();
-	}
-
-	EVENT_CLASS_TYPE(MouseButtonReleased)
-};
-
-class MouseButtonPressEvent : public MouseButtonEvent
-{
-public:
-	MouseButtonPressEvent(int x, int y, int button) : MouseButtonEvent(x, y, button) {}
-
-	std::string ToString() const override
-	{
-		std::stringstream ss;
-		ss << "MouseButtonPressedEvent: " << button;
-		return ss.str();
-	}
-
-	EVENT_CLASS_TYPE(MouseButtonPressed)
+	int button, action;
 };

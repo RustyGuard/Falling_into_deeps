@@ -1,3 +1,6 @@
+GLFW_RELEASE = 0
+GLFW_PRESS = 1
+GLFW_REPEAT = 2
 local component_func = {}
 function CreateComponent(c)
 	if not component_func[c] then

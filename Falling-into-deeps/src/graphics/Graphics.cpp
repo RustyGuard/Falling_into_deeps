@@ -28,8 +28,15 @@ glm::vec3 view;
 
 void Gear::Init()
 {
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_FUNC);
+
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.2f);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
 	float w = SCREEN_WIDTH / 2;
 	float h = SCREEN_HEIGHT / 2;
 	proj = glm::mat4(glm::ortho(-w, w, h, -h, 0.0f, 1.0f));
@@ -64,23 +71,24 @@ void Gear::Init()
 	shader->setUniform1i("u_Texture", 0);
 }
 
-void Gear::Draw(glm::vec3 pos, glm::vec3 half_extern)
+void Gear::Draw(glm::vec3 pos, glm::vec3 half_extern, float z)
 {
-	glColor4f(1.0f, 0.2f, 0.3f, 1.0f);
+	//glColor4f(1.0f, 0.2f, 0.3f, 1.0f);
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
-	glm::mat4 mvp = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, 0.0f)) * proj * glm::translate(glm::mat4(1.0f), view) * model * glm::scale(glm::mat4(1.0f), half_extern);
+	glm::mat4 mvp = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, 1.0f)) * proj * glm::translate(glm::mat4(1.0f), view) * model * glm::scale(glm::mat4(1.0f), half_extern);
+	shader->setUniformMat4("u_MVP", mvp);
+	shader->setUniform1f("z_coord", z);
+	shader->bind();
 	VAO->bind();
 	indexBuffer->bind();
-	shader->bind();
-	shader->setUniformMat4("u_MVP", mvp);
 	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
 }
 
 void Gear::Move()
 {
-	if (Gear::isKeyPressed("up") && scale < 3.0f)
+	if ((Gear::GetKey("up") == GLFW_REPEAT) && scale < 3.0f)
 		scale += 0.1f;
-	if (Gear::isKeyPressed("down") && scale > 0.35f)
+	if ((Gear::GetKey("down") == GLFW_REPEAT) && scale > 0.35f)
 		scale -= 0.1f;
 }
 
@@ -107,7 +115,7 @@ void Gear::ClearColor(float r, float g, float b, float a)
 
 void Gear::Clear()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 unsigned int Gear::CreateTexture(const std::string & path)

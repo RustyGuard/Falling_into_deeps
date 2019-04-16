@@ -7,10 +7,13 @@ layout(location = 1)in vec2 texCoord;
 out vec2 v_TexCoord;
 
 uniform mat4 u_MVP;
+uniform float z_coord;
 
 void main()
 {
-	gl_Position = u_MVP * position;
+	vec4 res = u_MVP * position;
+	res.z = z_coord;
+	gl_Position = res;
 	v_TexCoord = texCoord;
 };
 
@@ -27,7 +30,7 @@ uniform sampler2D u_Texture;
 void main()
 {
 	vec4 texColor = texture(u_Texture, v_TexCoord);
-	if (texColor.a < 0.1)
-		discard;
 	color = texColor;
+	if (texColor.a < 0.3)
+		discard;
 };

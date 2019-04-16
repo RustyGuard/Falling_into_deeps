@@ -27,8 +27,8 @@ void Game::OnEvent(Event & event)
 {
 	switch (event.GetEventType())
 	{
-	case EventType::KeyReleased:
-		if (((KeyReleaseEvent&)event).GetKeyCode() == GLFW_KEY_ESCAPE)
+	case EventType::Key:
+		if (((KeyEvent&)event).GetKeyCode() == GLFW_KEY_ESCAPE)
 		{
 			window->Close();
 		}
@@ -36,8 +36,8 @@ void Game::OnEvent(Event & event)
 
 	case EventType::AppUpdate:
 		Gear::Move();
-		renderer->OnEvent(event);
 		window->PollEvents();
+		renderer->OnEvent(event);
 		break;
 
 	case EventType::AppRender:

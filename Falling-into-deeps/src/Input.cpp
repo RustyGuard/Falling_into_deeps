@@ -5,8 +5,8 @@
 #include "events/WindowEvent.h"
 
 double x = 0.0, y = 0.0, wd_width = 0.0, wd_height = 0.0;
-bool keys[GLFW_KEY_LAST];
-bool buttons[GLFW_MOUSE_BUTTON_LAST];
+int keys[GLFW_KEY_LAST];
+int buttons[GLFW_MOUSE_BUTTON_LAST];
 std::unordered_map<std::string, int> registered;
 void SetKey(const std::string& key, int k)
 {
@@ -137,29 +137,29 @@ void Gear::InitKeys()
 	SetKey("right_alt", GLFW_KEY_RIGHT_ALT);
 	SetKey("right_super", GLFW_KEY_RIGHT_SUPER);
 	SetKey("menu", GLFW_KEY_MENU);
-
 }
 
 void Gear::OnEvent(Event & event)
 {
 	switch (event.GetEventType())
 	{
-	case EventType::KeyPressed:
-		keys[((KeyReleaseEvent&)event).GetKeyCode()] = true;
-		break;
-	case EventType::KeyReleased:
-		keys[((KeyReleaseEvent&)event).GetKeyCode()] = false;
+	case EventType::Key:
+		keys[((KeyEvent&)event).GetKeyCode()] = ((KeyEvent&)event).GetAction();
 		break;
 	case EventType::MouseMoved:
 		x = ((MouseMovedEvent&)event).GetX();
 		y = ((MouseMovedEvent&)event).GetY();
-		//GEAR_INFO(std::to_string(x) + " " + std::to_string(y));
 		break;
-	case EventType::MouseButtonPressed:
-		buttons[((MouseButtonEvent&)event).GetMouseButton()] = true;
+	case EventType::MouseButton:
+		buttons[((MouseButtonEvent&)event).GetMouseButton()] = ((MouseButtonEvent&)event).GetAction();
 		break;
-	case EventType::MouseButtonReleased:
-		buttons[((MouseButtonEvent&)event).GetMouseButton()] = false;
+	case EventType::AppUpdate:
+		for (int i = 0; i <= GLFW_MOUSE_BUTTON_LAST; i++)
+		{
+			if (buttons[i] == GLFW_PRESS) {
+				buttons[i] = GLFW_REPEAT;
+			}
+		}
 		break;
 	case EventType::WindowResize:
 		wd_width = ((WindowResizeEvent&)event).GetWidth();
@@ -173,12 +173,12 @@ bool Gear::isKeyPressed(int key)
 	return keys[key];
 }
 
-bool Gear::isKeyPressed(const std::string & key)
+int Gear::GetKey(const std::string & key)
 {
 	return isKeyPressed(registered[key]);
 }
 
-bool Gear::isMouseButtonPressed(int button)
+int Gear::GetMouseButton(int button)
 {
 	return buttons[button];
 }
