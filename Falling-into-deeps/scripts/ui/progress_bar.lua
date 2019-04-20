@@ -5,7 +5,10 @@ local function create()
 	inst.transform.tex_half.x = 32
 	inst.transform.tex_half.y = 32
 	inst.transform.pos.z = 0.25
-	inst.tex = CreateTexture("res/textures/test.png")
+	inst.tex1 = CreateTexture("res/textures/test2.png")
+	inst.tex2 = CreateTexture("res/textures/test3.png")
+	inst.maximum = 1500
+	inst.minimum = 75
 	function inst:SetLocation(x, y)
 		self.transform.pos.x = x
 		self.transform.pos.y = y
@@ -19,7 +22,6 @@ local function create()
 	end
 	function inst:update(a)
 		if GetMouseButton(0) == GLFW_PRESS and self.transform:IsInside(a) then
-			--print("Button Pressed")
 			self.transform.pos.z = 0.75
 			if self.callback then
 				self.callback()
@@ -27,7 +29,10 @@ local function create()
 		end
 	end
 	function inst:render()
-		inst.transform:DrawUI(self.tex, 1, 1)
+		self.minimum = self.minimum + 1.0
+		inst.transform:DrawUI(self.tex2, 1, 1)
+		local x_v = self.maximum / self.minimum
+		inst.transform:DrawUI(self.tex1, x_v, 1)
 	end
 	return inst
 end

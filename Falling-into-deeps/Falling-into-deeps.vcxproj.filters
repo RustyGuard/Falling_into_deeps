@@ -142,9 +142,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\shader\Basic.shader">
-      <Filter>res\shader</Filter>
-    </None>
     <None Include="scripts\components\health.lua">
       <Filter>scripts\components</Filter>
     </None>
@@ -173,11 +170,15 @@
     </None>
     <None Include="scripts\components\transform.lua" />
     <None Include="scripts\ui\button.lua" />
+    <None Include="res\shader\Ui.shader" />
+    <None Include="scripts\ui\progress_bar.lua" />
+    <None Include="res\shader\Basic.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">
       <Filter>res\textures</Filter>
     </Image>
     <Image Include="res\textures\test2.png" />
+    <Image Include="res\textures\test3.png" />
   </ItemGroup>
 </Project>

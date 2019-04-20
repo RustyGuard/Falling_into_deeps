@@ -179,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\Basic.shader" />
+    <None Include="res\shader\Ui.shader" />
     <None Include="scripts\components\health.lua" />
     <None Include="scripts\components\transform.lua" />
     <None Include="scripts\components\transform2.lua" />
@@ -192,11 +193,13 @@
     <None Include="scripts\tile\void.lua" />
     <None Include="scripts\tile_renderer.lua" />
     <None Include="scripts\ui\button.lua" />
+    <None Include="scripts\ui\progress_bar.lua" />
     <None Include="scripts\ui_renderer.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png" />
     <Image Include="res\textures\test2.png" />
+    <Image Include="res\textures\test3.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="lib\GLFW\GLFW.vcxproj">

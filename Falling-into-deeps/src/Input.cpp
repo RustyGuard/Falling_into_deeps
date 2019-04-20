@@ -168,7 +168,7 @@ void Gear::OnEvent(Event & event)
 	}
 }
 
-bool Gear::isKeyPressed(int key)
+int Gear::isKeyPressed(int key)
 {
 	return keys[key];
 }

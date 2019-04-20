@@ -17,11 +17,11 @@
 VertexArray* VAO;
 VertexBuffer* vertexBuffer;
 IndexBuffer* indexBuffer;
-Shader* shader;
 glm::mat4 proj;
 glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f);
 
 std::unordered_map<std::string, unsigned int> textures;
+std::unordered_map<std::string, Shader*> shaders;
 
 float scale;
 glm::vec3 view;
@@ -66,19 +66,37 @@ void Gear::Init()
 
 	indexBuffer = new IndexBuffer(indices, 6);
 
-	shader = new Shader("res/shader/Basic.shader");
+	shaders["default"] = new Shader("res/shader/Basic.shader");
+	shaders["default"]->setUniform1i("u_Texture", 0);
 
-	shader->setUniform1i("u_Texture", 0);
+	shaders["ui"] = new Shader("res/shader/Ui.shader");
+	shaders["ui"]->setUniform1i("u_Texture", 0);
 }
 
-void Gear::Draw(glm::vec3 pos, glm::vec3 half_extern, float z)
+void Gear::DrawUI(unsigned int texture, glm::vec3 pos, glm::vec3 half_extern, float x_change, float y_change)
 {
-	//glColor4f(1.0f, 0.2f, 0.3f, 1.0f);
+	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
+	glm::mat4 mvp = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f)) * proj * glm::translate(glm::mat4(1.0f), view) * model * glm::scale(glm::mat4(1.0f), half_extern);
+	shaders["ui"]->bind();
+	shaders["ui"]->setUniformMat4("u_MVP", mvp);
+	shaders["ui"]->setUniform1f("x_mul", x_change);
+	shaders["ui"]->setUniform1f("y_mul", y_change);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	VAO->bind();
+	indexBuffer->bind();
+	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
+}
+
+void Gear::DrawEntity(unsigned int texture, glm::vec3 pos, glm::vec3 half_extern, float z)
+{
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
 	glm::mat4 mvp = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, 1.0f)) * proj * glm::translate(glm::mat4(1.0f), view) * model * glm::scale(glm::mat4(1.0f), half_extern);
-	shader->setUniformMat4("u_MVP", mvp);
-	shader->setUniform1f("z_coord", z);
-	shader->bind();
+	shaders["default"]->bind();
+	shaders["default"]->setUniformMat4("u_MVP", mvp);
+	shaders["default"]->setUniform1f("z_coord", z);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
 	VAO->bind();
 	indexBuffer->bind();
 	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
@@ -120,6 +138,10 @@ void Gear::Clear()
 
 unsigned int Gear::CreateTexture(const std::string & path)
 {
+	if (textures.find(path) != textures.end())
+	{
+		return textures[path];
+	}
 	unsigned int m_RendererId;
 	unsigned char* m_LocalBuffer;
 	int width, height, BPP;
@@ -142,13 +164,11 @@ unsigned int Gear::CreateTexture(const std::string & path)
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
+	textures[path] = m_RendererId;
 	return m_RendererId;
 }
 
-void Gear::BindTexture(unsigned int texture, unsigned int slot)
+void Gear::BindShader(const std::string & shader)
 {
-	glActiveTexture(GL_TEXTURE0 + slot);
-	glBindTexture(GL_TEXTURE_2D, texture);
+	shaders[shader]->bind();
 }
-
-

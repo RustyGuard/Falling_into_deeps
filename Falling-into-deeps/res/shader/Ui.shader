@@ -7,15 +7,19 @@ layout(location = 1)in vec2 texCoord;
 out vec2 v_TexCoord;
 
 uniform mat4 u_MVP;
-uniform float z_coord;
+uniform float x_mul;
+uniform float y_mul;
 
 void main()
 {
 	vec4 res = u_MVP * position;
-	res.z = z_coord;
+	res.z = 0.0;
 	//res.x = res.x * 0.5;
 	gl_Position = res;
-	v_TexCoord = texCoord;
+	vec2 t = texCoord;
+	t.x = t.x * x_mul;
+	t.y = t.y * y_mul;
+	v_TexCoord = t;
 };
 
 #shader fragment

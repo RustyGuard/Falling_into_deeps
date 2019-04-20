@@ -23,4 +23,12 @@ function inst:SetTile(x, y, tile)
 	self.tiles[self:Key(x, y)] = tile
 end
 
+function inst:render()
+
+end
+
+function inst:update(delta)
+
+end
+
 return inst

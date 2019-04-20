@@ -14,7 +14,7 @@ function inst:AddItem(name)
 	if not self.item_func[name] then
 		self.item_func[name] = require("scripts/ui/" .. name)
 	end
-	i = self.item_func[name]()
+	local i = self.item_func[name]()
 	self.ui[#self.ui + 1] = i
 	return i
 end
@@ -27,21 +27,27 @@ local function f()
 	print("Callback")
 end
 button:SetCallback(f)
-inst.texture = CreateTexture("res/textures/test.png")
 -- End
+
+inst.texture = CreateTexture("res/textures/test.png")
+
+-- Creating the progress bar
+local progress = inst:AddItem("progress_bar")
+progress:SetLocation(256, 256)
+progress:SetSize(64, 32)
+-- End
+
 
 function inst:update(delta)
 	self.pos.x = GetMouseX()
 	self.pos.y = GetMouseY()
-	--self.pos.z = 200
 	for id, item in pairs(self.ui) do
 		item:update(self.pos)
 	end
 end
 
 function inst:render()
-	BindTexture(self.texture, 0)
-	Draw(self.pos, self.half, 0.25)
+	DrawUI(self.texture, self.pos, self.half, 1, 1)
 	for id, item in pairs(self.ui) do
 		item:render()
 	end
