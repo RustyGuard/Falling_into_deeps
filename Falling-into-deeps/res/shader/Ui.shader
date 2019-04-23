@@ -14,7 +14,6 @@ void main()
 {
 	vec4 res = u_MVP * position;
 	res.z = 0.0;
-	//res.x = res.x * 0.5;
 	gl_Position = res;
 	vec2 t = texCoord;
 	t.x = t.x * x_mul;

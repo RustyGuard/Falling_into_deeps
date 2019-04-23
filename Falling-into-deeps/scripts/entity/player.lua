@@ -1,6 +1,7 @@
 local function create()
 	local en = CreateEntity()
 	en.transform = CreateComponent("transform")
+	en.inventory = CreateComponent("inventory")
 	en.transform:SetCollidable()
 	en.transform:SetDrawable()
 	--en.components.health = CreateComponent("health")
@@ -31,6 +32,16 @@ local function create()
 	end
 	function en:render()
 		self.transform:Draw(self.texture)
+	end
+	for i = 1, 3 do
+		en.inventory:AddSlot(i)
+		en.inventory:SetItem(i, i)
+		en.inventory:SetAmount(i, i)
+		b = AddUIItem("slot")
+		b:SetLocation(- (i * 50) - 75, -300)
+		b:SetSize(24, 24)
+		b:Init(en.inventory, i)
+
 	end
 	return en
 end

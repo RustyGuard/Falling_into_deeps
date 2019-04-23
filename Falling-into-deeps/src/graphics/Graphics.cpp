@@ -31,6 +31,8 @@ void Gear::Init()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_DEPTH_FUNC);
 
+	glDepthFunc(GL_LEQUAL);
+
 	glEnable(GL_ALPHA_TEST);
 	glAlphaFunc(GL_GREATER, 0.2f);
 	glEnable(GL_BLEND);
@@ -77,29 +79,31 @@ void Gear::DrawUI(unsigned int texture, glm::vec3 pos, glm::vec3 half_extern, fl
 {
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
 	glm::mat4 mvp = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f)) * proj * glm::translate(glm::mat4(1.0f), view) * model * glm::scale(glm::mat4(1.0f), half_extern);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
 	shaders["ui"]->bind();
 	shaders["ui"]->setUniformMat4("u_MVP", mvp);
 	shaders["ui"]->setUniform1f("x_mul", x_change);
 	shaders["ui"]->setUniform1f("y_mul", y_change);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture);
 	VAO->bind();
 	indexBuffer->bind();
 	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
+	shaders["ui"]->unbind();
 }
 
 void Gear::DrawEntity(unsigned int texture, glm::vec3 pos, glm::vec3 half_extern, float z)
 {
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
 	glm::mat4 mvp = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, 1.0f)) * proj * glm::translate(glm::mat4(1.0f), view) * model * glm::scale(glm::mat4(1.0f), half_extern);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texture);
 	shaders["default"]->bind();
 	shaders["default"]->setUniformMat4("u_MVP", mvp);
 	shaders["default"]->setUniform1f("z_coord", z);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture);
 	VAO->bind();
 	indexBuffer->bind();
 	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
+	shaders["default"]->unbind();
 }
 
 void Gear::Move()

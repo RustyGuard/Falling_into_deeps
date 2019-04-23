@@ -173,6 +173,11 @@
     <None Include="res\shader\Ui.shader" />
     <None Include="scripts\ui\progress_bar.lua" />
     <None Include="res\shader\Basic.shader" />
+    <None Include="scripts\components\inventory.lua" />
+    <None Include="scripts\ui\slot.lua" />
+    <None Include="scripts\item\copper_ingot.lua" />
+    <None Include="scripts\item\copper_sword.lua" />
+    <None Include="scripts\item\food_bowl.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">
@@ -180,5 +185,8 @@
     </Image>
     <Image Include="res\textures\test2.png" />
     <Image Include="res\textures\test3.png" />
+    <Image Include="res\textures\test5.png" />
+    <Image Include="res\textures\test4.png" />
+    <Image Include="res\textures\test6.png" />
   </ItemGroup>
 </Project>
