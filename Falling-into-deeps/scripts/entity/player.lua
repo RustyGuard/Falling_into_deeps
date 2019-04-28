@@ -2,13 +2,20 @@ local function create()
 	local en = CreateEntity()
 	en.transform = CreateComponent("transform")
 	en.inventory = CreateComponent("inventory")
+	en.animation = CreateComponent("animation")
+	--en.components.health = CreateComponent("health")
+
 	en.transform:SetCollidable()
 	en.transform:SetDrawable()
-	--en.components.health = CreateComponent("health")
+
+	local anim1 = en.animation:AddAnimation(1, "static")
+	anim1:SetImage("res/textures/test4.png")
+	en.animation:Use(1)
+
 	en.name = "player"
-	en.texture = CreateTexture("res/textures/test4.png")
 	ChangeId(en.id, "player")
-	function en:update(delta)
+
+	function en:update(m_pos, delta)
 		if GetKey("a") ~= GLFW_RELEASE then
 			self.transform:move(-1.5, 0)
 		end
@@ -30,19 +37,23 @@ local function create()
 			--self.components.health:heal(1)
 		--end
 	end
+
 	function en:render()
-		self.transform:Draw(self.texture)
+		self.transform:Draw(self.animation:GetImage())
 	end
+
+	local inv = CreateUIItem("container")
 	for i = 1, 3 do
 		en.inventory:AddSlot(i)
 		en.inventory:SetItem(i, i)
 		en.inventory:SetAmount(i, i)
-		b = AddUIItem("slot")
+		local b = CreateUIItem("slot")
 		b:SetLocation(- (i * 50) - 75, -300)
 		b:SetSize(24, 24)
 		b:Init(en.inventory, i)
-
+		inv:AddItem(b)
 	end
+	SetContainer("p_inventory", inv)
 	return en
 end
 

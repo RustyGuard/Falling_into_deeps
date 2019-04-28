@@ -4,7 +4,7 @@ local function create()
 	inst.transform:SetDrawable()
 	inst.transform.tex_half.x = 32
 	inst.transform.tex_half.y = 32
-	inst.tex = CreateTexture("res/textures/test.png")
+	inst.tex = CreateTexture("res/textures/test6.png")
 	function inst:SetLocation(x, y)
 		self.transform.pos.x = x
 		self.transform.pos.y = y

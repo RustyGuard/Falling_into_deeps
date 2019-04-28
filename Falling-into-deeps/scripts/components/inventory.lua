@@ -21,6 +21,9 @@ local function create()
 		MOUSE_SLOT.item, self.items[slot].id = self.items[slot].id, MOUSE_SLOT.item
 		MOUSE_SLOT.amount, self.items[slot].amount = self.items[slot].amount, MOUSE_SLOT.amount
 	end
+	function inst:PutIn(inventory)
+		-- Coming soon
+	end
 	function inst:GetItem(slot)
 		return ITEMS[self.items[slot].id]
 	end

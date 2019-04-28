@@ -180,10 +180,12 @@
   <ItemGroup>
     <None Include="res\shader\Basic.shader" />
     <None Include="res\shader\Ui.shader" />
+    <None Include="scripts\components\animation.lua" />
     <None Include="scripts\components\health.lua" />
     <None Include="scripts\components\inventory.lua" />
     <None Include="scripts\components\transform.lua" />
     <None Include="scripts\components\transform2.lua" />
+    <None Include="scripts\entity\chest.lua" />
     <None Include="scripts\entity\player.lua" />
     <None Include="scripts\entity\test2.lua" />
     <None Include="scripts\entity\test3.lua" />
@@ -193,12 +195,14 @@
     <None Include="scripts\item\food_bowl.lua" />
     <None Include="scripts\renderer.lua" />
     <None Include="scripts\renderer2.lua" />
+    <None Include="scripts\tile\chest.lua" />
     <None Include="scripts\tile\grass.lua" />
     <None Include="scripts\tile\void.lua" />
     <None Include="scripts\tile_renderer.lua" />
     <None Include="scripts\ui\button.lua" />
     <None Include="scripts\ui\progress_bar.lua" />
     <None Include="scripts\ui\slot.lua" />
+    <None Include="scripts\ui\container.lua" />
     <None Include="scripts\ui_renderer.lua" />
   </ItemGroup>
   <ItemGroup>

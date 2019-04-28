@@ -1,49 +1,32 @@
 local inst = {}
 
 inst.pos = vec3()
-inst.pos.x = 1200
-inst.pos.y = 675
-
+inst.pos.x = 0
+inst.pos.y = 0
 inst.half = vec3()
 inst.half.x = 32
 inst.half.y = 32
-inst.item_func = {}
-inst.ui = {}
-
-function inst:AddItem(name)
-	if not self.item_func[name] then
-		self.item_func[name] = require("scripts/ui/" .. name)
-	end
-	local i = self.item_func[name]()
-	self.ui[#self.ui + 1] = i
-	return i
-end
-
-function AddUIItem(name)
-	return inst:AddItem(name)
-end
-
--- Creating the button
---local button = inst:AddItem("button")
---button:SetLocation(64, 64)
---button:SetSize(32, 64)
-local function f()
-	print("Callback")
-end
---button:SetCallback(f)
--- End
-
---inst.texture = CreateTexture("res/textures/test.png")
 MOUSE_SLOT = {}
 MOUSE_SLOT.item = 2
 MOUSE_SLOT.amount = 5
 
--- Creating the progress bar
---local progress = inst:AddItem("progress_bar")
---progress:SetLocation(256, 256)
---progress:SetSize(64, 32)
--- End
+local item_func = {}
+inst.ui = {}
 
+function CreateUIItem(name)
+	if not item_func[name] then
+		item_func[name] = require("scripts/ui/" .. name)
+	end
+	return item_func[name]()
+end
+
+function GetContainer(name)
+	return inst.ui[name]
+end
+
+function SetContainer(name, cont)
+	inst.ui[name] = cont
+end
 
 function inst:update(delta)
 	self.pos.x = GetMouseX()
@@ -54,7 +37,6 @@ function inst:update(delta)
 end
 
 function inst:render()
-	--DrawUI(self.texture, self.pos, self.half, 1, 1)
 	for id, item in pairs(self.ui) do
 		item:render()
 	end

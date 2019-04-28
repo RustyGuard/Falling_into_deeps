@@ -78,7 +78,7 @@ void Gear::Init()
 void Gear::DrawUI(unsigned int texture, glm::vec3 pos, glm::vec3 half_extern, float x_change, float y_change)
 {
 	glm::mat4 model = glm::translate(glm::mat4(1.0f), pos);
-	glm::mat4 mvp = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f)) * proj * glm::translate(glm::mat4(1.0f), view) * model * glm::scale(glm::mat4(1.0f), half_extern);
+	glm::mat4 mvp = glm::scale(glm::mat4(1.0f), glm::vec3(1.0f, 1.0f, 1.0f)) * proj * glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0)) * model * glm::scale(glm::mat4(1.0f), half_extern);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	shaders["ui"]->bind();

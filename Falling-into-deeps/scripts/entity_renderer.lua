@@ -2,6 +2,9 @@ local inst = {}
 
 inst.entity_func = {}
 inst.entities = {}
+inst.pos = vec3()
+inst.pos.x = 0
+inst.pos.y = 0
 
 function CreateEntity()
 	local en = {}
@@ -39,9 +42,12 @@ function inst:render()
 end
 
 function inst:update(delta)
+	self.pos.x = GetMouseX() - GetCameraX()
+	self.pos.y = GetMouseY() - GetCameraY()
+	self.entities.player.transform:CorrectCamera()
 	for id, en in pairs(self.entities) do
 		if en.update then
-			en:update(delta)
+			en:update(self.pos, delta)
 		end
 		if en.transform and (en.transform.collidable and en.transform.moved) then
 			for i, e in pairs(self.entities) do

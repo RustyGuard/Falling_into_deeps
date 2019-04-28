@@ -15,8 +15,8 @@ local function create()
 		self.half.y = 32
 		self.collidable = true
 		function inst:Correct(b)
-			local dist_x = self.pos.x - b.pos.x;
-			local dist_y = self.pos.y - b.pos.y;
+			local dist_x = self.pos.x - b.pos.x
+			local dist_y = self.pos.y - b.pos.y
 			if math.abs(dist_x) < (self.half.x + b.half.x) and (math.abs(dist_y) < self.half.y + b.half.y) then
 				if math.abs(dist_x) > math.abs(dist_y) then
 					if dist_x > 0 then
@@ -34,6 +34,11 @@ local function create()
 				return true
 			end
 			return false
+		end
+		function inst:CorrectCamera()
+			local x = - self.pos.x - GetCameraX()
+			local y = - self.pos.y - GetCameraY()
+			MoveCamera(x / 9, y / 9)
 		end
 	end
 	function inst:SetDrawable()

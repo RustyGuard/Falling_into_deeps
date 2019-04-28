@@ -25,7 +25,16 @@ AddEntity("test2")
 AddEntity("test2")
 AddEntity("test3")
 AddEntity("player")
+local chest = AddEntity("chest")
+chest.transform:move(64, 64)
 ---------------
+
+gui = CreateUIItem("container")
+local but = CreateUIItem("button")
+but:SetLocation(64, 64)
+but:SetSize(32, 64)
+gui:AddItem(but)
+SetContainer("gui", gui)
 
 function update(delta) 
 	ui_renderer:update(delta)

@@ -28,7 +28,7 @@ function inst:render()
 end
 
 function inst:update(delta)
-
+	
 end
 
 return inst

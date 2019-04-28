@@ -178,6 +178,10 @@
     <None Include="scripts\item\copper_ingot.lua" />
     <None Include="scripts\item\copper_sword.lua" />
     <None Include="scripts\item\food_bowl.lua" />
+    <None Include="scripts\ui\container.lua" />
+    <None Include="scripts\components\animation.lua" />
+    <None Include="scripts\entity\chest.lua" />
+    <None Include="scripts\tile\chest.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">
