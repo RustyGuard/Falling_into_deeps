@@ -30,7 +30,7 @@ void Application::Run()
 	float delta = 1.0f / 60.0f;
 
 	int fps = 0;
-running = true;
+	running = true;
 	
 	while (running)
 	{

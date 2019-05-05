@@ -9,7 +9,9 @@ local function create()
 
 	function inst:update(m_pos)
 		for id, item in pairs(self.ui) do
-			item:update(m_pos)
+			if item.update then
+				item:update(m_pos)
+			end
 		end
 	end
 
@@ -17,6 +19,16 @@ local function create()
 		for id, item in pairs(self.ui) do
 			item:render()
 		end
+	end
+	function inst:OnMouseButtonReleased(button, pos)
+		for id, item in pairs(self.ui) do
+			if item.OnMouseButtonReleased then
+				if item:OnMouseButtonReleased(button, pos) then
+					return true
+				end
+			end
+		end
+		return false
 	end
 
 	return inst

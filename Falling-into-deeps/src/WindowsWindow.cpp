@@ -41,16 +41,42 @@ WindowsWindow::WindowsWindow(int width, int height, std::string title)
 	glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
 	{
 		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-		KeyEvent event(key, action);
-		data.EventCallback(event);
+		switch (action)
+		{
+		case GLFW_PRESS:
+		{
+			KeyPressedEvent event(key);
+			data.EventCallback(event);
+			break;
+		}
+		case GLFW_RELEASE:
+		{
+			KeyReleasedEvent event(key);
+			data.EventCallback(event);
+			break;
+		}
+		}
 	});
 
 	glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int mods)
 	{
 		WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-		MouseButtonEvent event(button, action);
-		data.EventCallback(event);
+		switch (action)
+		{
+		case GLFW_PRESS:
+		{
+			MouseButtonPressedEvent event(button);
+			data.EventCallback(event);
+			break;
+		}
+		case GLFW_RELEASE:
+		{
+			MouseButtonReleasedEvent event(button);
+			data.EventCallback(event);
+			break;
+		}
+		}
 	});
 
 	glfwSetScrollCallback(window, [](GLFWwindow* window, double xOffset, double yOffset)

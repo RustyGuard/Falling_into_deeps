@@ -1,4 +1,4 @@
-local function create()
+local function create(p, v)
 	local en = CreateEntity()
 	en.transform = CreateComponent("transform")
 	en.inventory = CreateComponent("inventory")
@@ -8,15 +8,27 @@ local function create()
 	en.transform:SetCollidable()
 	en.transform:SetDrawable()
 	en.transform.static = true
+	en.transform.pos = v
+	en.position = p
 
-	local anim1 = en.animation:AddAnimation(1, "static")
-	anim1:SetImage("res/textures/chest.png")
+	local anim1 = en.animation:AddAnimation(1, "over")
+	anim1:Init("res/textures/chest/chest", 0.6, 4)
 	en.animation:Use(1)
+	anim1:Reverse()
+	anim1:Max()
 
 	en.name = "chest"
 
 	function en:update(m_pos, delta)
-		if GetMouseButton(0) == GLFW_PRESS and self.transform:IsInside(m_pos) then
+		self.animation:update(delta)
+	end
+
+	function en:render()
+		self.transform:Draw(self.animation:GetImage())
+	end
+
+	function en:OnMouseButtonReleased(b, p)
+		if b == 0 and self.transform:IsInside(p) then
 			local inv = CreateUIItem("container")
 			for i = 1, 3 do
 				local b = CreateUIItem("slot")
@@ -26,15 +38,17 @@ local function create()
 				inv:AddItem(b)
 			end
 			SetContainer("gui", inv)
+			self.animation:Get(1):Min()
+			self.animation:Get(1):Reverse()
+			return true
 		end
-		if GetMouseButton(1) == GLFW_PRESS and self.transform:IsInside(m_pos) then
+		if b == 1 and self.transform:IsInside(p) then
 			SetContainer("gui", nil)
+			self.animation:Get(1):Min()
+			self.animation:Get(1):Reverse()
+			return true
 		end
-
-	end
-
-	function en:render()
-		self.transform:Draw(self.animation:GetImage())
+		return false
 	end
 	for i = 1, 3 do
 		en.inventory:AddSlot(i)

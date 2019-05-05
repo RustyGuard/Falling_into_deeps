@@ -20,11 +20,13 @@ local function create()
 	function inst:SetCallback(f)
 		self.callback = f
 	end
-	function inst:update(a)
-		if GetMouseButton(0) == GLFW_PRESS and self.transform:IsInside(a) then
+	function inst:OnMouseButtonReleased(b, p)
+		if b == 0 and self.transform:IsInside(p) then
 			self.inventory:ChangeWithCursor(self.slot)
 			print(self.inventory:GetAmount(self.slot))
+			return true
 		end
+		return false
 	end
 	function inst:render()
 		inst.transform:DrawUI(self.tex, 1, 1)

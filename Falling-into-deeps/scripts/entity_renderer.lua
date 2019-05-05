@@ -41,6 +41,24 @@ function inst:render()
 	end
 end
 
+function inst:PushEvent(type, ...)
+	if self[type] then
+		return self[type](self, ...)
+	end
+	return false
+end
+
+function inst:OnMouseButtonReleased(button)
+	for id, en in pairs(self.entities) do
+		if en.OnMouseButtonReleased then
+			if en:OnMouseButtonReleased(button, self.pos) then
+				return true
+			end
+		end
+	end
+	--print("Taken: " .. tostring(b) .. " " .. tostring(p))
+end
+
 function inst:update(delta)
 	self.pos.x = GetMouseX() - GetCameraX()
 	self.pos.y = GetMouseY() - GetCameraY()

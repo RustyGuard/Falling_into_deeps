@@ -32,7 +32,9 @@ function inst:update(delta)
 	self.pos.x = GetMouseX()
 	self.pos.y = GetMouseY()
 	for id, item in pairs(self.ui) do
-		item:update(self.pos)
+		if item.update then
+			item:update(self.pos)
+		end
 	end
 end
 
@@ -42,6 +44,23 @@ function inst:render()
 	end
 	if MOUSE_SLOT.item ~= 0 then
 		DrawUI(ITEMS[MOUSE_SLOT.item].texture, self.pos, self.half, 1, 1)
+	end
+end
+
+function inst:PushEvent(type, ...)
+	if self[type] then
+		return self[type](self, ...)
+	end
+	return false
+end
+
+function inst:OnMouseButtonReleased(button)
+	for id, item in pairs(self.ui) do
+		if item.OnMouseButtonReleased then
+			if item:OnMouseButtonReleased(button, self.pos) then
+				return true
+			end
+		end
 	end
 end
 

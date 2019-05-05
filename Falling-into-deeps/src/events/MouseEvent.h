@@ -46,13 +46,25 @@ private:
 class MouseButtonEvent : public Event
 {
 public:
-	MouseButtonEvent(int button, int action) : button(button), action(action) {}
+	MouseButtonEvent(int button) : button(button) {}
 
-	inline int GetAction() const { return action; }
 	inline int GetMouseButton() const { return button; }
 	EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
-	EVENT_CLASS_TYPE(MouseButton)
 
 protected:
-	int button, action;
+	int button;
+};
+
+class MouseButtonPressedEvent : public MouseButtonEvent
+{
+public:
+	MouseButtonPressedEvent(int button) : MouseButtonEvent(button) {}
+	EVENT_CLASS_TYPE(MouseButtonPress)
+};
+
+class MouseButtonReleasedEvent : public MouseButtonEvent
+{
+public:
+	MouseButtonReleasedEvent(int button) : MouseButtonEvent(button) {}
+	EVENT_CLASS_TYPE(MouseButtonRelease)
 };

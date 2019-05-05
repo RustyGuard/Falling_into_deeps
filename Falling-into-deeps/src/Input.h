@@ -6,9 +6,9 @@ namespace Gear {
 	void InitKeys();
 	void OnEvent(Event& event);
 	
-	int isKeyPressed(int key);
-	int GetKey(const std::string& key);
-	int GetMouseButton(int button);
+	bool isKeyPressed(int key);
+	bool GetKey(const std::string& key);
+	bool GetMouseButton(int button);
 	double getMouseX();
 	double getMouseY();
 }

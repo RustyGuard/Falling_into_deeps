@@ -17,17 +17,6 @@ local function create()
 		self.transform.tex_half.x = w
 		self.transform.tex_half.y = h
 	end
-	function inst:SetCallback(f)
-		self.callback = f
-	end
-	function inst:update(a)
-		if GetMouseButton(0) == GLFW_PRESS and self.transform:IsInside(a) then
-			self.transform.pos.z = 0.75
-			if self.callback then
-				self.callback()
-			end
-		end
-	end
 	function inst:render()
 		self.minimum = self.minimum + 1.0
 		inst.transform:DrawUI(self.tex2, 1, 1)

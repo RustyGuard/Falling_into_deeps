@@ -8,26 +8,53 @@ local function create()
 	en.transform:SetCollidable()
 	en.transform:SetDrawable()
 
-	local anim1 = en.animation:AddAnimation(1, "static")
-	anim1:SetImage("res/textures/test4.png")
-	en.animation:Use(1)
+	local anim1 = en.animation:AddAnimation("idle", "cycle")
+	anim1:Init("res/textures/player/idle", 0.5, 4)
+	local anim1 = en.animation:AddAnimation("left", "cycle")
+	anim1:Init("res/textures/player/left", 0.5, 4)
+	local anim1 = en.animation:AddAnimation("right", "cycle")
+	anim1:Init("res/textures/player/right", 0.5, 4)
+	local anim1 = en.animation:AddAnimation("up", "cycle")
+	anim1:Init("res/textures/player/up", 0.5, 4)
+	local anim1 = en.animation:AddAnimation("down", "cycle")
+	anim1:Init("res/textures/player/down", 0.5, 4)
+
+	en.animation:Use("idle")
 
 	en.name = "player"
 	ChangeId(en.id, "player")
 
 	function en:update(m_pos, delta)
-		if GetKey("a") ~= GLFW_RELEASE then
-			self.transform:move(-1.5, 0)
+		local x = 0
+		local y = 0
+		if GetKey("a") then
+			x = x - 1.5
 		end
-		if GetKey("d") ~= GLFW_RELEASE then
-			self.transform:move(1.5, 0)
+		if GetKey("d") then
+			x = x + 1.5
 		end
-		if GetKey("w") ~= GLFW_RELEASE then
-			self.transform:move(0, -1.5)
+		if GetKey("w") then
+			y = y - 1.5
 		end
-		if GetKey("s") ~= GLFW_RELEASE then
-			self.transform:move(0, 1.5)
+		if GetKey("s") then
+			y = y + 1.5
 		end
+		self.transform:move(x, y)
+		if x < 0 then
+			self.animation:Use("left")
+		elseif x  > 0 then
+			self.animation:Use("right")
+		else
+			if y < 0 then
+				self.animation:Use("up")
+			elseif y  > 0 then
+				self.animation:Use("down")
+			else
+				self.animation:Use("idle")
+			end
+		end
+		
+		self.animation:update(delta)
 		--if (isPressed("f")) then
 			--if self.components.health:damage(1) then
 				--DeleteEntity(en.id)

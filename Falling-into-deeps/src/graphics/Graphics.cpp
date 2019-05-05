@@ -108,9 +108,9 @@ void Gear::DrawEntity(unsigned int texture, glm::vec3 pos, glm::vec3 half_extern
 
 void Gear::Move()
 {
-	if ((Gear::GetKey("up") == GLFW_REPEAT) && scale < 3.0f)
+	if (Gear::GetKey("up") && scale < 3.0f)
 		scale += 0.1f;
-	if ((Gear::GetKey("down") == GLFW_REPEAT) && scale > 0.35f)
+	if (Gear::GetKey("down") && scale > 0.35f)
 		scale -= 0.1f;
 }
 

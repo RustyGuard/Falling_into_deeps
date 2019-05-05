@@ -8,8 +8,8 @@ enum class EventType
 	None = 0,
 	WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 	AppUpdate, AppRender,
-	Key, InputedChar,
-	MouseButton, MouseMoved, MouseScrolled
+	KeyPress, KeyRelease, InputedChar,
+	MouseButtonPress, MouseButtonRelease, MouseMoved, MouseScrolled
 };
 	enum EventCategory
 {

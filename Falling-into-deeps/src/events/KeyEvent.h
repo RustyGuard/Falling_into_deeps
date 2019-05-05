@@ -4,18 +4,27 @@
 class KeyEvent : public Event
 {
 public:
-	KeyEvent(int key, int action) : key(key), action(action) {}
+	KeyEvent(int key) : key(key) {}
 
 	inline int GetKeyCode() const { return key; }
-	inline int GetAction() const { return action; }
 
 	EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
-
-	EVENT_CLASS_TYPE(Key)
-
 protected:
-	KeyEvent(int key) : key(key) {}
-	int key, action;
+	int key;
+};
+
+class KeyReleasedEvent : public KeyEvent
+{
+public:
+	KeyReleasedEvent(int key) : KeyEvent(key) {}
+	EVENT_CLASS_TYPE(KeyRelease)
+};
+
+class KeyPressedEvent : public KeyEvent
+{
+public:
+	KeyPressedEvent(int key) : KeyEvent(key) {}
+	EVENT_CLASS_TYPE(KeyPress)
 };
 
 class CharInputedEvent : public Event

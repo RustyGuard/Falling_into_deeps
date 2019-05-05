@@ -23,18 +23,11 @@ local entity_renderer = require "scripts/entity_renderer"
 -- Entity init
 AddEntity("test2")
 AddEntity("test2")
-AddEntity("test3")
 AddEntity("player")
-local chest = AddEntity("chest")
-chest.transform:move(64, 64)
 ---------------
-
-gui = CreateUIItem("container")
-local but = CreateUIItem("button")
-but:SetLocation(64, 64)
-but:SetSize(32, 64)
-gui:AddItem(but)
-SetContainer("gui", gui)
+SetTile(0, 1, "chest")
+SetTile(1, 2, "chest")
+---------------
 
 function update(delta) 
 	ui_renderer:update(delta)
@@ -46,6 +39,10 @@ function render()
 	ui_renderer:render()
 	tile_renderer:render()
 	entity_renderer:render()
+end
+
+function onEvent(type, ...)
+	local b = tile_renderer:PushEvent(type, ...) or ui_renderer:PushEvent(type, ...) or entity_renderer:PushEvent(type, ...)
 end
 
 print("All")

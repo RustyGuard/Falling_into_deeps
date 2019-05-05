@@ -3,13 +3,15 @@
 #include "glm/glm.hpp"
 #include "graphics/Graphics.h"
 #include "Input.h"
+#include "events/KeyEvent.h"
+#include "events/MouseEvent.h"
 
 Renderer::Renderer() : instance(LuaManager::CreateRaw())
 {
 	getGlobalNamespace(instance)
 		.addFunction("Draw", &Gear::DrawEntity)
 		.addFunction("DrawUI", &Gear::DrawUI)
-		.addFunction<int(*)(const std::string&)>("GetKey", &Gear::GetKey)
+		.addFunction<bool(*)(const std::string&)>("GetKey", &Gear::GetKey)
 		.addFunction("GetCameraX", &Gear::GetCameraX)
 		.addFunction("GetCameraY", &Gear::GetCameraY)
 		.addFunction("MoveCamera", &Gear::MoveCamera)
@@ -49,6 +51,46 @@ void Renderer::OnEvent(Event & e)
 		try
 		{
 			getGlobal(instance, "update")(1.0f / 60.0f);
+		}
+		catch (const std::exception& ex)
+		{
+			GEAR_ERROR(ex.what());
+		}
+		break;
+	case EventType::MouseButtonPress:
+		try
+		{
+			getGlobal(instance, "onEvent")("OnMouseButtonPressed", ((MouseButtonEvent&)e).GetMouseButton());
+		}
+		catch (const std::exception& ex)
+		{
+			GEAR_ERROR(ex.what());
+		}
+		break;
+	case EventType::MouseButtonRelease:
+		try
+		{
+			getGlobal(instance, "onEvent")("OnMouseButtonReleased", ((MouseButtonEvent&)e).GetMouseButton());
+		}
+		catch (const std::exception& ex)
+		{
+			GEAR_ERROR(ex.what());
+		}
+		break;
+	case EventType::KeyPress:
+		try
+		{
+			getGlobal(instance, "onEvent")("OnKeyPressed", ((KeyEvent&)e).GetKeyCode());
+		}
+		catch (const std::exception& ex)
+		{
+			GEAR_ERROR(ex.what());
+		}
+		break;
+	case EventType::KeyRelease:
+		try
+		{
+			getGlobal(instance, "onEvent")("OnKeyReleased", ((KeyEvent&)e).GetKeyCode());
 		}
 		catch (const std::exception& ex)
 		{

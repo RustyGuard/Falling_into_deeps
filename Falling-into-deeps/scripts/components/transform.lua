@@ -38,7 +38,7 @@ local function create()
 		function inst:CorrectCamera()
 			local x = - self.pos.x - GetCameraX()
 			local y = - self.pos.y - GetCameraY()
-			MoveCamera(x / 9, y / 9)
+			MoveCamera(x, y)
 		end
 	end
 	function inst:SetDrawable()

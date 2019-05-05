@@ -1,3 +1,0 @@
-local inst = {}
-
-return inst

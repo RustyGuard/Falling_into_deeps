@@ -16,12 +16,14 @@ local function create()
 	function inst:SetCallback(f)
 		self.callback = f
 	end
-	function inst:update(a)
-		if GetMouseButton(0) == GLFW_PRESS and self.transform:IsInside(a) then
+	function OnMouseButtonReleased(b, p)
+		if b == 0 and self.transform:IsInside(p) then
 			if self.callback then
 				self.callback()
 			end
+			return true
 		end
+		return false
 	end
 	function inst:render()
 		inst.transform:DrawUI(self.tex, 1, 1)
