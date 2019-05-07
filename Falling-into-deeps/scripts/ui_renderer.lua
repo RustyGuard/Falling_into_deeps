@@ -28,7 +28,7 @@ function SetContainer(name, cont)
 	inst.ui[name] = cont
 end
 
-function inst:update(delta)
+function inst:OnUpdate(delta)
 	self.pos.x = GetMouseX()
 	self.pos.y = GetMouseY()
 	for id, item in pairs(self.ui) do
@@ -38,7 +38,7 @@ function inst:update(delta)
 	end
 end
 
-function inst:render()
+function inst:OnRender()
 	for id, item in pairs(self.ui) do
 		item:render()
 	end

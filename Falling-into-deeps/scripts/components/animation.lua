@@ -24,7 +24,7 @@ local function create()
 					self.textures[i] = CreateTexture(name .. i .. ".png")
 				end
 			end
-			function i:update(delta)
+			function i:OnUpdate(delta)
 				self.time = self.time + delta
 				if self.time >= self.duration then
 					self.time = self.time - self.duration
@@ -60,7 +60,7 @@ local function create()
 					self.textures[i] = CreateTexture(name .. i .. ".png")
 				end
 			end
-			function i:update(delta)
+			function i:OnUpdate(delta)
 				if self.current < self.range then
 					self.time = self.time + delta
 					if self.time >= self.duration then
@@ -89,11 +89,12 @@ local function create()
 		return i
 	end
 
-	function inst:update(delta)
+	function inst:OnUpdate(en, delta)
 		if self.curr == 0 then return end
-		if self.animations[self.curr].update then
-			self.animations[self.curr]:update(delta)
+		if self.animations[self.curr].OnUpdate then
+			self.animations[self.curr]:OnUpdate(delta)
 		end
+		return false
 	end
 
 	function inst:GetImage()

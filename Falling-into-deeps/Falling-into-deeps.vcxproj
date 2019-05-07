@@ -183,8 +183,8 @@
     <None Include="scripts\components\animation.lua" />
     <None Include="scripts\components\health.lua" />
     <None Include="scripts\components\inventory.lua" />
+    <None Include="scripts\components\transform3.lua" />
     <None Include="scripts\components\transform.lua" />
-    <None Include="scripts\components\transform2.lua" />
     <None Include="scripts\tileentity\chest.lua" />
     <None Include="scripts\entity\player.lua" />
     <None Include="scripts\entity\test2.lua" />

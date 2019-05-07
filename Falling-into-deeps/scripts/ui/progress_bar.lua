@@ -1,7 +1,7 @@
 local function create()
 	local inst = {}
 	inst.transform = CreateComponent("transform")
-	inst.transform:SetDrawable()
+	inst.transform:CreateUICapability()
 	inst.transform.tex_half.x = 32
 	inst.transform.tex_half.y = 32
 	inst.transform.pos.z = 0.25

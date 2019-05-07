@@ -9,19 +9,11 @@ local function create()
 		self.pos.y = self.pos.y + y
 		self.moved = true
 	end
-	function inst:CreateEntityCapability()
+	function inst:SetCollidable()
 		self.half = vec3()
 		self.half.x = 32
 		self.half.y = 32
 		self.collidable = true
-		self.tex_half = vec3()
-		self.tex_half.x = 32
-		self.tex_half.y = 32
-		function self:IsInside(a)
-			local dist_x = math.abs(self.pos.x - a.x)
-			local dist_y = math.abs(self.pos.y - a.y)
-			return dist_x < self.tex_half.x and dist_y < self.tex_half.y
-		end
 		function inst:Correct(b)
 			local dist_x = self.pos.x - b.pos.x
 			local dist_y = self.pos.y - b.pos.y
@@ -48,17 +40,19 @@ local function create()
 			local y = - self.pos.y - GetCameraY()
 			MoveCamera(x, y)
 		end
-		function inst:OnRender(entity)
-			Draw(entity.components.animation:GetImage(), self.pos, self.tex_half, 0.5)
-		end
 	end
-	function inst:CreateUICapability()
+	function inst:SetDrawable()
 		self.tex_half = vec3()
 		self.tex_half.x = 32
 		self.tex_half.y = 32
+		self.drawable = true
 
 		function self:DrawUI(tex, a, b)
 			DrawUI(tex, self.pos, self.tex_half, a, b)
+		end
+
+		function self:Draw(tex)
+			Draw(tex, self.pos, self.tex_half, 0.5)
 		end
 
 		function self:IsInside(a)

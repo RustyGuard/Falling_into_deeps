@@ -38,11 +38,11 @@ function RemoveTile(x, y)
 	inst.tiles[inst:GetKey(x, y)] = nil
 end
 
-function inst:render()
+function inst:OnRender()
 
 end
 
-function inst:update(delta)
+function inst:OnUpdate(delta)
 	
 end
 

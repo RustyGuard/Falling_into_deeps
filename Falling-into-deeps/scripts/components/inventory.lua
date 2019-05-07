@@ -2,9 +2,24 @@ local function create()
 	local inst = {}
 	inst.items = {}
 	function inst:AddSlot(slot)
-		self.items[slot] = {}
-		self.items[slot].id = 0
-		self.items[slot].amount = 0
+		local i = {}
+		i.id = 0
+		i.amount = 0
+		function i:Reduce(amount)
+			self.amount = self.amount - amount
+			if self.amount <= 0 then
+				self.id = 0
+				self.amount = 0
+			end
+			print(self.amount)
+		end
+		function i:GetItem()
+			return ITEMS[self.id]
+		end
+		function i:IsEmpty()
+			return self.id == 0
+		end
+		self.items[slot] = i
 	end
 	function inst:SetItem(slot, item)
 		self.items[slot].id = item
@@ -27,9 +42,13 @@ local function create()
 	function inst:GetItem(slot)
 		return ITEMS[self.items[slot].id]
 	end
+	function inst:GetItemStack(slot)
+		return self.items[slot]
+	end
 	function inst:IsEmpty(slot)
-		if self.items[slot].amount == 0 then
+		if self.items[slot].amount <= 0 then
 			self.items[slot].id = 0
+			self.items[slot].amount = 0
 			return true
 		end
 		return self.items[slot].id == 0 

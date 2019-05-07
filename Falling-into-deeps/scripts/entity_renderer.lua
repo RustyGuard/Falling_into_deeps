@@ -8,6 +8,33 @@ inst.pos.y = 0
 
 function CreateEntity()
 	local en = {}
+	en.tags = {}
+	function en:AddTag(tag)
+		table.insert(self.tags, tag)
+	end
+	function en:HasTag(tag)
+		for _, i in ipairs() do
+			if i == tag then return true end
+		end
+		return false
+	end
+	en.components = {}
+	function en:AddComponent(name)
+		local c = CreateComponent(name)
+		self.components[name] = c
+		return c
+	end
+	function en:PushEvent(type, ...)
+		for _, i in pairs(self.components) do
+			if i[type] and i[type](i, self, ...) then
+				return true
+			end
+		end
+		if self[type] then
+			return self[type](self, ...)
+		end
+		return false
+	end
 	local id = #inst.entities + 1
 	en.id = id
 	inst.entities[id] = en
@@ -33,12 +60,12 @@ function AddEntity(name)
 end
 
 
-function inst:render()
-	for id, en in pairs(self.entities) do
-		if en.render then
-			en:render()
-		end
+function inst:OnRender()
+	for _, en in pairs(self.entities) do
+		-- TODO change it to OnRender
+		en:PushEvent("OnRender")
 	end
+	return false
 end
 
 function inst:PushEvent(type, ...)
@@ -48,36 +75,50 @@ function inst:PushEvent(type, ...)
 	return false
 end
 
+function GetByPoint(p)
+	for _, en in pairs(inst.entities) do
+		if en.components.transform and en.components.transform:IsInside(p) then
+			return en
+		end
+	end
+	return nil
+end
+
 function inst:OnMouseButtonReleased(button)
-	for id, en in pairs(self.entities) do
+	local i = self.entities.player.components.inventory:GetItemStack(1)
+	if (not i:IsEmpty()) and i:GetItem():OnMouseButtonReleased(i, button, self.pos) then
+		return true
+	end
+	for _, en in pairs(self.entities) do
 		if en.OnMouseButtonReleased then
 			if en:OnMouseButtonReleased(button, self.pos) then
 				return true
 			end
 		end
 	end
+	return false
 	--print("Taken: " .. tostring(b) .. " " .. tostring(p))
 end
 
-function inst:update(delta)
+function inst:OnUpdate(delta)
 	self.pos.x = GetMouseX() - GetCameraX()
 	self.pos.y = GetMouseY() - GetCameraY()
-	self.entities.player.transform:CorrectCamera()
+	self.entities.player.components.transform:CorrectCamera()
 	for id, en in pairs(self.entities) do
-		if en.update then
-			en:update(self.pos, delta)
-		end
-		if en.transform and (en.transform.collidable and en.transform.moved) then
+		-- TODO change it to OnUpdate
+		en:PushEvent("OnUpdate", delta)
+
+		if en.components.transform and (en.components.transform.collidable and en.components.transform.moved) then
 			for i, e in pairs(self.entities) do
-				if e ~= en and e.transform then
-					if e.transform.static then
-						en.transform:Correct(e.transform)
+				if e ~= en and e.components.transform then
+					if e.components.transform.static then
+						en.components.transform:Correct(e.components.transform)
 					else
-						if e.transform:Correct(en.transform) then
+						if e.components.transform:Correct(en.components.transform) then
 							for ide, ene in pairs(self.entities) do
 								if ene ~= e then
-									if e.transform:Correct(ene.transform) then
-										en.transform:Correct(e.transform)
+									if e.components.transform:Correct(ene.components.transform) then
+										en.components.transform:Correct(e.components.transform)
 									end
 								end
 							end
@@ -85,9 +126,10 @@ function inst:update(delta)
 					end
 				end
 			end
-			en.transform.moved = false
+			en.components.transform.moved = false
 		end
 	end
+	return false
 end
 
 return inst

@@ -1,30 +1,33 @@
 local function create()
 	local en = CreateEntity()
-	en.transform = CreateComponent("transform")
-	en.inventory = CreateComponent("inventory")
-	en.animation = CreateComponent("animation")
+
+	--en.transform = CreateComponent("transform")
+	local transform = en:AddComponent("transform")
+	--inventory = CreateComponent("inventory")
+	local inventory = en:AddComponent("inventory")
+	--en.animation = CreateComponent("animation")
+	local animation = en:AddComponent("animation")
 	--en.components.health = CreateComponent("health")
 
-	en.transform:SetCollidable()
-	en.transform:SetDrawable()
+	transform:CreateEntityCapability()
 
-	local anim1 = en.animation:AddAnimation("idle", "cycle")
+	local anim1 = animation:AddAnimation("idle", "cycle")
 	anim1:Init("res/textures/player/idle", 0.5, 4)
-	local anim1 = en.animation:AddAnimation("left", "cycle")
+	local anim1 = animation:AddAnimation("left", "cycle")
 	anim1:Init("res/textures/player/left", 0.5, 4)
-	local anim1 = en.animation:AddAnimation("right", "cycle")
+	local anim1 = animation:AddAnimation("right", "cycle")
 	anim1:Init("res/textures/player/right", 0.5, 4)
-	local anim1 = en.animation:AddAnimation("up", "cycle")
+	local anim1 = animation:AddAnimation("up", "cycle")
 	anim1:Init("res/textures/player/up", 0.5, 4)
-	local anim1 = en.animation:AddAnimation("down", "cycle")
+	local anim1 = animation:AddAnimation("down", "cycle")
 	anim1:Init("res/textures/player/down", 0.5, 4)
 
-	en.animation:Use("idle")
+	animation:Use("idle")
 
 	en.name = "player"
 	ChangeId(en.id, "player")
 
-	function en:update(m_pos, delta)
+	function en:OnUpdate(delta)
 		local x = 0
 		local y = 0
 		if GetKey("a") then
@@ -39,22 +42,22 @@ local function create()
 		if GetKey("s") then
 			y = y + 1.5
 		end
-		self.transform:move(x, y)
+		self.components.transform:move(x, y)
 		if x < 0 then
-			self.animation:Use("left")
+			self.components.animation:Use("left")
 		elseif x  > 0 then
-			self.animation:Use("right")
+			self.components.animation:Use("right")
 		else
 			if y < 0 then
-				self.animation:Use("up")
+				self.components.animation:Use("up")
 			elseif y  > 0 then
-				self.animation:Use("down")
+				self.components.animation:Use("down")
 			else
-				self.animation:Use("idle")
+				self.components.animation:Use("idle")
 			end
 		end
 		
-		self.animation:update(delta)
+		--self.components.animation:update(delta)
 		--if (isPressed("f")) then
 			--if self.components.health:damage(1) then
 				--DeleteEntity(en.id)
@@ -65,19 +68,19 @@ local function create()
 		--end
 	end
 
-	function en:render()
-		self.transform:Draw(self.animation:GetImage())
+	function en:attack(dmg)
+		print("Ouch: " .. dmg .. "!")
 	end
 
 	local inv = CreateUIItem("container")
 	for i = 1, 3 do
-		en.inventory:AddSlot(i)
-		en.inventory:SetItem(i, i)
-		en.inventory:SetAmount(i, i)
+		inventory:AddSlot(i)
+		inventory:SetItem(i, i)
+		inventory:SetAmount(i, i)
 		local b = CreateUIItem("slot")
 		b:SetLocation(- (i * 50) - 75, -300)
 		b:SetSize(24, 24)
-		b:Init(en.inventory, i)
+		b:Init(inventory, i)
 		inv:AddItem(b)
 	end
 	SetContainer("p_inventory", inv)

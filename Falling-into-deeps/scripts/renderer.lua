@@ -29,19 +29,7 @@ SetTile(0, 1, "chest")
 SetTile(1, 2, "chest")
 ---------------
 
-function update(delta) 
-	ui_renderer:update(delta)
-	tile_renderer:update(delta)
-	entity_renderer:update(delta)
-end
-
-function render()
-	ui_renderer:render()
-	tile_renderer:render()
-	entity_renderer:render()
-end
-
-function onEvent(type, ...)
+function PushEvent(type, ...)
 	local b = tile_renderer:PushEvent(type, ...) or ui_renderer:PushEvent(type, ...) or entity_renderer:PushEvent(type, ...)
 end
 

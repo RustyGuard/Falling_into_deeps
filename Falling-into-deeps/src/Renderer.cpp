@@ -35,67 +35,30 @@ Renderer::~Renderer()
 
 void Renderer::OnEvent(Event & e)
 {
-	switch (e.GetEventType())
-	{
-	case EventType::AppRender:
-		try
+	try {
+		switch (e.GetEventType())
 		{
-			getGlobal(instance, "render")();
+		case EventType::AppRender:
+			getGlobal(instance, "PushEvent")("OnRender");
+			break;
+		case EventType::AppUpdate:
+			getGlobal(instance, "PushEvent")("OnUpdate", 1.0f / 60.0f);
+			break;
+		case EventType::MouseButtonPress:
+			getGlobal(instance, "PushEvent")("OnMouseButtonPressed", ((MouseButtonEvent&)e).GetMouseButton());
+			break;
+		case EventType::MouseButtonRelease:
+			getGlobal(instance, "PushEvent")("OnMouseButtonReleased", ((MouseButtonEvent&)e).GetMouseButton());
+			break;
+		case EventType::KeyPress:
+			getGlobal(instance, "PushEvent")("OnKeyPressed", ((KeyEvent&)e).GetKeyCode());
+			break;
+		case EventType::KeyRelease:
+			getGlobal(instance, "PushEvent")("OnKeyReleased", ((KeyEvent&)e).GetKeyCode());
+			break;
 		}
-		catch (const std::exception& ex)
-		{
-			GEAR_ERROR(ex.what());
-		}
-		break;
-	case EventType::AppUpdate:
-		try
-		{
-			getGlobal(instance, "update")(1.0f / 60.0f);
-		}
-		catch (const std::exception& ex)
-		{
-			GEAR_ERROR(ex.what());
-		}
-		break;
-	case EventType::MouseButtonPress:
-		try
-		{
-			getGlobal(instance, "onEvent")("OnMouseButtonPressed", ((MouseButtonEvent&)e).GetMouseButton());
-		}
-		catch (const std::exception& ex)
-		{
-			GEAR_ERROR(ex.what());
-		}
-		break;
-	case EventType::MouseButtonRelease:
-		try
-		{
-			getGlobal(instance, "onEvent")("OnMouseButtonReleased", ((MouseButtonEvent&)e).GetMouseButton());
-		}
-		catch (const std::exception& ex)
-		{
-			GEAR_ERROR(ex.what());
-		}
-		break;
-	case EventType::KeyPress:
-		try
-		{
-			getGlobal(instance, "onEvent")("OnKeyPressed", ((KeyEvent&)e).GetKeyCode());
-		}
-		catch (const std::exception& ex)
-		{
-			GEAR_ERROR(ex.what());
-		}
-		break;
-	case EventType::KeyRelease:
-		try
-		{
-			getGlobal(instance, "onEvent")("OnKeyReleased", ((KeyEvent&)e).GetKeyCode());
-		}
-		catch (const std::exception& ex)
-		{
-			GEAR_ERROR(ex.what());
-		}
-		break;
+	}
+	catch (const std::exception& ex) {
+		GEAR_ERROR(ex.what());
 	}
 }

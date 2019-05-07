@@ -1,11 +1,11 @@
 local function create()
 	local en = CreateEntity()
-	en.transform = CreateComponent("transform")
+	local transform = en:AddComponent("transform")
+	local animation = en:AddComponent("animation")
+	animation:AddAnimation(1, "static"):Init("res/textures/test5.png")
+	animation:Use(1)
 	en.name = "test2"
-	en.texture = CreateTexture("res/textures/test5.png")
-	en.transform:SetCollidable()
-	en.transform:SetDrawable()
-	function en:render() self.transform:Draw(self.texture) end
+	transform:CreateEntityCapability()
 	return en
 end
 
