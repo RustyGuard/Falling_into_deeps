@@ -180,19 +180,19 @@
   <ItemGroup>
     <None Include="res\shader\Basic.shader" />
     <None Include="res\shader\Ui.shader" />
-    <None Include="scripts\components\animation.lua" />
     <None Include="scripts\components\health.lua" />
     <None Include="scripts\components\inventory.lua" />
-    <None Include="scripts\components\transform3.lua" />
     <None Include="scripts\components\transform.lua" />
-    <None Include="scripts\tileentity\chest.lua" />
-    <None Include="scripts\entity\player.lua" />
-    <None Include="scripts\entity\test2.lua" />
-    <None Include="scripts\entity\test3.lua" />
-    <None Include="scripts\entity_renderer.lua" />
     <None Include="scripts\item\copper_ingot.lua" />
     <None Include="scripts\item\copper_sword.lua" />
     <None Include="scripts\item\food_bowl.lua" />
+    <None Include="scripts\tileentity\chest.lua" />
+    <None Include="scripts\entity\player.lua" />
+    <None Include="scripts\entity\test2.lua" />
+    <None Include="scripts\entity_renderer.lua" />
+    <None Include="scripts\item\copper_ingot2.lua" />
+    <None Include="scripts\item\copper_sword2.lua" />
+    <None Include="scripts\item\food_bowl2.lua" />
     <None Include="scripts\renderer.lua" />
     <None Include="scripts\tile_renderer.lua" />
     <None Include="scripts\ui\button.lua" />

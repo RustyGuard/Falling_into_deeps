@@ -151,9 +151,6 @@
     <None Include="scripts\entity\test2.lua">
       <Filter>scripts\entity</Filter>
     </None>
-    <None Include="scripts\entity\test3.lua">
-      <Filter>scripts\entity</Filter>
-    </None>
     <None Include="scripts\renderer.lua" />
     <None Include="scripts\tile_renderer.lua" />
     <None Include="scripts\entity_renderer.lua" />
@@ -164,16 +161,17 @@
     <None Include="res\shader\Basic.shader" />
     <None Include="scripts\components\inventory.lua" />
     <None Include="scripts\ui\slot.lua" />
-    <None Include="scripts\item\copper_ingot.lua" />
-    <None Include="scripts\item\copper_sword.lua" />
-    <None Include="scripts\item\food_bowl.lua" />
     <None Include="scripts\ui\container.lua" />
-    <None Include="scripts\components\animation.lua" />
     <None Include="scripts\tileentity\chest.lua" />
-    <None Include="scripts\components\transform3.lua" />
     <None Include="scripts\components\transform.lua">
       <Filter>scripts\components</Filter>
     </None>
+    <None Include="scripts\item\food_bowl2.lua" />
+    <None Include="scripts\item\copper_sword2.lua" />
+    <None Include="scripts\item\copper_ingot2.lua" />
+    <None Include="scripts\item\copper_sword.lua" />
+    <None Include="scripts\item\copper_ingot.lua" />
+    <None Include="scripts\item\food_bowl.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">

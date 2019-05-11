@@ -6,23 +6,23 @@ local function create()
 	--inventory = CreateComponent("inventory")
 	local inventory = en:AddComponent("inventory")
 	--en.animation = CreateComponent("animation")
-	local animation = en:AddComponent("animation")
+	--local animation = en:AddComponent("animation")
 	--en.components.health = CreateComponent("health")
 
 	transform:CreateEntityCapability()
 
-	local anim1 = animation:AddAnimation("idle", "cycle")
+	local anim1 = en:AddAnimation("idle", "cycle")
 	anim1:Init("res/textures/player/idle", 0.5, 4)
-	local anim1 = animation:AddAnimation("left", "cycle")
+	local anim1 = en:AddAnimation("left", "cycle")
 	anim1:Init("res/textures/player/left", 0.5, 4)
-	local anim1 = animation:AddAnimation("right", "cycle")
+	local anim1 = en:AddAnimation("right", "cycle")
 	anim1:Init("res/textures/player/right", 0.5, 4)
-	local anim1 = animation:AddAnimation("up", "cycle")
+	local anim1 = en:AddAnimation("up", "cycle")
 	anim1:Init("res/textures/player/up", 0.5, 4)
-	local anim1 = animation:AddAnimation("down", "cycle")
+	local anim1 = en:AddAnimation("down", "cycle")
 	anim1:Init("res/textures/player/down", 0.5, 4)
 
-	animation:Use("idle")
+	en:UseAnimation("idle")
 
 	en.name = "player"
 	ChangeId(en.id, "player")
@@ -44,16 +44,16 @@ local function create()
 		end
 		self.components.transform:move(x, y)
 		if x < 0 then
-			self.components.animation:Use("left")
+			self:UseAnimation("left")
 		elseif x  > 0 then
-			self.components.animation:Use("right")
+			self:UseAnimation("right")
 		else
 			if y < 0 then
-				self.components.animation:Use("up")
+				self:UseAnimation("up")
 			elseif y  > 0 then
-				self.components.animation:Use("down")
+				self:UseAnimation("down")
 			else
-				self.components.animation:Use("idle")
+				self:UseAnimation("idle")
 			end
 		end
 		

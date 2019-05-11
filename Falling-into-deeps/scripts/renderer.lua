@@ -25,8 +25,8 @@ AddEntity("test2")
 AddEntity("test2")
 AddEntity("player")
 ---------------
-SetTile(0, 1, "chest")
-SetTile(1, 2, "chest")
+SetTile(1, 1, "chest")
+SetTile(3, 2, "chest")
 ---------------
 
 function PushEvent(type, ...)

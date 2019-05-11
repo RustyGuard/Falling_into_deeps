@@ -49,7 +49,7 @@ local function create()
 			MoveCamera(x, y)
 		end
 		function inst:OnRender(entity)
-			Draw(entity.components.animation:GetImage(), self.pos, self.tex_half, 0.5)
+			Draw(entity:GetImage(), self.pos, self.tex_half, 0.5)
 		end
 	end
 	function inst:CreateUICapability()

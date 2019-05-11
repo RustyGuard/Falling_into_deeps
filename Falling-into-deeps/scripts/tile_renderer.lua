@@ -1,12 +1,12 @@
 local inst = {}
 inst.tiles = {}
-inst.width = 3
-inst.height = 3
+inst.width = 30
+inst.height = 30
 inst.types = {}
 inst.types.chest = require "scripts/tileentity/chest"
 
 function inst:CorrectCoord(x, y)
-	return x >= 0 and y >= 0 and x <= self.width and y <= self.height
+	return x > 0 and y > 0 and x <= self.width and y <= self.height
 end
 
 function inst:Key(x, y)
@@ -24,13 +24,31 @@ function SetTile(x, y, tile)
 	end
 	local p = inst:Key(x, y)
 	if inst.tiles[p] then
-		print("Already taken!")
+		print("Already taken by: " .. inst.tiles[p].name .. ", at: " ..p)
 		return
 	end
 	local v = vec3()
 	v.x = x * 64
 	v.y = y * 64
 	inst.tiles[p] = inst.types[tile](p, v)
+end
+
+function PlaceTile(p, tile)
+	local x, y = (p.x + 32) // 64, (p.y + 32) // 64
+	if not inst:CorrectCoord(x, y) then
+		print("Wrong: " .. x .. " " .. y)
+		return false
+	end
+	local i = x + y * inst.width
+	if inst.tiles[i] then
+		print("Already taken by: " .. inst.tiles[i].name .. ", at: " ..i)
+		return false
+	end
+	local v = vec3()
+	v.x = x * 64
+	v.y = y * 64
+	inst.tiles[i] = inst.types[tile](i, v)
+	return true
 end
 
 function RemoveTile(x, y)

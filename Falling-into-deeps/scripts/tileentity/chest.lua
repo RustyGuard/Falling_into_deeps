@@ -2,23 +2,23 @@ local function create(p, v)
 	local en = CreateEntity()
 	local transform = en:AddComponent("transform")
 	local inventory = en:AddComponent("inventory")
-	local animation = en:AddComponent("animation")
+	--local animation = en:AddComponent("animation")
 
 	transform:CreateEntityCapability()
 	transform.static = true
 	transform.pos = v
 	en.position = p
 
-	local anim1 = animation:AddAnimation(1, "over")
-	anim1:Init("res/textures/chest/chest", 0.6, 4)
-	animation:Use(1)
-	anim1:Reverse()
+	local anim1 = en:AddAnimation(1, "over")
+	anim1:Init("res/textures/chest/chest", 0.5, 4)
+	en:UseAnimation(1)
+	anim1:SetReversed(true)
 	anim1:Max()
 
 	en.name = "chest"
 
-	function en:OnMouseButtonReleased(b, p)
-		if b == 0 and self.components.transform:IsInside(p) then
+	function en:OnMouseButtonReleased(b)
+		if b == 0 then
 			local inv = CreateUIItem("container")
 			for i = 1, 3 do
 				local b = CreateUIItem("slot")
@@ -28,14 +28,14 @@ local function create(p, v)
 				inv:AddItem(b)
 			end
 			SetContainer("gui", inv)
-			self.components.animation:Get(1):Min()
-			self.components.animation:Get(1):Reverse()
+			self:GetAnimation(1):Min()
+			self:GetAnimation(1):SetReversed(false)
 			return true
 		end
-		if b == 1 and self.components.transform:IsInside(p) then
+		if b == 1 then
 			SetContainer("gui", nil)
-			self.components.animation:Get(1):Min()
-			self.components.animation:Get(1):Reverse()
+			self:GetAnimation(1):Min()
+			self:GetAnimation(1):SetReversed(true)
 			return true
 		end
 		return false
