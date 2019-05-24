@@ -1,7 +1,7 @@
 local function create(p, v)
 	local en = CreateEntity()
 	local transform = en:AddComponent("transform")
-	local inventory = en:AddComponent("inventory")
+	--local inventory = en:AddComponent("inventory")
 	--local animation = en:AddComponent("animation")
 
 	transform:CreateEntityCapability()
@@ -19,7 +19,7 @@ local function create(p, v)
 
 	function en:OnMouseButtonReleased(b)
 		if b == 0 then
-			local inv = CreateUIItem("container")
+			--[[local inv = CreateUIItem("container")
 			for i = 1, 3 do
 				local b = CreateUIItem("slot")
 				b:SetLocation(- (i * 50) - 75, -200)
@@ -29,22 +29,23 @@ local function create(p, v)
 			end
 			SetContainer("gui", inv)
 			self:GetAnimation(1):Min()
-			self:GetAnimation(1):SetReversed(false)
+			self:GetAnimation(1):SetReversed(false)]]
 			return true
 		end
 		if b == 1 then
-			SetContainer("gui", nil)
+			--[[SetContainer("gui", nil)
 			self:GetAnimation(1):Min()
-			self:GetAnimation(1):SetReversed(true)
+			self:GetAnimation(1):SetReversed(true)]]
 			return true
 		end
 		return false
 	end
-	for i = 1, 3 do
+	--[[for i = 1, 3 do
 		inventory:AddSlot(i)
 		inventory:SetItem(i, 0)
 		inventory:SetAmount(i, 0)
-	end
+	end]]
+	AppendEntity(en)
 	return en
 end
 

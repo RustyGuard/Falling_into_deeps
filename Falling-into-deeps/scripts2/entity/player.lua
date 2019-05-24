@@ -25,7 +25,7 @@ local function create()
 	en:UseAnimation("idle")
 
 	en.name = "player"
-	ChangeId(en.id, "player")
+	--ChangeId(en.id, "player")
 
 	function en:OnUpdate(delta)
 		local x = 0
@@ -74,9 +74,9 @@ local function create()
 
 	local inv = CreateUIItem("container")
 	for i = 1, 3 do
-		inventory:AddSlot(i)
-		inventory:SetItem(i, i)
-		inventory:SetAmount(i, i)
+		--inventory:AddSlot(i)
+		inventory:SetItem(1, "food_bowl")
+		--inventory:SetAmount(i, i)
 		local b = CreateUIItem("slot")
 		b:SetLocation(- (i * 50) - 75, -300)
 		b:SetSize(24, 24)

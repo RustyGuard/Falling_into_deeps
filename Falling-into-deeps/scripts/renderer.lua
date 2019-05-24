@@ -1,36 +1,56 @@
-GLFW_RELEASE = 0
-GLFW_PRESS = 1
-GLFW_REPEAT = 2
-
-local component_func = {}
-function CreateComponent(c)
-	if not component_func[c] then
-		component_func[c] = require("scripts/components/" .. c)
+function CreateEntity()
+	local en = {}
+	en.tags = {}
+	-------------------------------------------
+	function en:AddTag(tag)
+		table.insert(self.tags, tag)
 	end
-	return component_func[c]()
+	function en:HasTag(tag)
+		for _, i in ipairs(self.tags) do
+			if i == tag then return true end
+		end
+		return false
+	end
+	------------------------------------------
+	en.components = {}
+	function en:AddComponent(name)
+		local c = FindPrefab(name):Create(self)
+		self.components[name] = c
+		return c
+	end
+	------------------------------------------
+	en.listeners = {}
+	function en:AddListener(type, fn)
+		if not self.listeners[type] then self.listeners[type] = {} end
+		self.listeners[type][fn] = true
+	end
+	function en:RemoveListener(type, fn)
+		self.listeners[type][fn] = nil
+	end
+	function en:PushEvent(type, ...)
+		if self.listeners[type] then
+			for i, v in pairs(self.listeners[type]) do
+				if v then i(self, ...) end
+			end
+		end
+	end
+	return en
 end
 
--- Item init
-ITEMS = {}
-ITEMS[1] = require "scripts/item/copper_sword"
-ITEMS[2] = require "scripts/item/copper_ingot"
-ITEMS[3] = require "scripts/item/food_bowl"
+require "scripts/prefab"
 
+local entity_renderer = require "scripts/entity_renderer"
 local tile_renderer = require "scripts/tile_renderer"
 local ui_renderer = require "scripts/ui_renderer"
-local entity_renderer = require "scripts/entity_renderer"
 
--- Entity init
-AddEntity("test2")
-AddEntity("test2")
-AddEntity("player")
----------------
-SetTile(1, 1, "chest")
-SetTile(3, 2, "chest")
----------------
+dummy = AddEntity("dummy")
+player = AddEntity("player")
+
+player:PushEvent("Punch", dummy)
 
 function PushEvent(type, ...)
+	if type == "OnMouseButtonReleased" then
+		player:PushEvent("Punch", dummy)
+	end
 	local b = tile_renderer:PushEvent(type, ...) or ui_renderer:PushEvent(type, ...) or entity_renderer:PushEvent(type, ...)
 end
-
-print("All")

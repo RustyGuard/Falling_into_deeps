@@ -4,11 +4,11 @@ local function create()
 	inst.health = inst.max_health
 	function inst:heal(hp)
 		self.health = math.min(self.max_health, self.health + hp)
-		print("Health: " .. self.health)
+		print("+Health: " .. self.health)
 	end
 	function inst:damage(dmg)
 		self.health = math.max(0, self.health - dmg)
-		print("Health: " .. self.health)
+		print("-Health: " .. self.health)
 		if self.health == 0 then return true end
 		return false
 	end
