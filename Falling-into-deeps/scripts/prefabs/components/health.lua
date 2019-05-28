@@ -1,17 +1,8 @@
-local function OnAttack(entity, attacker, weapon)
-	comp = entity.components.health
-	print("Current: "..comp.health)
-	comp.health = comp.health - math.max(weapon.components.weapon:GetPhysicDamage() - entity.components.inventory:GetPhysicDefence(), 1)
-	print("After physic: "..comp.health)
-	comp.health = comp.health - math.max(weapon.components.weapon:GetFireDamage() - entity.components.inventory:GetFireDefence(), 1)
-	print("After fire: "..comp.health)
-	comp.health = comp.health - math.max(weapon.components.weapon:GetIceDamage() - entity.components.inventory:GetIceDefence(), 1)
-	print("After ice: "..comp.health)
-	comp.health = comp.health - math.max(weapon.components.weapon:GetShockDamage() - entity.components.inventory:GetShockDefence(), 1)
-	print("After shock: "..comp.health)
-
-	if comp.health <= 0 then
-		entity:PushEvent("OnDead", attacker, weapon)
+local function DoDelta(entity, v)
+	local comp = entity.components.health
+	comp.health = math.min(math.max(comp.health + v, 0), comp.maxhealth)
+	if comp.health == 0 then
+		entity:PushEvent("OnDead")
 		RemoveEntity(entity)
 	end
 end
@@ -24,9 +15,18 @@ local function fn(entity)
 		self.health = v
 	end
 
+	function inst:DoDelta(v)
+		self.health = math.min(math.max(self.health + v, 0), self.maxhealth)
+		print(self.health)
+	end
+
 	inst:SetMaxHealth(100)
 
-	entity:AddListener("OnAttack", OnAttack)
+	entity:AddListener("DoDelta", DoDelta)
+
+	function inst:DebugInfo()
+		print("Health: (Current: " .. self.health .. "Max: ".. self.maxhealth ..")")
+	end
 
 	return inst
 end

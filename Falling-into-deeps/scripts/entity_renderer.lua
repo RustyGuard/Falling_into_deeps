@@ -14,7 +14,12 @@ function RemoveEntity(entity)
 			return
 		end
 	end
-	
+end
+
+function FindFirstWithTag(tag)
+	for _, i in ipairs(inst.entities) do
+		if i:HasTag(tag) then return i end
+	end
 end
 
 function inst:PushEvent(type, ...)
@@ -30,7 +35,7 @@ end
 function inst:OnKeyReleased(key)
 	if key == 73 then
 		for _, en in ipairs(self.entities) do
-			print(en:to_string())
+			en:DebugInfo()
 		end
 	end
 end

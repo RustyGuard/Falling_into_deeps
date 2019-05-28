@@ -1,26 +1,15 @@
 local function fn(entity)
 	local inst = {}
 	function inst:Init(p, f, i, s)
-		self.physic_dmg = p
-		self.fire_dmg = f
-		self.ice_dmg = i
-		self.shock_dmg = s
+		self.dmg = {p, f, i, s}
 	end
-	function inst:GetPhysicDamage()
-		return self.physic_dmg
+	function inst:GetDamage()
+		return self.dmg
 	end
-	function inst:GetFireDamage()
-		return self.fire_dmg
+	function inst:DebugInfo()
+		print("Weapon: (", self.dmg[1], self.dmg[2], self.dmg[3], self.dmg[4], ")")
 	end
-	function inst:GetIceDamage()
-		return self.ice_dmg
-	end
-	function inst:GetShockDamage()
-		return self.shock_dmg
-	end
-	function inst:to_string()
-		return self.physic_dmg .. ", " .. self.fire_dmg .. ", " .. self.ice_dmg .. ", " .. self.shock_dmg
-	end
+
 	return inst
 end
 

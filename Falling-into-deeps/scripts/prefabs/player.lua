@@ -14,7 +14,7 @@ local function OnUpdate(entity)
 			y = y + 1
 		end
 		entity.components.transform:Move(x, y)
-		--[[if x < 0 then
+		if x < 0 then
 			entity:UseAnimation("left")
 		elseif x  > 0 then
 			entity:UseAnimation("right")
@@ -26,7 +26,7 @@ local function OnUpdate(entity)
 			else
 				entity:UseAnimation("idle")
 			end
-		end]]
+		end
 end
 
 local function fn()
@@ -38,10 +38,21 @@ local function fn()
 	local inv = inst:AddComponent("inventory")
 	inv:SetItem(1, "food_bowl")
 	inv:SetItem("arm", "copper_sword")
+
+	local anim1 = inst:AddAnimation("idle", "cycle")
+	anim1:Init("res/textures/player/idle", 0.5, 4)
+	local anim2 = inst:AddAnimation("left", "cycle")
+	anim2:Init("res/textures/player/left", 0.5, 4)
+	local anim3 = inst:AddAnimation("right", "cycle")
+	anim3:Init("res/textures/player/right", 0.5, 4)
+	local anim4 = inst:AddAnimation("up", "cycle")
+	anim4:Init("res/textures/player/up", 0.5, 4)
+	local anim5 = inst:AddAnimation("down", "cycle")
+	anim5:Init("res/textures/player/down", 0.5, 4)
+
+	inst:UseAnimation("idle")
+
 	inst:AddListener("OnUpdate", OnUpdate)
-	function inst:to_string()
-		return "player // Health: " .. self.components.health.health
-	end
 	return inst
 end
 return Prefab("player", fn)

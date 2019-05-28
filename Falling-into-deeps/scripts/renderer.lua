@@ -1,3 +1,5 @@
+require "scripts/class"
+
 function CreateEntity()
 	local en = {}
 	en.tags = {}
@@ -34,6 +36,136 @@ function CreateEntity()
 			end
 		end
 	end
+	-----------------------------------------
+	en.animations = {}
+	en.curr = 0
+
+	function en:AddAnimation(id, type)
+		local i = {}
+		if type == "static" then
+			function i:Init(name)
+				self.texture = CreateTexture(name)
+			end
+			function i:GetImage()
+				return self.texture
+			end
+			function OnUpdate(delta) end
+		elseif type == "cycle" then
+			function i:Init(name, duration, range)
+				self.duration = duration
+				self.time = 0
+				self.range = range
+				self.current = 1
+				self.textures = {}
+				self.reversed = false
+				for i = 1, range do
+					self.textures[i] = CreateTexture(name .. i .. ".png")
+				end
+			end
+			function i:OnUpdate(delta)
+				self.time = self.time + delta
+				if self.time >= self.duration then
+					self.time = self.time - self.duration
+					self.current = self.current + 1
+					if self.current > self.range then
+						self.current = 1
+					end
+				end
+			end
+			function i:Reverse() 
+				self.reversed = not self.reversed
+			end
+			function i:SetReversed(r) 
+				self.reversed = r
+			end
+			function i:Min()
+				self.current = 1
+			end
+			function i:Max()
+				self.current = self.range
+			end
+			function i:GetImage()
+				if self.reversed then
+					return self.textures[self.range - self.current + 1]
+				end
+				return self.textures[self.current]
+			end
+		elseif type == "over" then
+			function i:Init(name, duration, range)
+				self.duration = duration
+				self.time = 0
+				self.range = range
+				self.current = 1
+				self.textures = {}
+				for i = 1, range do
+					self.textures[i] = CreateTexture(name .. i .. ".png")
+				end
+			end
+			function i:OnUpdate(delta)
+				if self.current < self.range then
+					self.time = self.time + delta
+					if self.time >= self.duration then
+						self.time = self.time - self.duration
+						self.current = self.current + 1
+					end
+				end
+			end
+			function i:Reverse() 
+				self.reversed = not self.reversed
+			end
+			function i:SetReversed(r) 
+				self.reversed = r
+			end
+			function i:Min()
+				self.current = 1
+			end
+			function i:Max()
+				self.current = self.range
+			end
+			function i:GetImage()
+				if self.reversed then
+					return self.textures[self.range - self.current + 1]
+				end
+				return self.textures[self.current]
+			end
+		end
+		self.animations[id] = i
+		return i
+	end
+
+	function en:GetImage()
+		if self.curr == 0 then return 0 end
+		return self.animations[self.curr]:GetImage()
+	end
+
+	function en:UseAnimation(id)
+		self.curr = id
+	end
+
+	function en:GetAnimation(id)
+		return self.animations[id]
+	end
+
+	function en:UpdateAnimation(delta)
+		if self.curr ~= 0 then
+			self.animations[self.curr]:OnUpdate(delta)	
+		end
+	end
+	--------------------------------------------------------
+	en:AddListener("OnUpdate", function(entity, d) entity:UpdateAnimation(d) end)
+
+	function en:DebugInfo()
+		print("------------------------------------")
+		print("Tags:")
+		for _, i in ipairs(self.tags) do
+			print(i)
+		end
+		print("Components:")
+		for _, i in pairs(self.components) do
+			i:DebugInfo()
+			print("---------------------")
+		end
+	end
 	return en
 end
 
@@ -45,6 +177,19 @@ local ui_renderer = require "scripts/ui_renderer"
 
 dummy = AddEntity("dummy")
 player = AddEntity("player")
+
+require "scripts/widgets/bar"
+local b = Bar(dummy)
+b:setLocation(512, -256)
+AddWidget(b)
+require "scripts/widgets/button"
+local button = Button()
+button:setLocation(-128, -128)
+local function callback(b, button)
+	print("Call!")
+end
+button:addListener("OnMouseButtonReleased", function(b, button)	print("Call!") end)
+AddWidget(button)
 
 player:PushEvent("Punch", dummy)
 

@@ -22,30 +22,24 @@ local function fn(entity)
 	function inst:GetBootsSlot()
 		return self.items.boots
 	end
-	function inst:GetPhysicDefence()
-		return self:GetDefence("GetPhysicDefence")
-	end
-	function inst:GetFireDefence()
-		return self:GetDefence("GetFireDefence")
-	end
-	function inst:GetIceDefence()
-		return self:GetDefence("GetIceDefence")
-	end
-	function inst:GetShockDefence()
-		return self:GetDefence("GetShockDefence")
-	end
-	function inst:GetDefence(name)
-		local res = 0
-		if self.items.helmet then
-			res = res + self.items.helmet.components.armor[name](self.items.helmet.components.armor)
+	function inst:GetSlotDefence(slot, type)
+		if self.items[slot] and self.items[slot].components.armor then
+			return self.items[slot].components.armor:GetDefence(type)
 		end
-		if self.items.chestplate then
-			res = res + self.items.chestplate.components.armor[name](self.items.chestplate.components.armor)
+		return 0
+	end
+	function inst:GetDefence(type)
+		return self:GetSlotDefence("helmet", type) + self:GetSlotDefence("boots", type) + self:GetSlotDefence("chestplate", type)
+	end
+	function inst:DebugInfo()
+		print("Inventory")
+		print("[[[[[[[[[[[[[[[[[[[[[[[[[")
+		for i, j in pairs(self.items) do
+			print("Slot:" .. i)
+			j:DebugInfo()
+			print()
 		end
-		if self.items.boots then
-			res = res + self.items.boots.components.armor[name](self.items.boots.components.armor)
-		end
-		return res
+		print("]]]]]]]]]]]]]]]]]]]]]]]]]")
 	end
 	return inst
 end

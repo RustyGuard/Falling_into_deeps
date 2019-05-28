@@ -7,18 +7,13 @@ layout(location = 1)in vec2 texCoord;
 out vec2 v_TexCoord;
 
 uniform mat4 u_MVP;
-uniform float x_mul;
-uniform float y_mul;
 
 void main()
 {
 	vec4 res = u_MVP * position;
 	res.z = 0.0;
 	gl_Position = res;
-	vec2 t = texCoord;
-	t.x = t.x * x_mul;
-	t.y = t.y * y_mul;
-	v_TexCoord = t;
+	v_TexCoord = texCoord;
 };
 
 #shader fragment
@@ -28,12 +23,18 @@ layout(location = 0)out vec4 color;
 
 in vec2 v_TexCoord;
 
-uniform vec4 u_Color;
+uniform vec3 u_Color;
 uniform sampler2D u_Texture;
+uniform float x_mul;
+uniform float y_mul;
 
 void main()
 {
-	vec4 texColor = texture(u_Texture, v_TexCoord);
+	if (v_TexCoord.x > x_mul)
+		discard;
+	if (v_TexCoord.y > y_mul)
+		discard;
+	vec4 texColor = texture(u_Texture, v_TexCoord) * vec4(u_Color, 1.0f);
 	color = texColor;
 	if (texColor.a < 0.3)
 		discard;

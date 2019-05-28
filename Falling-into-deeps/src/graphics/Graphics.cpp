@@ -26,6 +26,8 @@ std::unordered_map<std::string, Shader*> shaders;
 float scale;
 glm::vec3 view;
 
+float u_Time = 0.0f;
+
 void Gear::Init()
 {
 	glEnable(GL_DEPTH_TEST);
@@ -85,6 +87,7 @@ void Gear::DrawUI(unsigned int texture, glm::vec3 pos, glm::vec3 half_extern, fl
 	shaders["ui"]->setUniformMat4("u_MVP", mvp);
 	shaders["ui"]->setUniform1f("x_mul", x_change);
 	shaders["ui"]->setUniform1f("y_mul", y_change);
+	shaders["ui"]->setUniform3f("u_Color", 1.0f, 1.0f, 1.0f);
 	VAO->bind();
 	indexBuffer->bind();
 	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
@@ -99,7 +102,9 @@ void Gear::DrawEntity(unsigned int texture, glm::vec3 pos, glm::vec3 half_extern
 	glBindTexture(GL_TEXTURE_2D, texture);
 	shaders["default"]->bind();
 	shaders["default"]->setUniformMat4("u_MVP", mvp);
+	shaders["default"]->setUniformVec3("u_Color", glm::vec3(1.0f, 1.0f, 1.0f));
 	shaders["default"]->setUniform1f("z_coord", z);
+	shaders["default"]->setUniform1f("u_Time", u_Time);
 	VAO->bind();
 	indexBuffer->bind();
 	glDrawElements(GL_TRIANGLES, indexBuffer->getCount(), GL_UNSIGNED_INT, nullptr);
@@ -112,6 +117,10 @@ void Gear::Move()
 		scale += 0.1f;
 	if (Gear::GetKey("down") && scale > 0.35f)
 		scale -= 0.1f;
+	u_Time += 1.0f / 60.0f;
+	while (u_Time >= 1.0f) {
+		u_Time -= 1.0f;
+	}
 }
 
 float Gear::GetCameraX()

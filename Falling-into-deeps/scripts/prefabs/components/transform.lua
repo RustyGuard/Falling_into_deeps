@@ -1,6 +1,6 @@
 local function OnRender(entity)
 	comp = entity.components.transform
-	Draw(comp.texture, comp.pos, comp.tex_half, 0.5)
+	Draw(entity:GetImage(), comp.pos, comp.tex_half, 0.5)
 end
 
 local function fn(entity)
@@ -19,6 +19,9 @@ local function fn(entity)
 			self.pos.x = self.pos.x + x
 			self.pos.y = self.pos.y + y
 		end
+	end
+	function inst:DebugInfo()
+		print("Transform: (" .. self.pos.x .. " "..self.pos.y..")")
 	end
 	inst.texture = CreateTexture("res/textures/test.png")
 	entity:AddListener("OnRender", OnRender)

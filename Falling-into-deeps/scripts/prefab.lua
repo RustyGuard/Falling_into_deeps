@@ -1,11 +1,11 @@
-function Prefab(name, fn)
-	local p = {}
-	p.name = name
-	p.fn = fn
-	function p:Create(...)
-		return self.fn(...)
-	end
-	return p
+Prefab = class()
+function Prefab:init(name, fn)
+	self.name = name
+	self.fn = fn
+
+end
+function Prefab:Create(...)
+	return self.fn(...)
 end
 
 PREFABFILES = {
@@ -34,9 +34,9 @@ for _, i in ipairs(PREFABFILES) do
 		end
 	end
 end
-for _, i in ipairs(PREFABLIST) do
+--[[for _, i in ipairs(PREFABLIST) do
 	print(i.name)
-end
+end]]
 FindPrefab = function(name)
 	for _, i in ipairs(PREFABLIST) do
 		if i.name == name then return i end

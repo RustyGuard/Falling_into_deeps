@@ -1,6 +1,6 @@
 local function fn()
 	local inst = CreateEntity()
-	inst:AddTag("player")
+	inst:AddTag("dummy")
 	--inst:AddComponent("transform")
 	inst:AddComponent("health")
 	inst:AddComponent("combat")

@@ -186,6 +186,10 @@
     <None Include="scripts\prefabs\dummy.lua" />
     <None Include="scripts\prefabs\components\armor.lua" />
     <None Include="scripts\prefabs\copper_armor.lua" />
+    <None Include="scripts\class.lua" />
+    <None Include="scripts\widgets\widget.lua" />
+    <None Include="scripts\widgets\bar.lua" />
+    <None Include="scripts\widgets\button.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png">

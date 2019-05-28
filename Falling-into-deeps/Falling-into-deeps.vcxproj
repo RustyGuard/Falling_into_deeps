@@ -180,6 +180,7 @@
   <ItemGroup>
     <None Include="res\shader\Basic.shader" />
     <None Include="res\shader\Ui.shader" />
+    <None Include="scripts\class.lua" />
     <None Include="scripts\components\health.lua" />
     <None Include="scripts\components\inventory.lua" />
     <None Include="scripts\components\transform.lua" />
@@ -214,6 +215,9 @@
     <None Include="scripts\ui\slot.lua" />
     <None Include="scripts\ui\container.lua" />
     <None Include="scripts\ui_renderer.lua" />
+    <None Include="scripts\widgets\bar.lua" />
+    <None Include="scripts\widgets\button.lua" />
+    <None Include="scripts\widgets\widget.lua" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\test.png" />
